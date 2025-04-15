@@ -4,5 +4,5 @@ import org.example.domain.repository.FoodRepository
 import org.example.model.Food
 
 class GetFoodUC(private val repository : FoodRepository) {
-    operator fun invoke():List<Food> = repository.getFood()
+    fun invoke():List<Food> = repository.getFood()
 }

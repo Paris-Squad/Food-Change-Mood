@@ -3,7 +3,8 @@ package org.example.data
 import kotlinx.datetime.LocalDate
 import org.example.model.Food
 import org.example.model.Nutrition
-val mockFoodList = listOf(
+
+val FakeFoodList = listOf(
     Food(
         name = "arriba baked winter squash mexican style",
         id = "137739",
