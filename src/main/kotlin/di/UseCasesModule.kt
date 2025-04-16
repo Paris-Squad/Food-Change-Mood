@@ -10,6 +10,7 @@ import org.example.domain.usecase.GetMealsByCountryUseCase
 import org.koin.dsl.module
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
 val useCasesModule = module {
+    single { GetRandomPotatoMealsUseCase(get()) }
     single { GetSeafoodMealsUseCase(get()) }
     single { GetFoodUseCase(get()) }
     single { GetEasyFoodSuggestionUseCase(get()) }
