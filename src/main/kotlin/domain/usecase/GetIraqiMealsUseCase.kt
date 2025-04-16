@@ -6,7 +6,7 @@ import org.example.model.Food
 
     class GetIraqiMealsUseCase(private val repository: FoodRepository) {
 
-        fun getIraqiMeals(): List<Food> {
+        fun getIraqiMeals(): Result<List<Food>> {
             val iraqiMeals = repository.getFood().filter { food ->
                 isIraqiMeal(food)
             }
