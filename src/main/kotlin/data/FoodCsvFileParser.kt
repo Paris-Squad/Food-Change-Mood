@@ -1,6 +1,8 @@
 package org.example.data
 
 import kotlinx.datetime.LocalDate
+import org.example.data.utils.ColumnIndex
+import org.example.data.utils.NutritionIndex
 import org.example.model.Food
 import org.example.model.Nutrition
 import org.example.utils.lineHasEvenOrZeroQuoteCount
@@ -93,22 +95,22 @@ class FoodCsvFileParse {
     }
 
     private fun createRecipe(fields: List<String>) = Food(
-        name = fields[0].trim(),
-        id = fields[1].trim(),
-        minutes = fields[2].trim().toInt(),
-        contributorId = fields[3].trim(),
-        submitted = LocalDate.parse(fields[4].trim()),
-        tags = parseListField(fields[5]),
-        nutrition = parseNutrition(fields[6]),
-        numberOfSteps = fields[7].trim().toInt(),
-        steps = parseListField(fields[8]),
-        description = fields[9].trim(),
-        ingredients = parseListField(fields[10]),
-        numberOfIngredients = fields[11].trim().toInt()
+        name = fields[ColumnIndex.NAMES].trim(),
+        id = fields[ColumnIndex.ID].trim(),
+        minutes = fields[ColumnIndex.MINUTES].trim().toInt(),
+        contributorId = fields[ColumnIndex.CONTRIBUTOR_ID].trim(),
+        submitted = LocalDate.parse(fields[ColumnIndex.SUBMITTED_DATE].trim()),
+        tags = parseListField(fields[ColumnIndex.TAGS]),
+        nutrition = parseNutrition(fields[ColumnIndex.NUTRITION]),
+        numberOfSteps = fields[ColumnIndex.NUMBER_OF_STEPS].trim().toInt(),
+        steps = parseListField(fields[ColumnIndex.STEPS]),
+        description = fields[ColumnIndex.DESCRIPTION].trim(),
+        ingredients = parseListField(fields[ColumnIndex.INGREDIENTS]),
+        numberOfIngredients = fields[ColumnIndex.NUMBER_OF_INGREDIENTS].trim().toInt()
     )
 
-    private fun parseListField(field: String): List<String> {
-        var content = field
+    private fun parseListField(listField: String): List<String> {
+        var content = listField
         val quote = "\""
         while (content.startsWith(quote) && content.endsWith(quote)){
             content = content.removeSurrounding(quote, quote).trim()
@@ -154,8 +156,8 @@ class FoodCsvFileParse {
         return result.map { it.removeSurrounding("'").trim() }
     }
 
-    private fun parseNutrition(field: String): Nutrition {
-        var content = field
+    private fun parseNutrition(nutritionFiled: String): Nutrition {
+        var content = nutritionFiled
         val quote = "\""
         while (content.startsWith(quote) && content.endsWith(quote)){
             content = content.removeSurrounding(quote, quote).trim()
@@ -163,13 +165,13 @@ class FoodCsvFileParse {
         val values = parseNutritionValues(content)
 
         return Nutrition(
-            calories = values.getOrNull(0),
-            totalFat = values.getOrNull(1),
-            sugar = values.getOrNull(2),
-            sodium = values.getOrNull(3),
-            protein = values.getOrNull(4),
-            saturatedFat = values.getOrNull(5),
-            carbohydrates = values.getOrNull(6)
+            calories = values.getOrNull(NutritionIndex.CALORIES),
+            totalFat = values.getOrNull(NutritionIndex.TOTAL_FAT),
+            sugar = values.getOrNull(NutritionIndex.SUGAR),
+            sodium = values.getOrNull(NutritionIndex.SODIUM),
+            protein = values.getOrNull(NutritionIndex.PROTEIN),
+            saturatedFat = values.getOrNull(NutritionIndex.SATURATED_FAT),
+            carbohydrates = values.getOrNull(NutritionIndex.CARBOHYDRATES)
         )
     }
 
