@@ -7,7 +7,7 @@ class IraqiMealsUi(private val getIraqiMealsUseCase: GetIraqiMealsUseCase) {
 
     operator fun invoke() {
         try {
-            val iraqiMeals = getIraqiMealsUseCase.getIraqiMeals()
+            val iraqiMeals = getIraqiMealsUseCase.getIraqiMeals().getOrThrow()
 
             println("--- IRAQI MEALS ---")
             iraqiMeals.forEachIndexed { index, food ->
