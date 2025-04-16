@@ -4,6 +4,7 @@ sealed class FoodException(message: String?):Exception(message) {
 
     class NoEasyFoodFound : FoodException("No easy food recipes found matching the criteria")
     class NoSeaFoodMealsFound(message: String) : FoodException(message)
+    class NoIraqiFoodFound : FoodException("No Iraqi Meals found")
     class NoMoreSweetsAvailable : FoodException("No more egg-free sweets available")
 
     sealed class GuessException(message: String) : FoodException(message) {

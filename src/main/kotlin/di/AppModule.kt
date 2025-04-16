@@ -12,4 +12,5 @@ val appModule = module {
     single { CsvFileReader(get()) }
     single { FoodCsvFileParse() }
     single<FoodRepository> { CsvFoodRepository(get(), get()) }
+
 }
