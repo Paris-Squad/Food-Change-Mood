@@ -1,7 +1,7 @@
 package org.example.di
 
-import org.example.data.CsvFoodRepository
 import org.example.data.CsvFileReader
+import org.example.data.CsvFoodRepository
 import org.example.data.FoodCsvFileParse
 import org.example.domain.repository.FoodRepository
 import org.koin.dsl.module
