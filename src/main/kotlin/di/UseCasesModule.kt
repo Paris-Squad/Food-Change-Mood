@@ -6,6 +6,7 @@ import org.example.domain.usecase.GuessGameUseCase
 import org.example.domain.usecase.GetEggFreeSweetsUseCase
 import org.example.domain.usecase.GetEasyFoodSuggestionUC
 import org.example.domain.usecase.GetFoodUC
+import org.example.domain.usecase.GetIraqiMealsUseCase
 import org.example.domain.usecase.GetSeafoodMealsUseCase
 import org.example.domain.usecase.GuessGameUC
 import org.example.domain.usecase.GetQuickHealthyPicksUseCase
@@ -18,6 +19,7 @@ val useCasesModule = module {
     single { GuessGameUseCase(get()) }
     single { GetEggFreeSweetsUseCase(get()) }
     single { GetFoodUC(get()) }
+    single { GetIraqiMealsUseCase(get()) }
     single { GetSeafoodMealsUseCase(get()) }
     single { GetEasyFoodSuggestionUC(get()) }
     single { GuessGameUC(get()) }
