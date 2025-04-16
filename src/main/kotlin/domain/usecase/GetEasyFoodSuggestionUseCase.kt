@@ -9,7 +9,7 @@ class GetEasyFoodSuggestionUseCase(private val repository: FoodRepository) {
         val easyFood = repository.getFood().filter(::isEasyFood).shuffled().take(10)
 
         return if (easyFood.isEmpty()) {
-            Result.failure(FoodException.NoEasyFoodFound())
+            Result.failure(FoodException.NoEasyFoodFound("No easy food recipes found matching the criteria"))
         } else Result.success(easyFood)
     }
 

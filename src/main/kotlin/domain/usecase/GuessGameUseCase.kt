@@ -12,7 +12,7 @@ class GuessGameUseCase(private val repository: FoodRepository) {
 
     fun getRandomFood(): Food {
         randomFood = repository.getFood().takeIf { it.isNotEmpty() }?.let { it[Random.nextInt(it.size)] }
-            ?: throw FoodException.GuessException.NoFoodAvailable()
+            ?: throw FoodException.GuessException.NoFoodAvailable("No food Available.")
         return randomFood
     }
 

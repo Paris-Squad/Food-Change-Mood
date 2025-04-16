@@ -44,7 +44,7 @@ class EggFreeSweetsUi(private val useCase: GetEggFreeSweetsUseCase) {
                 onFailure = { error ->
                     when (error) {
                         is FoodException.NoMoreSweetsAvailable -> {
-                            println("No more egg-free sweets available to suggest.")
+                            println(error.message)
                             continueSearching = false
                         }
 
