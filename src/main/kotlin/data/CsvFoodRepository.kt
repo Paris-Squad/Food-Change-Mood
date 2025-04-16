@@ -8,15 +8,14 @@ class CsvFoodRepository(
     private val foodCsvFileParser: FoodCsvFileParse
 ) : FoodRepository {
 
-    private var foods = listOf<Food>()
-    override fun getFood(): List<Food> {
-        if (foods.isEmpty()) {
-            foods = foodCsvFileParser.parseFoods(
-                fileReader.readLinesFromFile()
-            )
-        }
-        return foods
+    private val foods: List<Food> by lazy {
+        foodCsvFileParser.parseFoods(
+            fileReader.readLinesFromFile()
+        )
     }
+
+    override fun getFood(): List<Food> = foods
+
 
     companion object {
         const val FILE_NAME = "food.csv"
