@@ -3,6 +3,7 @@ package org.example.domain
 sealed class FoodException(message: String?):Exception(message) {
 
     class NoEasyFoodFound : FoodException("No easy food recipes found matching the criteria")
+    class NoMoreSweetsAvailable : FoodException("No more egg-free sweets available")
 
     sealed class GuessException(message: String) : FoodException(message) {
         class TooLow(val attemptsLeft: Int) : GuessException("Guess too low. $attemptsLeft attempts left")
@@ -10,8 +11,12 @@ sealed class FoodException(message: String?):Exception(message) {
         class GameOver(val correctTime: Int) : GuessException("Game over. Correct time was $correctTime minutes")
         class NoFoodAvailable:GuessException("No food Available.")
     }
+<<<<<<< HEAD
 sealed class FoodException(message: String?) : Exception(message) {
     class NoPotatoMealFound : FoodException("No meals found containing potatoes")
 }
     }
 
+=======
+}
+>>>>>>> eba1928 (add egg-free sweets suggestion feature with corresponding use case and UI component)
