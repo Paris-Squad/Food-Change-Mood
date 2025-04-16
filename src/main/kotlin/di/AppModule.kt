@@ -7,8 +7,12 @@ import org.koin.dsl.module
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
 
 val appModule = module {
-    single { FakeRepositoryImpl() }
-    single<FoodRepository> { FakeRepositoryImpl() }
+    single { File(CsvFoodRepository.FILE_NAME) }
+    single { CsvFileReader(get()) }
+    single { FoodCsvFileParse() }
+    single<FoodRepository> { CsvFoodRepository(get(), get()) }
 
     single { GetFoodUi(get()) }
+    single { GetMealsByCountryUi(get()) }
+    single { GetRandomPotatoMealsUseCase(get()) }
 }
