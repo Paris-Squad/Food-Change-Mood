@@ -7,25 +7,28 @@ import org.example.model.Food
 
 class GetMealsByCountryUseCase(private val repository: FoodRepository) {
 
-    fun getMealsByCountry(country: String): List<Food> {
-        val meals = repository.getFood().filter { food ->
-            isRelatedToCountry(food, country)
-        }.shuffled().take(20)
+    fun getMealsByCountry(country: String, count: Int): Result<List<Food>> {
+        val meals = repository.getFood()
+            .filter { food -> isRelatedToCountry(food, country) }
+            .shuffled()
+            .take(minOf(count, 20))
+            .sortedBy{it.name}
 
         if (meals.isEmpty()) {
             throw FoodException.NoMealsFoundForCountry(country)
         }
 
-        return meals
+        return Result.success(meals)
     }
-
 
     private fun isRelatedToCountry(food: Food, country: String): Boolean {
-
-        return food.name?.contains(country, ignoreCase = true) == true ||
-                food.description?.contains(country, ignoreCase = true) == true ||
-                food.tags.any { it.equals(country, ignoreCase = true) } ||
-                food.ingredients.any { it.contains(country, ignoreCase = true) } ||
-                food.steps.any { it.contains(country, ignoreCase = true) }
+        return listOfNotNull(
+            food.name,
+            food.description,
+            *food.tags.toTypedArray(),
+            *food.ingredients.toTypedArray(),
+            *food.steps.toTypedArray()
+        ).any { it.contains(country, ignoreCase = true) }
     }
+
 }
