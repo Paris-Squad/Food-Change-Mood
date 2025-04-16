@@ -15,4 +15,26 @@ data class Food(
     val description: String?,
     val ingredients: List<String>,
     val numberOfIngredients: Int
-)
+) {
+
+    fun formatDetails(): String {
+        val details = StringBuilder()
+        details.append("\n--- FULL DETAILS ---\n")
+        details.append("Name: ${name ?: "Unnamed"}\n")
+        details.append("Preparation time: $minutes minutes\n")
+        details.append("Description: ${description ?: "No description available"}\n")
+        details.append("Ingredients (${numberOfIngredients}):\n")
+        ingredients.forEach { details.append("- $it\n") }
+        details.append("\nPreparation steps:\n")
+        steps.forEachIndexed { index, step ->
+            details.append("${index + 1}. $step\n")
+        }
+        details.append("\nNutrition information:\n")
+        details.append("Calories: ${nutrition.calories}\n")
+        details.append("Carbohydrates: ${nutrition.carbohydrates}g\n")
+        details.append("Protein: ${nutrition.protein}g\n")
+        details.append("Fat: ${nutrition.totalFat}g\n")
+        details.append("Sugar: ${nutrition.sugar}g\n")
+        return details.toString()
+    }
+}
