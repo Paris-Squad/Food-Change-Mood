@@ -17,7 +17,7 @@ class GetEggFreeSweetsUseCase(private val repository: FoodRepository) {
             }
         
         return if (availableSweets.isEmpty()) {
-            Result.failure(FoodException.NoMoreSweetsAvailable())
+            Result.failure(FoodException.NoMoreSweetsAvailable("No more egg-free sweets available"))
         } else {
             val randomSweet = availableSweets.random()
             suggestedSweets.add(randomSweet.id)
