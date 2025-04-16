@@ -4,7 +4,6 @@ import org.example.data.CsvFileReader
 import org.example.data.CsvFoodRepository
 import org.example.data.FoodCsvFileParse
 import org.example.domain.repository.FoodRepository
-import org.example.presentaion.IraqiMealsUi
 import org.koin.dsl.module
 import java.io.File
 
@@ -14,5 +13,4 @@ val appModule = module {
     single { FoodCsvFileParse() }
     single<FoodRepository> { CsvFoodRepository(get(), get()) }
 
-    single {IraqiMealsUi(get())  }
 }
