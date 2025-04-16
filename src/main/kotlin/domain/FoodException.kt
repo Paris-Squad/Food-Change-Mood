@@ -6,6 +6,7 @@ sealed class FoodException(message: String?) : Exception(message) {
     class NoSeaFoodMealsFound(message: String) : FoodException(message)
     class NoMoreSweetsAvailable(message: String) : FoodException(message)
     class NoIraqiFoodFound : FoodException("No Iraqi Meals found")
+    class NoMealsFoundForCountry(country: String) : FoodException("No meals found related to '$country'")
 
     sealed class GuessException(message: String) : FoodException(message) {
         class TooLow(val attemptsLeft: Int) : GuessException("Guess too low. $attemptsLeft attempts left")
