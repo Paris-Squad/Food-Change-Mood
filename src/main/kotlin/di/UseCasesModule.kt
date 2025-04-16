@@ -12,6 +12,7 @@ import org.example.domain.usecase.GetQuickHealthyPicksUseCase
 import org.koin.dsl.module
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
 val useCasesModule = module {
+    single { GetSeafoodMealsUseCase(get()) }
     single { GetFoodUseCase(get()) }
     single { GetEasyFoodSuggestionUseCase(get()) }
     single { GuessGameUseCase(get()) }
