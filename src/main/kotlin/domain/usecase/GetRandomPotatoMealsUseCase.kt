@@ -18,7 +18,7 @@ class GetRandomPotatoMealsUseCase(private val repository: FoodRepository) {
 
     private fun getMealsContainingPotato(): List<Food> {
         return repository.getFood()
-            .filter { food -> isMealContainsPotato(food) }
+            .filter (::isMealContainsPotato)
     }
 
     private fun isMealContainsPotato(food: Food): Boolean =

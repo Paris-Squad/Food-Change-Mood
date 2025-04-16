@@ -11,5 +11,4 @@ val appModule = module {
     single<FoodRepository> { FakeRepositoryImpl() }
 
     single { GetFoodUi(get()) }
-    single { GetRandomPotatoMealsUseCase(get()) }
 }
