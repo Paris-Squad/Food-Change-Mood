@@ -1,9 +1,9 @@
 package org.example.presentaion
 
 import org.example.domain.FoodException
-import org.example.domain.usecase.GuessGameUC
+import org.example.domain.usecase.GuessGameUseCase
 
-class GuessGameUi(private val useCase: GuessGameUC) {
+class GuessGameUi(private val useCase: GuessGameUseCase) {
     
     fun startGame() {
         println("--- MEAL PREPARATION TIME GUESSING GAME ---")

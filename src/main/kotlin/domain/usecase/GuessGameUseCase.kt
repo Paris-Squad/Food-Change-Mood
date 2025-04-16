@@ -5,7 +5,7 @@ import org.example.domain.repository.FoodRepository
 import org.example.model.Food
 import kotlin.random.Random
 
-class GuessGameUC(private val repository: FoodRepository) {
+class GuessGameUseCase(private val repository: FoodRepository) {
 
     private var attemptsLeft = 3
     private lateinit var randomFood: Food
