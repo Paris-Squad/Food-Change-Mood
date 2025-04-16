@@ -6,6 +6,7 @@ import org.example.data.FakeRepositoryImpl
 import org.example.data.FoodCsvFileParse
 import org.example.domain.repository.FoodRepository
 import org.example.presentaion.GetFoodUi
+import org.example.presentaion.IraqiMealsUi
 import org.koin.dsl.module
 import java.io.File
 
@@ -19,4 +20,5 @@ val appModule = module {
     single<FoodRepository> { CsvFoodRepository(get(), get()) }
 
     single { GetFoodUi(get()) }
+    single {IraqiMealsUi(get())  }
 }
