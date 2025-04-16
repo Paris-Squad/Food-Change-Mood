@@ -3,6 +3,7 @@ package org.example.domain
 sealed class FoodException(message: String?):Exception(message) {
 
     class NoEasyFoodFound : FoodException("No easy food recipes found matching the criteria")
+    class NoSeaFoodMealsFound(message: String) : FoodException(message)
     class NoMoreSweetsAvailable : FoodException("No more egg-free sweets available")
 
     sealed class GuessException(message: String) : FoodException(message) {
@@ -12,3 +13,4 @@ sealed class FoodException(message: String?):Exception(message) {
         class NoFoodAvailable:GuessException("No food Available.")
     }
 }
+
