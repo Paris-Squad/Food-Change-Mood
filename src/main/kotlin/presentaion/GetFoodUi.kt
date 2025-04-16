@@ -1,9 +1,10 @@
 package org.example.presentaion
+import org.example.domain.usecase.GetQuickHealthyPicksUseCase
 
-import org.example.domain.usecase.GetFoodUC
-
-class GetFoodUi(private val useCase:GetFoodUC) {
+class GetFoodUi(private val useCase:GetQuickHealthyPicksUseCase) {
     operator fun invoke() {
-        println(useCase.invoke())
+        useCase.quickHealthyPicks().forEach {
+            println(it)
+        }
     }
 }
