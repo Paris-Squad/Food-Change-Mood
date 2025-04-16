@@ -18,6 +18,7 @@ class GetRandomPotatoMealsUseCase(private val repository: FoodRepository) {
 
     private fun getMealsContainingPotato(): List<Food> {
         return repository.getFood()
+            .filter { food -> isMealContainsPotato(food) }
             .filter { food ->
                 foodContainsPotato(food)
             }
@@ -26,6 +27,10 @@ class GetRandomPotatoMealsUseCase(private val repository: FoodRepository) {
             .filter (::isMealContainsPotato)
     }
 
+    private fun isMealContainsPotato(food: Food): Boolean =
+        food.ingredients.any { ingredient ->
+            ingredient.contains(POTATO, ignoreCase = true)
+        }
     private fun foodContainsPotato(food: Food): Boolean =
         food.ingredients.any { ingredient -> ingredient.contains(POTATO, ignoreCase = true) }
     private fun isMealContainsPotato(food: Food): Boolean =
@@ -33,6 +38,5 @@ class GetRandomPotatoMealsUseCase(private val repository: FoodRepository) {
             ingredient.contains(POTATO, ignoreCase = true)
         }
 }
-
 
 

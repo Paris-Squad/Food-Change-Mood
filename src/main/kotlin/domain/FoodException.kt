@@ -17,6 +17,7 @@ sealed class FoodException(message: String?) : Exception(message) {
         class GameOver(val correctTime: Int) : GuessException("Game over. Correct time was $correctTime minutes")
         class NoFoodAvailable(message: String) : GuessException(message)
     }
+    class NoPotatoMealFound : FoodException("No meals found containing potatoes")
 sealed class FoodException(message: String?) : Exception(message) {
     class NoPotatoMealFound : FoodException("No meals found containing potatoes")
 }
