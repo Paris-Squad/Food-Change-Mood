@@ -15,7 +15,7 @@ import org.example.model.Food
                 throw FoodException.NoIraqiFoodFound()
             }
 
-            return iraqiMeals
+            return Result.success(iraqiMeals)
         }
 
         private fun isIraqiMeal(food: Food): Boolean {
