@@ -14,8 +14,17 @@ class GetMealsByCountryUi(private val getMealsByCountryUseCase: GetMealsByCountr
             return
         }
 
+        print("Enter number of meals to display: ")
+        val countInput = readlnOrNull()?.trim()
+        val count = countInput?.toIntOrNull()
+
+        if (count == null || count <= 0) {
+            println("Invalid number. Please enter a positive integer.")
+            return
+        }
+
         try {
-            val meals = getMealsByCountryUseCase.getMealsByCountry(country)
+            val meals = getMealsByCountryUseCase.getMealsByCountry(country,count).getOrThrow()
 
             println("\n--- MEALS RELATED TO \"$country\" ---")
             meals.forEachIndexed { index, food ->
