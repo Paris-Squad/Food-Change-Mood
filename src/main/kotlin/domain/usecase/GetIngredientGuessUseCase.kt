@@ -4,13 +4,13 @@ import org.example.domain.repository.FoodRepository
 import org.example.model.Food
 import org.example.model.IngredientGameRound
 
-class IngredientGuessUseCase  (private val repository : FoodRepository) {
+class GetIngredientGuessUseCase  (private val repository : FoodRepository) {
     private fun getAllFood(): List<Food> = repository.getFood()
 
     private var score = 0
     private var correctAnswers = 0
     private val usedMeals = mutableSetOf<String>()
-    private lateinit var currentRound: IngredientGameRound
+    private var currentRound: IngredientGameRound? = null
 
     fun nextRound(): IngredientGameRound?  {
             val meal = getRandomMeal() ?:return null
@@ -36,7 +36,8 @@ class IngredientGuessUseCase  (private val repository : FoodRepository) {
     }
     fun hasNextRound(): Boolean = correctAnswers < 15
     fun submitGuess(guess: String): Boolean {
-        return if (guess == currentRound.correctAnswer) {
+        val round = currentRound ?: return false
+        return if (guess == round.correctAnswer) {
             score += 1000
             correctAnswers++
             true

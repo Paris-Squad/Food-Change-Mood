@@ -1,9 +1,8 @@
 package org.example.presentaion
 
-import org.example.domain.usecase.GetFoodUC
-import org.example.domain.usecase.IngredientGuessUseCase
+import org.example.domain.usecase.GetIngredientGuessUseCase
 
-class GetFoodUi(private val useCase: IngredientGuessUseCase) {
+class GetIngredientGuessUI(private val useCase: GetIngredientGuessUseCase) {
     operator fun invoke() {
         while (useCase.hasNextRound()) {
             val round = useCase.nextRound() ?: break
