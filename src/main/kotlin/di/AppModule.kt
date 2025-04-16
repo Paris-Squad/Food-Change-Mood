@@ -9,5 +9,7 @@ val appModule = module {
     single { FakeRepositoryImpl() }
     single<FoodRepository> { FakeRepositoryImpl() }
 
+
+    single { GetRandomPotatoMealsUseCase(get()) }
     single { GetQuickHealthyPicksUI(get()) }
 }
