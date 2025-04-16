@@ -155,7 +155,12 @@ class FoodCsvFileParse {
     }
 
     private fun parseNutrition(field: String): Nutrition {
-        val values = parseNutritionValues(field)
+        var content = field
+        val quote = "\""
+        while (content.startsWith(quote) && content.endsWith(quote)){
+            content = content.removeSurrounding(quote, quote).trim()
+        }
+        val values = parseNutritionValues(content)
 
         return Nutrition(
             calories = values.getOrNull(0),
