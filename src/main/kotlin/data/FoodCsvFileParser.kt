@@ -55,7 +55,6 @@ class FoodCsvFileParse {
             try {
                 createRecipe(fields)
             } catch (e: Exception) {
-                println("Failed to parse: ${e.message}")
                 null
             }
         } else null
