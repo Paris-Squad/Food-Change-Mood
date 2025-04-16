@@ -108,17 +108,23 @@ class FoodCsvFileParse {
     )
 
     private fun parseListField(field: String): List<String> {
-        if (field.isBlank() ||
-            field.startsWith("[").not() ||
-            field.endsWith("]").not()
+        var content = field
+        val quote = "\""
+        while (content.startsWith(quote) && content.endsWith(quote)){
+            content = content.removeSurrounding(quote, quote).trim()
+        }
+
+        if (content.isBlank() ||
+            content.startsWith("[").not() ||
+            content.endsWith("]").not()
         ) {
             return emptyList()
         }
 
-        return field.removeSurrounding("[", "]")
+        return content.removeSurrounding("[", "]")
             .takeIf { it.isNotBlank() }
-            ?.let { content ->
-                extractListItems(content)
+            ?.let {
+                extractListItems(it)
             } ?: emptyList()
     }
 
