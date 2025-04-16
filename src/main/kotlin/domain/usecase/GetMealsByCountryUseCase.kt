@@ -26,8 +26,6 @@ class GetMealsByCountryUseCase(private val repository: FoodRepository) {
             food.name,
             food.description,
             *food.tags.toTypedArray(),
-            *food.ingredients.toTypedArray(),
-            *food.steps.toTypedArray()
         ).any { it.contains(country, ignoreCase = true) }
     }
 
