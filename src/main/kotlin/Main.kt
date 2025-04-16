@@ -1,8 +1,7 @@
 package org.example
-
 import org.example.di.appModule
 import org.example.di.useCasesModule
-import org.example.domain.usecase.GetQuickHealthyPicks
+import org.example.domain.usecase.IngredientGuessUseCase
 import org.example.presentaion.GetFoodUi
 import org.koin.core.context.startKoin
 import org.koin.java.KoinJavaComponent.getKoin
@@ -11,12 +10,12 @@ fun main() {
     startKoin {
         modules(appModule,useCasesModule)
     }
+  val ingredientGuessUseCase= getKoin().get<IngredientGuessUseCase>()
 
-    val getFood = getKoin().get<GetFoodUi>()
-    val getQuickHealthyPicks = getKoin().get<GetQuickHealthyPicks>()
+    val getFoodUi= GetFoodUi(ingredientGuessUseCase)
 
-    getFood.invoke()
-   getQuickHealthyPicks.quickHealthyPicks().forEach {
-       println(it)
-   }
+     getFoodUi.invoke()
+
+
+
 }
