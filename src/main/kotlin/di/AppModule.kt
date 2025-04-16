@@ -7,7 +7,6 @@ import org.example.presentaion.GetMealsByCountryUi
 import org.example.presentaion.IraqiMealsUi
 import org.koin.dsl.module
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
-import java.io.File
 
 val appModule = module {
     single { File(CsvFoodRepository.FILE_NAME) }
