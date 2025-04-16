@@ -1,7 +1,6 @@
 package org.example.di
 
 import org.example.presentaion.*
-import org.example.presentation.RandomPotatoMealsUi
 import org.koin.dsl.module
 
 val uiModule = module {
