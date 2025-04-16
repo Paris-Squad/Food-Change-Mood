@@ -8,32 +8,33 @@ class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
 
     operator fun invoke() {
         var shouldRepeat = true
-
+        var date:LocalDate?=null
         while (shouldRepeat) {
-            println("Enter a date (yyyy-MM-dd):")
-            val input = readln()
-            val dateResult = parseDate(input)
-            if (dateResult.isFailure) {
-                println(" ${dateResult.exceptionOrNull()?.message}")
-                continue
+            if(date==null) {
+                println("Enter a date (yyyy-MM-dd):")
+                val input = readln()
+                val dateResult = parseDate(input)
+                if (dateResult.isFailure) {
+                    println(" ${dateResult.exceptionOrNull()?.message}")
+                    continue
+                }
+
+                date = dateResult.getOrThrow()
+                val mealsResult = useCase.findMealsByDate(date)
+
+                if (mealsResult.isFailure) {
+                    println(" ${mealsResult.exceptionOrNull()?.message}")
+                    continue
+                }
+
+
+                val meals = mealsResult.getOrThrow()
+
+                println("\n========== MEALS ADDED ON $date ==========\n")
+                meals.forEachIndexed { index, meal ->
+                    println("Meal ${index + 1}: ID: ${meal.id} | Name: ${meal.name ?: "Unnamed Meal"}")
+                }
             }
-
-            val date = dateResult.getOrThrow()
-            val mealsResult = useCase.findMealsByDate(date)
-
-            if (mealsResult.isFailure) {
-                println(" ${mealsResult.exceptionOrNull()?.message}")
-                continue
-            }
-
-            val meals = mealsResult.getOrThrow()
-
-            println("\n========== MEALS ADDED ON $date ==========\n")
-            meals.forEachIndexed { index, meal ->
-                println("Meal ${index + 1}: ID: ${meal.id} | Name: ${meal.name ?: "Unnamed Meal"}")
-            }
-
-            while (true) {
                 println("\nEnter the ID of a meal to view full details:")
                 val mealId = readln()
                 val detailResult = useCase.findMealByIdInList(mealId)
@@ -63,9 +64,6 @@ class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
                     }
                     println("--------------------------------------------------\n")
                 }
-
-                break
-            }
 
             shouldRepeat = false
         }
