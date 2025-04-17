@@ -1,4 +1,4 @@
-package org.example.presentation
+package org.example.presentaion
 
 import org.example.domain.FoodException
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
