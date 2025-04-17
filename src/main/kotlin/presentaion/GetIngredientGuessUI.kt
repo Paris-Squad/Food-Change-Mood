@@ -3,12 +3,12 @@ package org.example.presentaion
 import org.example.domain.usecase.GetIngredientGuessUseCase
 
 class GetIngredientGuessUI(private val useCase: GetIngredientGuessUseCase) {
-    operator fun invoke() {
+     fun invoke() {
         while (useCase.hasNextRound()) {
             val round = useCase.nextRound() ?: break
             println("Meal: ${round.mealName}")
             println("Choose the correct ingredient:")
-            round.options.forEachIndexed { i, opt -> println("${i+1}. $opt") }
+            round.options.forEachIndexed { index, opt -> println("${index+1}. $opt") }
             println("Enter the choose:")
             val guess = readLine()?.toIntOrNull()
             val chosen = round.options.getOrNull(guess?.minus(1) ?: -1)

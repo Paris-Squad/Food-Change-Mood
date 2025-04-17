@@ -4,7 +4,6 @@ import org.example.data.CsvFileReader
 import org.example.data.CsvFoodRepository
 import org.example.data.FoodCsvFileParse
 import org.example.domain.repository.FoodRepository
-import org.example.presentaion.GetIngredientGuessUI
 import org.koin.dsl.module
 import java.io.File
 
