@@ -2,10 +2,10 @@ package org.example.domain.usecase
 
 import org.example.domain.FoodException
 import org.example.domain.repository.FoodRepository
-import org.example.model.Food
+import org.example.model.Meal
 
 class GetEasyFoodSuggestionUseCase(private val repository: FoodRepository) {
-    fun invoke(): Result<List<Food>> {
+    fun invoke(): Result<List<Meal>> {
         val easyFood = repository.getFood().filter(::isEasyFood).shuffled().take(10)
 
         return if (easyFood.isEmpty()) {
@@ -13,6 +13,6 @@ class GetEasyFoodSuggestionUseCase(private val repository: FoodRepository) {
         } else Result.success(easyFood)
     }
 
-    private fun isEasyFood(food: Food): Boolean =
+    private fun isEasyFood(food: Meal): Boolean =
         food.minutes <= 30 && food.numberOfIngredients <= 5 && food.numberOfSteps <= 6
 }

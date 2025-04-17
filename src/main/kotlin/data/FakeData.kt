@@ -1,11 +1,11 @@
 package org.example.data
 
 import kotlinx.datetime.LocalDate
-import org.example.model.Food
+import org.example.model.Meal
 import org.example.model.Nutrition
 
 val FakeFoodList = listOf(
-    Food(
+    Meal(
         name = "arriba baked winter squash mexican style",
         id = "137739",
         minutes = 55,
@@ -36,7 +36,7 @@ val FakeFoodList = listOf(
         ingredients = listOf("winter squash", "mexican seasoning", "mixed spice", "honey", "butter", "olive oil", "salt"),
         numberOfIngredients = 7
     ),
-    Food(
+    Meal(
         name = "a bit different breakfast pizza",
         id = "31490",
         minutes = 30,
@@ -65,7 +65,7 @@ val FakeFoodList = listOf(
         ingredients = listOf("prepared pizza crust", "sausage patty", "eggs", "milk", "salt and pepper", "cheese"),
         numberOfIngredients = 6
     ),
-    Food(
+    Meal(
         name = "all in the kitchen chili",
         id = "112140",
         minutes = 130,
@@ -89,7 +89,7 @@ val FakeFoodList = listOf(
         ingredients = listOf("ground beef", "yellow onions", "diced tomatoes", "tomato paste", "tomato soup", "rotel tomatoes", "kidney beans", "water", "chili powder", "ground cumin", "salt", "lettuce", "cheddar cheese"),
         numberOfIngredients = 13
     ),
-    Food(
+    Meal(
         name = "alouette potatoes",
         id = "59389",
         minutes = 45,
@@ -122,7 +122,7 @@ val FakeFoodList = listOf(
         ingredients = listOf("spreadable cheese with garlic and herbs", "new potatoes", "shallots", "parsley", "tarragon", "olive oil", "red wine vinegar", "salt", "pepper", "red bell pepper", "yellow bell pepper"),
         numberOfIngredients = 11
     ),
-    Food(
+    Meal(
         name = "amish tomato ketchup for canning",
         id = "44061",
         minutes = 190,
@@ -148,7 +148,7 @@ val FakeFoodList = listOf(
         ingredients = listOf("tomato juice", "apple cider vinegar", "sugar", "salt", "pepper", "clove oil", "cinnamon oil", "dry mustard"),
         numberOfIngredients = 8
     ),
-    Food(
+    Meal(
         name = "apple a day milk shake",
         id = "5289",
         minutes = 0,
@@ -173,7 +173,7 @@ val FakeFoodList = listOf(
         ingredients = listOf("milk", "vanilla ice cream", "frozen apple juice concentrate", "apple"),
         numberOfIngredients = 4
     ),
-    Food(
+    Meal(
         name = "aww marinated olives",
         id = "25274",
         minutes = 15,
@@ -197,7 +197,7 @@ val FakeFoodList = listOf(
         ingredients = listOf("fennel seeds", "green olives", "ripe olives", "garlic", "peppercorn", "orange rind", "orange juice", "red chile", "extra virgin olive oil"),
         numberOfIngredients = 9
     ),
-    Food(
+    Meal(
         name = "backyard style barbecued ribs",
         id = "67888",
         minutes = 120,

@@ -1,13 +1,13 @@
 package org.example.domain.usecase
 
 import org.example.domain.repository.FoodRepository
-import org.example.model.Food
+import org.example.model.Meal
 import org.example.utils.inRange
 
 class GymHelperUseCase(
     private val foodRepository: FoodRepository
 ) {
-    fun execute(calories: Float, protein: Float): List<Food> {
+    fun execute(calories: Float, protein: Float): List<Meal> {
         val caloriesRange = (calories - 3).coerceAtLeast(0f)..(calories + 3)
         val proteinRange = (protein - 3).coerceAtLeast(0f)..(protein + 3)
 

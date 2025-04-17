@@ -2,7 +2,7 @@ package org.example.model
 
 import kotlinx.datetime.LocalDate
 
-data class Food(
+data class Meal(
     val name: String?,
     val id: String,
     val minutes: Int,
