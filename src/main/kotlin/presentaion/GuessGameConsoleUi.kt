@@ -29,8 +29,8 @@ class GuessGameConsoleUi(private val useCase: GuessGameUseCase) {
             val result = useCase.makeGuess(guessedTime)
             
             result.fold(
-                onSuccess = { food ->
-                    println("Correct! ${food.mealName} takes ${food.minutesForPreparation} minutes to prepare.")
+                onSuccess = { meal ->
+                    println("Correct! ${meal.mealName} takes ${meal.minutesForPreparation} minutes to prepare.")
                     gameRunning = false
                 },
                 onFailure = { error ->

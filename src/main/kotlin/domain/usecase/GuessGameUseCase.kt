@@ -12,24 +12,24 @@ class GuessGameUseCase(private val repository: MealRepository) {
 
     fun getRandomMeal(): Meal {
         randomMeal = repository.getMeals().takeIf { it.isNotEmpty() }?.let { it[Random.nextInt(it.size)] }
-            ?: throw MealException.GuessException.NoMealAvailable("No food Available.")
+            ?: throw MealException.GuessException.NoMealAvailable("No meals Available.")
         return randomMeal
     }
 
     fun makeGuess(guessedTime: Int): Result<Meal> {
-        val food = randomMeal
+        val meal = randomMeal
         return when {
-            guessedTime == food.minutesForPreparation -> {
+            guessedTime == meal.minutesForPreparation -> {
                 attemptsLeft = 3
-                Result.success(food)
+                Result.success(meal)
             }
 
             attemptsLeft <= 1 -> {
                 attemptsLeft = 3
-                Result.failure(MealException.GuessException.GameOver(food.minutesForPreparation))
+                Result.failure(MealException.GuessException.GameOver(meal.minutesForPreparation))
             }
 
-            guessedTime < food.minutesForPreparation -> {
+            guessedTime < meal.minutesForPreparation -> {
                 attemptsLeft--
                 Result.failure(MealException.GuessException.TooLow(attemptsLeft))
             }

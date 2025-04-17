@@ -5,17 +5,17 @@ import org.example.domain.repository.MealRepository
 import org.example.model.Meal
 
 class GetEggFreeSweetsUseCase(private val repository: MealRepository) {
-    
+
     private val suggestedSweets = mutableSetOf<String>()
-    
+
     fun getRandomEggFreeSweet(): Result<Meal> {
         val availableSweets = repository.getMeals()
-            .filter { food -> 
-                food.tags.any { it.contains("dessert", ignoreCase = true) || it.contains("sweet", ignoreCase = true) } &&
-                !food.ingredients.any { it.contains("egg", ignoreCase = true) } &&
-                !suggestedSweets.contains(food.mealId)
+            .filter { meal ->
+                meal.tags.any { it.contains(DESSERT, ignoreCase = true) || it.contains(SWEET, ignoreCase = true) } &&
+                !meal.ingredients.any { it.contains(EGG, ignoreCase = true) } &&
+                !suggestedSweets.contains(meal.mealId)
             }
-        
+
         return if (availableSweets.isEmpty()) {
             Result.failure(MealException.NoMoreSweetsAvailable("No more egg-free sweets available"))
         } else {
@@ -23,6 +23,12 @@ class GetEggFreeSweetsUseCase(private val repository: MealRepository) {
             suggestedSweets.add(randomSweet.mealId)
             Result.success(randomSweet)
         }
+    }
+
+    companion object {
+        const val DESSERT = "dessert"
+        const val EGG = "egg"
+        const val SWEET = "sweet"
     }
 
 }

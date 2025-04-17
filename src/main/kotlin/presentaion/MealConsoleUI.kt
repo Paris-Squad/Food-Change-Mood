@@ -25,22 +25,22 @@ class MealConsoleUI {
 //
 
     fun start() {
-        println("Welcome to the food app where u can search and find ur meals recipe.")
+        println("Welcome to the meal app where u can search and find ur meals recipe.")
         while (true) {
             println(
                 """
             === Food Recommendation System ===
             Choose an option:
-            1. List healthy fast food meals
+            1. List healthy fast meals
             2. Search meal by name
             3. Identify Iraqi meals
-            4. Easy food suggestions
+            4. Easy meal suggestions
             5. Guess preparation time game
             6. Sweets with no eggs
             7. Keto diet meal helper
             8. Search foods by add date
             9. Gym helper
-            10. Explore food by country
+            10. Explore meals by country
             11. Ingredient guessing game
             12. I love potato
             13. High calorie meal suggestion

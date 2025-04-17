@@ -9,7 +9,7 @@ class GetMealsByCountryUseCase(private val repository: MealRepository) {
 
     fun getMealsByCountry(country: String, count: Int): Result<List<Meal>> {
         val meals = repository.getMeals()
-            .filter { food -> isRelatedToCountry(food, country) }
+            .filter { meal -> isRelatedToCountry(meal, country) }
             .shuffled()
             .take(minOf(count, 20))
             .sortedBy{it.mealName}
@@ -21,11 +21,11 @@ class GetMealsByCountryUseCase(private val repository: MealRepository) {
         return Result.success(meals)
     }
 
-    private fun isRelatedToCountry(food: Meal, country: String): Boolean {
+    private fun isRelatedToCountry(meal: Meal, country: String): Boolean {
         return listOfNotNull(
-            food.mealName,
-            food.description,
-            *food.tags.toTypedArray(),
+            meal.mealName,
+            meal.description,
+            *meal.tags.toTypedArray(),
         ).any { it.contains(country, ignoreCase = true) }
     }
 

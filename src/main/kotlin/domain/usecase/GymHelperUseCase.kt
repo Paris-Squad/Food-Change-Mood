@@ -5,15 +5,15 @@ import org.example.model.Meal
 import org.example.utils.inRange
 
 class GymHelperUseCase(
-    private val foodRepository: MealRepository
+    private val mealRepository: MealRepository
 ) {
     fun execute(calories: Float, protein: Float): List<Meal> {
         val caloriesRange = (calories - 3).coerceAtLeast(0f)..(calories + 3)
         val proteinRange = (protein - 3).coerceAtLeast(0f)..(protein + 3)
 
-        return foodRepository.getMeals().filter { food ->
-            food.nutrition.calories.inRange(caloriesRange) &&
-                    food.nutrition.protein.inRange(proteinRange)
+        return mealRepository.getMeals().filter { meal ->
+            meal.nutrition.calories.inRange(caloriesRange) &&
+                    meal.nutrition.protein.inRange(proteinRange)
         }
     }
 }

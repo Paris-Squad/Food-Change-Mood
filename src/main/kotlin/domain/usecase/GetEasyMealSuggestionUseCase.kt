@@ -6,13 +6,13 @@ import org.example.model.Meal
 
 class GetEasyMealSuggestionUseCase(private val repository: MealRepository) {
     fun invoke(): Result<List<Meal>> {
-        val easyFood = repository.getMeals().filter(::isEasyFood).shuffled().take(10)
+        val easyMeals = repository.getMeals().filter(::isEasyMeal).shuffled().take(10)
 
-        return if (easyFood.isEmpty()) {
-            Result.failure(MealException.NoEasyMealsFound("No easy food recipes found matching the criteria"))
-        } else Result.success(easyFood)
+        return if (easyMeals.isEmpty()) {
+            Result.failure(MealException.NoEasyMealsFound("No easy meal recipes found matching the criteria"))
+        } else Result.success(easyMeals)
     }
 
-    private fun isEasyFood(food: Meal): Boolean =
-        food.minutesForPreparation <= 30 && food.numberOfIngredients <= 5 && food.numberOfSteps <= 6
+    private fun isEasyMeal(meal: Meal): Boolean =
+        meal.minutesForPreparation <= 30 && meal.numberOfIngredients <= 5 && meal.numberOfSteps <= 6
 }

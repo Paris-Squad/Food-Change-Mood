@@ -8,11 +8,11 @@ class GetEasyMealSuggestionConsoleUi(private val useCase: GetEasyMealSuggestionU
         useCase.invoke().fold(
             onSuccess = {
                 println("--- EASY MEAL SUGGESTIONS ---")
-                it.forEachIndexed { index, food ->
-                    println("${index + 1}. ${food.mealName ?: "Unnamed recipe"}")
-                    println("   Time: ${food.minutesForPreparation} minutes")
-                    println("   Ingredients (${food.numberOfIngredients}): ${food.ingredients.joinToString(", ")}")
-                    println("   Steps: ${food.numberOfSteps} \n")
+                it.forEachIndexed { index, meal ->
+                    println("${index + 1}. ${meal.mealName ?: "Unnamed recipe"}")
+                    println("   Time: ${meal.minutesForPreparation} minutes")
+                    println("   Ingredients (${meal.numberOfIngredients}): ${meal.ingredients.joinToString(", ")}")
+                    println("   Steps: ${meal.numberOfSteps} \n")
                 }
             },
             onFailure = { error ->
