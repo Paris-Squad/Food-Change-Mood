@@ -2,7 +2,7 @@ package org.example.presentaion
 import org.example.domain.usecase.GetQuickHealthyPicksUseCase
 
 class GetQuickHealthyPicksUI(private val useCase:GetQuickHealthyPicksUseCase) {
-    operator fun invoke() {
+     fun invoke() {
         useCase.quickHealthyPicks().forEach {
             println(it)
         }
