@@ -8,7 +8,7 @@ class GuessGameConsoleUi(private val useCase: GuessGameUseCase) {
     fun startGame() {
         println("--- MEAL PREPARATION TIME GUESSING GAME ---")
 
-        val randomFood = useCase.getRandomFood()
+        val randomFood = useCase.getRandomMeal()
         
         println("Guess the preparation time (in minutes) for: ${randomFood.mealName ?: "Unnamed recipe"}")
         

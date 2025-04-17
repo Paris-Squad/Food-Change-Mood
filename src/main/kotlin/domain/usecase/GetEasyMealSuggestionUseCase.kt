@@ -1,12 +1,12 @@
 package org.example.domain.usecase
 
 import org.example.domain.MealException
-import org.example.domain.repository.FoodRepository
+import org.example.domain.repository.MealRepository
 import org.example.model.Meal
 
-class GetEasyMealSuggestionUseCase(private val repository: FoodRepository) {
+class GetEasyMealSuggestionUseCase(private val repository: MealRepository) {
     fun invoke(): Result<List<Meal>> {
-        val easyFood = repository.getFood().filter(::isEasyFood).shuffled().take(10)
+        val easyFood = repository.getMeals().filter(::isEasyFood).shuffled().take(10)
 
         return if (easyFood.isEmpty()) {
             Result.failure(MealException.NoEasyMealsFound("No easy food recipes found matching the criteria"))

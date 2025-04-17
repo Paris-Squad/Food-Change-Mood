@@ -1,16 +1,16 @@
 package org.example.domain.usecase
 
-import org.example.domain.repository.FoodRepository
+import org.example.domain.repository.MealRepository
 import kotlinx.datetime.LocalDate
 import org.example.domain.MealException
 import org.example.model.Meal
 
 
-class SearchMealsByAddDateUseCase(private val repository: FoodRepository) {
+class SearchMealsByAddDateUseCase(private val repository: MealRepository) {
     private var meals: List<Meal> = emptyList()
 
     fun findMealsByDate(date: LocalDate): Result<List<Meal>> {
-         meals = repository.getFood().filter { it.submittedDate == date }
+         meals = repository.getMeals().filter { it.submittedDate == date }
 
         return if (meals.isNotEmpty()) {
             Result.success(meals)

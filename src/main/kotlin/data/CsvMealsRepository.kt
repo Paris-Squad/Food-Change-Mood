@@ -1,20 +1,20 @@
 package org.example.data
 
-import org.example.domain.repository.FoodRepository
+import org.example.domain.repository.MealRepository
 import org.example.model.Meal
 
-class CsvFoodRepository(
+class CsvMealsRepository(
     private val fileReader: CsvFileReader,
     private val foodCsvFileParser: MealCsvFileParser
-) : FoodRepository {
+) : MealRepository {
 
-    private val meals: List<Meal> by lazy {
+    private val _meals: List<Meal> by lazy {
         foodCsvFileParser.parseMeals(
             fileReader.readLinesFromFile()
         )
     }
 
-    override fun getFood(): List<Meal> = meals
+    override fun getMeals(): List<Meal> = _meals
 
 
     companion object {

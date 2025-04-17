@@ -54,16 +54,16 @@ class MealConsoleUI {
             val input = readlnOrNull()
 
             when (input) {
-                "1" -> listHealthyFastFood()
+                "1" -> listHealthyFastMeal()
                 "2" -> searchMealByName()
                 "3" -> identifyIraqiMeals()
-                "4" -> easyFoodSuggestions()
+                "4" -> easyMealSuggestions()
                 "5" -> guessGame()
                 "6" -> sweetsNoEggs()
                 "7" -> ketoDietHelper()
                 "8" -> searchByAddDate()
                 "9" -> gymHelper()
-                "10" -> exploreCountryFood()
+                "10" -> exploreCountryMeal()
                 "11" -> ingredientGame()
                 "12" -> potatoLover()
                 "13" -> highCalorieMeal()
@@ -81,7 +81,7 @@ class MealConsoleUI {
         }
     }
 
-    private fun listHealthyFastFood() {
+    private fun listHealthyFastMeal() {
         TODO("Not yet implemented")
     }
 
@@ -94,9 +94,9 @@ class MealConsoleUI {
         iraqiMealsUi.invoke()
     }
 
-    private fun easyFoodSuggestions() {
-        val easyFoodSuggestionUi = getKoin().get<GetEasyMealSuggestionConsoleUi>()
-        easyFoodSuggestionUi.invoke()
+    private fun easyMealSuggestions() {
+        val easyMealSuggestionUi = getKoin().get<GetEasyMealSuggestionConsoleUi>()
+        easyMealSuggestionUi.invoke()
     }
 
     private fun guessGame() {
@@ -122,7 +122,7 @@ class MealConsoleUI {
         TODO("Not yet implemented")
     }
 
-    private fun exploreCountryFood() {
+    private fun exploreCountryMeal() {
         val getMealsByCountryUi = getKoin().get<GetMealsByCountryConsoleUi>()
         getMealsByCountryUi.invoke()
     }

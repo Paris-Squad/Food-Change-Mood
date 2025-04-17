@@ -1,13 +1,13 @@
 package org.example.domain.usecase
 
 import org.example.domain.MealException
-import org.example.domain.repository.FoodRepository
+import org.example.domain.repository.MealRepository
 import org.example.model.Meal
 
-    class GetIraqiMealsUseCase(private val repository: FoodRepository) {
+    class GetIraqiMealsUseCase(private val repository: MealRepository) {
 
         fun getIraqiMeals(): Result<List<Meal>> {
-            val iraqiMeals = repository.getFood().filter { food ->
+            val iraqiMeals = repository.getMeals().filter { food ->
                 isIraqiMeal(food)
             }
 

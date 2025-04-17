@@ -1,13 +1,13 @@
 package org.example.domain.usecase
 
 import org.example.domain.MealException
-import org.example.domain.repository.FoodRepository
+import org.example.domain.repository.MealRepository
 
 class GetSeafoodMealsUseCase(
-    private val foodRepository: FoodRepository
+    private val foodRepository: MealRepository
 ) {
     fun execute(): List<Pair<String, Float>> {
-        val allSeafood = foodRepository.getFood().filter {
+        val allSeafood = foodRepository.getMeals().filter {
             it.tags.contains("seafood") && it.mealName != null && it.nutrition.protein != null
         }.sortedByDescending {
             it.nutrition.protein!!

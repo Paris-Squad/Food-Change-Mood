@@ -27,20 +27,20 @@ class GetMealsByCountryConsoleUi(private val getMealsByCountryUseCase: GetMealsB
             val meals = getMealsByCountryUseCase.getMealsByCountry(country,count).getOrThrow()
 
             println("\n--- MEALS RELATED TO \"$country\" ---")
-            meals.forEachIndexed { index, food ->
+            meals.forEachIndexed { index, meal ->
                 println("${index + 1}.")
-                println("   Name: ${food.mealName ?: "Unnamed recipe"}")
-                println("   ID: ${food.mealId}")
-                println("   Time: ${food.minutesForPreparation} minutes")
-                println("   Contributor ID: ${food.contributorId}")
-                println("   Submitted: ${food.submittedDate}")
-                println("   Tags: ${food.tags.joinToString(", ")}")
-                println("   Nutrition: ${food.nutrition}")
-                println("   Steps (${food.numberOfSteps}):")
-                food.steps.forEachIndexed { i, step -> println("      ${i + 1}. $step") }
-                println("   Description: ${food.description ?: "No description"}")
-                println("   Ingredients (${food.numberOfIngredients}): ${
-                    food.ingredients.joinToString(", ")
+                println("   Name: ${meal.mealName ?: "Unnamed recipe"}")
+                println("   ID: ${meal.mealId}")
+                println("   Time: ${meal.minutesForPreparation} minutes")
+                println("   Contributor ID: ${meal.contributorId}")
+                println("   Submitted: ${meal.submittedDate}")
+                println("   Tags: ${meal.tags.joinToString(", ")}")
+                println("   Nutrition: ${meal.nutrition}")
+                println("   Steps (${meal.numberOfSteps}):")
+                meal.steps.forEachIndexed { i, step -> println("      ${i + 1}. $step") }
+                println("   Description: ${meal.description ?: "No description"}")
+                println("   Ingredients (${meal.numberOfIngredients}): ${
+                    meal.ingredients.joinToString(", ")
                 }")
                 println()
             }

@@ -1,15 +1,15 @@
 package org.example.domain.usecase
 
 import org.example.domain.MealException
-import org.example.domain.repository.FoodRepository
+import org.example.domain.repository.MealRepository
 import org.example.model.Meal
 
-class GetEggFreeSweetsUseCase(private val repository: FoodRepository) {
+class GetEggFreeSweetsUseCase(private val repository: MealRepository) {
     
     private val suggestedSweets = mutableSetOf<String>()
     
     fun getRandomEggFreeSweet(): Result<Meal> {
-        val availableSweets = repository.getFood()
+        val availableSweets = repository.getMeals()
             .filter { food -> 
                 food.tags.any { it.contains("dessert", ignoreCase = true) || it.contains("sweet", ignoreCase = true) } &&
                 !food.ingredients.any { it.contains("egg", ignoreCase = true) } &&

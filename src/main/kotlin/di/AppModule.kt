@@ -1,15 +1,15 @@
 package org.example.di
 
 import org.example.data.CsvFileReader
-import org.example.data.CsvFoodRepository
+import org.example.data.CsvMealsRepository
 import org.example.data.MealCsvFileParser
-import org.example.domain.repository.FoodRepository
+import org.example.domain.repository.MealRepository
 import org.koin.dsl.module
 import java.io.File
 
 val appModule = module {
-    single { File(CsvFoodRepository.FILE_NAME) }
+    single { File(CsvMealsRepository.FILE_NAME) }
     single { CsvFileReader(get()) }
     single { MealCsvFileParser() }
-    single<FoodRepository> { CsvFoodRepository(get(), get()) }
+    single<MealRepository> { CsvMealsRepository(get(), get()) }
 }
