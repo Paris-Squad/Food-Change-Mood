@@ -22,7 +22,7 @@ class GetIraqiMealsUi(private val getIraqiMealsUseCase: GetIraqiMealsUseCase) {
                 println("   Steps (${food.numberOfSteps}):")
                 food.steps.forEachIndexed { i, step -> println("      ${i + 1}. $step") }
                 println("   Description: ${food.description ?: "No description"}")
-                println("   Ingredients (${food.numberOfIngredients}): ${                     
+                println("   Ingredients (${food.numberOfIngredients}): ${
                     food.ingredients.joinToString(", ")
                 }")
                 println()

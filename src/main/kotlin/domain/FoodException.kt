@@ -1,10 +1,7 @@
 package org.example.domain
 
-
-sealed class FoodException(message: String?):Exception(message) {
 sealed class FoodException(message: String?) : Exception(message) {
 
-    class NoEasyFoodFound : FoodException("No easy food recipes found matching the criteria")
     class NoEasyFoodFound(message: String) : FoodException(message)
     class NoSeaFoodMealsFound(message: String) : FoodException(message)
     class NoMoreSweetsAvailable(message: String) : FoodException(message)
@@ -18,8 +15,4 @@ sealed class FoodException(message: String?) : Exception(message) {
         class NoFoodAvailable(message: String) : GuessException(message)
     }
     class NoPotatoMealFound : FoodException("No meals found containing potatoes")
-sealed class FoodException(message: String?) : Exception(message) {
-    class NoPotatoMealFound : FoodException("No meals found containing potatoes")
 }
-    }
-
