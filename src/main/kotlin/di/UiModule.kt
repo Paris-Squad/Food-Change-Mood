@@ -7,7 +7,7 @@ val uiModule = module {
     single { EggFreeSweetsConsoleUi(get()) }
     single { GetEasyMealSuggestionConsoleUi(get()) }
     single { GetMealConsoleUi(get()) }
-    single {GetIraqiMealsConsoleUi(get())  }
+    single { GetIraqiMealsConsoleUi(get())  }
     single { GetMealsByCountryConsoleUi(get()) }
     single { GetSeafoodMealsConsoleUi(get()) }
     single { GuessGameConsoleUi(get()) }
@@ -17,4 +17,5 @@ val uiModule = module {
     single { GetEasyMealSuggestionConsoleUi(get()) }
     single { EggFreeSweetsConsoleUi(get()) }
     single {SearchMealsByAddDateConsoleUi(get())}
+    single { GetIngredientGuessUI(get()) }
 }

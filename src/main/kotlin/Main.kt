@@ -1,5 +1,4 @@
 package org.example
-
 import org.example.di.appModule
 import org.example.di.uiModule
 import org.example.di.useCasesModule
@@ -11,6 +10,6 @@ fun main() {
         modules(appModule,useCasesModule,uiModule)
     }
 
-    val foodConsoleUI = MealConsoleUI()
-    foodConsoleUI.start()
+    val mealConsoleUI = MealConsoleUI()
+    mealConsoleUI.start()
 }
