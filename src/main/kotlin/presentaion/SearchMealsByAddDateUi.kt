@@ -6,11 +6,12 @@ import org.example.domain.usecase.SearchMealsByAddDateUseCase
 
 class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
 
-    operator fun invoke() {
+    fun search() {
         var shouldRepeat = true
-        var date:LocalDate?=null
+        var date: LocalDate? = null
+
         while (shouldRepeat) {
-            if(date==null) {
+            if (date == null) {
                 println("Enter a date (yyyy-MM-dd):")
                 val input = readln()
                 val dateResult = parseDate(input)
@@ -24,9 +25,9 @@ class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
 
                 if (mealsResult.isFailure) {
                     println(" ${mealsResult.exceptionOrNull()?.message}")
+                    date = null
                     continue
                 }
-
 
                 val meals = mealsResult.getOrThrow()
 
@@ -35,36 +36,21 @@ class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
                     println("Meal ${index + 1}: ID: ${meal.id} | Name: ${meal.name ?: "Unnamed Meal"}")
                 }
             }
-                println("\nEnter the ID of a meal to view full details:")
-                val mealId = readln()
-                val detailResult = useCase.findMealByIdInList(mealId)
 
-                if (detailResult.isFailure) {
-                    println(" ${detailResult.exceptionOrNull()?.message}")
-                    continue
-                }
+            println("\nEnter the ID of a meal to view full details:")
+            val mealId = readln()
+            val detailResult = useCase.findMealByIdInList(mealId)
 
-                detailResult.onSuccess { meal ->
-                    println("--------------------------------------------------")
-                    println("Meal ${meal.name ?: "Unnamed Recipe"}")
-                    println("ID: ${meal.id}")
-                    println("Preparation Time: ${meal.minutes} minutes")
-                    println("Contributor ID: ${meal.contributorId}")
-                    println("Date Submitted: ${meal.submitted}")
-                    println("Tags: ${meal.tags.joinToString(", ").ifEmpty { "No tags available" }}")
-                    println("Nutrition Information: ${meal.nutrition}")
-                    println("Steps (${meal.numberOfSteps}):")
-                    meal.steps.forEachIndexed { stepIndex, step ->
-                        println("   ${stepIndex + 1}. $step")
-                    }
-                    println("Description: ${meal.description ?: "No description available"}")
-                    println("Ingredients (${meal.numberOfIngredients}):")
-                    meal.ingredients.forEach { ingredient ->
-                        println("   - $ingredient")
-                    }
-                    println("--------------------------------------------------\n")
-                }
+            if (detailResult.isFailure) {
+                println(" ${detailResult.exceptionOrNull()?.message}")
+                continue
+            }
 
+            detailResult.onSuccess { meal ->
+                println("--------------------------------------------------")
+                println(meal.formatDetails())
+                println("--------------------------------------------------\n")
+            }
             shouldRepeat = false
         }
     }
