@@ -116,11 +116,13 @@ class MealConsoleUI {
     }
 
     private fun searchByAddDate() {
-        TODO("Not yet implemented")
+        val searchMealsByAddDateConsoleUi = getKoin().get<SearchMealsByAddDateConsoleUi>()
+        searchMealsByAddDateConsoleUi.search()
     }
 
     private fun gymHelper() {
-        TODO("Not yet implemented")
+        val gymHelperUI = getKoin().get<GymHelperConsoleUi>()
+        gymHelperUI.start()
     }
 
     private fun exploreCountryMeal() {
