@@ -1,6 +1,5 @@
 package org.example.presentaion
 
-import org.example.presentation.RandomPotatoMealsUi
 import org.koin.java.KoinJavaComponent.getKoin
 
 class FoodConsoleUI {
@@ -147,6 +146,7 @@ class FoodConsoleUI {
     }
 
     private fun italianLargeGroup() {
-        TODO("Not yet implemented")
+        val getItalianLargeGroupMealsUi  = getKoin().get<GetItalianLargeGroupMealsUi>()
+        getItalianLargeGroupMealsUi.invoke()
     }
 }
