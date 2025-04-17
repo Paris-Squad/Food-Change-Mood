@@ -1,9 +1,9 @@
 package org.example.presentaion
 
-import org.example.domain.FoodException
-import org.example.domain.usecase.GetEasyFoodSuggestionUseCase
+import org.example.domain.MealException
+import org.example.domain.usecase.GetEasyMealSuggestionUseCase
 
-class GetEasyFoodSuggestionConsoleUi(private val useCase: GetEasyFoodSuggestionUseCase) {
+class GetEasyMealSuggestionConsoleUi(private val useCase: GetEasyMealSuggestionUseCase) {
     fun invoke() {
         useCase.invoke().fold(
             onSuccess = {
@@ -17,7 +17,7 @@ class GetEasyFoodSuggestionConsoleUi(private val useCase: GetEasyFoodSuggestionU
             },
             onFailure = { error ->
                 when (error) {
-                    is FoodException.NoEasyFoodFound -> {
+                    is MealException.NoEasyMealsFound -> {
                         println("--- EASY MEAL SUGGESTIONS ---")
                         println("No easy meals found that match your criteria")
                     }

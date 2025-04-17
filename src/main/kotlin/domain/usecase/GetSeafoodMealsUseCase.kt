@@ -1,6 +1,6 @@
 package org.example.domain.usecase
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.repository.FoodRepository
 
 class GetSeafoodMealsUseCase(
@@ -15,7 +15,7 @@ class GetSeafoodMealsUseCase(
             seafoodMeal.mealName!! to (seafoodMeal.nutrition.protein ?: 0f)
         }
 
-        return allSeafood.takeIf { it.isNotEmpty() } ?: throw FoodException.NoSeaFoodMealsFound("No Seafood meals found")
+        return allSeafood.takeIf { it.isNotEmpty() } ?: throw MealException.NoSeaFoodMealsFound("No Seafood meals found")
 
     }
 }

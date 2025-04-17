@@ -1,7 +1,7 @@
 package org.example.presentaion
 
 import org.example.domain.usecase.GetIraqiMealsUseCase
-import org.example.domain.FoodException
+import org.example.domain.MealException
 
 class GetIraqiMealsConsoleUi(private val getIraqiMealsUseCase: GetIraqiMealsUseCase) {
 
@@ -27,7 +27,7 @@ class GetIraqiMealsConsoleUi(private val getIraqiMealsUseCase: GetIraqiMealsUseC
                 }")
                 println()
             }
-        } catch (e: FoodException.NoIraqiFoodFound) {
+        } catch (e: MealException.NoIraqiMealsFound) {
             println("No Iraqi Foods found")
         }
     }

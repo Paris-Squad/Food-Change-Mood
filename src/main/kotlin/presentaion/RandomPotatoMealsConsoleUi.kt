@@ -1,6 +1,6 @@
 package org.example.presentaion
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
 
 class RandomPotatoMealsConsoleUi(private val getRandomPotatoMealsUseCase: GetRandomPotatoMealsUseCase) {
@@ -32,7 +32,7 @@ class RandomPotatoMealsConsoleUi(private val getRandomPotatoMealsUseCase: GetRan
                 println("--------------------------------------------------\n")
             }
 
-        } catch (e: FoodException.NoPotatoMealFound) {
+        } catch (e: MealException.NoPotatoMealFound) {
             println("No meals containing potatoes were found.")
         }
     }

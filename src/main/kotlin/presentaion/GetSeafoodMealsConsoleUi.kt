@@ -1,6 +1,6 @@
 package org.example.presentaion
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.usecase.GetSeafoodMealsUseCase
 
 class GetSeafoodMealsConsoleUi(
@@ -12,7 +12,7 @@ class GetSeafoodMealsConsoleUi(
             allSeafoodMeals.forEachIndexed { index, seafoodMeal ->
                 println("${index+1}- Name: ${seafoodMeal.first}, Protein: ${seafoodMeal.second}")
             }
-        }catch (exception: FoodException.NoSeaFoodMealsFound){
+        }catch (exception: MealException.NoSeaFoodMealsFound){
             println(exception.message)
         }
 

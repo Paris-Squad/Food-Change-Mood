@@ -1,6 +1,6 @@
 package org.example.presentaion
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.usecase.GetMealsByCountryUseCase
 
 class GetMealsByCountryConsoleUi(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
@@ -44,7 +44,7 @@ class GetMealsByCountryConsoleUi(private val getMealsByCountryUseCase: GetMealsB
                 }")
                 println()
             }
-        } catch (e: FoodException.NoMealsFoundForCountry) {
+        } catch (e: MealException.NoMealsFoundForCountry) {
             println("\nNo meals found related to \"$country\".")
         }
     }

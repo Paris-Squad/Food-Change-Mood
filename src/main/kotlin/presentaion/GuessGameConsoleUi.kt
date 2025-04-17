@@ -1,6 +1,6 @@
 package org.example.presentaion
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.usecase.GuessGameUseCase
 
 class GuessGameConsoleUi(private val useCase: GuessGameUseCase) {
@@ -35,17 +35,17 @@ class GuessGameConsoleUi(private val useCase: GuessGameUseCase) {
                 },
                 onFailure = { error ->
                     when (error) {
-                        is FoodException.GuessException.TooLow -> {
+                        is MealException.GuessException.TooLow -> {
                             attempts = error.attemptsLeft
                             println("Too low! Try again. ($attempts attempts left)")
                         }
                         
-                        is FoodException.GuessException.TooHigh -> {
+                        is MealException.GuessException.TooHigh -> {
                             attempts = error.attemptsLeft
                             println("Too high! Try again. ($attempts attempts left)")
                         }
                         
-                        is FoodException.GuessException.GameOver -> {
+                        is MealException.GuessException.GameOver -> {
                             println("Game over! The correct answer was ${error.correctTime} minutes.")
                             gameRunning = false
                         }

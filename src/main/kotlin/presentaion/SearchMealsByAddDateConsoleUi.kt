@@ -1,7 +1,7 @@
 package org.example.presentaion
 
 import kotlinx.datetime.LocalDate
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.usecase.SearchMealsByAddDateUseCase
 
 class SearchMealsByAddDateConsoleUi(private val useCase: SearchMealsByAddDateUseCase) {
@@ -59,7 +59,7 @@ class SearchMealsByAddDateConsoleUi(private val useCase: SearchMealsByAddDateUse
         return try {
             Result.success(LocalDate.parse(input))
         } catch (e: IllegalArgumentException) {
-            Result.failure(FoodException.InvalidDateFormatException("Invalid date format: Use yyyy-MM-dd"))
+            Result.failure(MealException.InvalidDateFormatException("Invalid date format: Use yyyy-MM-dd"))
         }
     }
 }

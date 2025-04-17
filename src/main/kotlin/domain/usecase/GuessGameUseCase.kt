@@ -1,6 +1,6 @@
 package org.example.domain.usecase
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.repository.FoodRepository
 import org.example.model.Meal
 import kotlin.random.Random
@@ -12,7 +12,7 @@ class GuessGameUseCase(private val repository: FoodRepository) {
 
     fun getRandomFood(): Meal {
         randomFood = repository.getFood().takeIf { it.isNotEmpty() }?.let { it[Random.nextInt(it.size)] }
-            ?: throw FoodException.GuessException.NoFoodAvailable("No food Available.")
+            ?: throw MealException.GuessException.NoMealAvailable("No food Available.")
         return randomFood
     }
 
@@ -26,17 +26,17 @@ class GuessGameUseCase(private val repository: FoodRepository) {
 
             attemptsLeft <= 1 -> {
                 attemptsLeft = 3
-                Result.failure(FoodException.GuessException.GameOver(food.minutesForPreparation))
+                Result.failure(MealException.GuessException.GameOver(food.minutesForPreparation))
             }
 
             guessedTime < food.minutesForPreparation -> {
                 attemptsLeft--
-                Result.failure(FoodException.GuessException.TooLow(attemptsLeft))
+                Result.failure(MealException.GuessException.TooLow(attemptsLeft))
             }
 
             else -> {
                 attemptsLeft--
-                Result.failure(FoodException.GuessException.TooHigh(attemptsLeft))
+                Result.failure(MealException.GuessException.TooHigh(attemptsLeft))
             }
         }
     }

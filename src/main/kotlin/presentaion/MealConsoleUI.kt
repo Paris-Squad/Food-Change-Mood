@@ -2,7 +2,7 @@ package org.example.presentaion
 
 import org.koin.java.KoinJavaComponent.getKoin
 
-class FoodConsoleUI {
+class MealConsoleUI {
 
 
 //    1- Allow the user to get a list of healthy fast food meals that can be prepared in 15 minutes or less, with very low total fat, saturated fat, and carbohydrate values compared to other meals in the dataset.
@@ -95,7 +95,7 @@ class FoodConsoleUI {
     }
 
     private fun easyFoodSuggestions() {
-        val easyFoodSuggestionUi = getKoin().get<GetEasyFoodSuggestionConsoleUi>()
+        val easyFoodSuggestionUi = getKoin().get<GetEasyMealSuggestionConsoleUi>()
         easyFoodSuggestionUi.invoke()
     }
 

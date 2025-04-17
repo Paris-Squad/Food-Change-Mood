@@ -1,6 +1,6 @@
 package org.example.presentaion
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.usecase.GetEggFreeSweetsUseCase
 
 class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
@@ -43,7 +43,7 @@ class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
                 },
                 onFailure = { error ->
                     when (error) {
-                        is FoodException.NoMoreSweetsAvailable -> {
+                        is MealException.NoMoreSweetsAvailable -> {
                             println(error.message)
                             continueSearching = false
                         }

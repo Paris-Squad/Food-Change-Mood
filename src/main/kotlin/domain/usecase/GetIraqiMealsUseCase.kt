@@ -1,6 +1,6 @@
 package org.example.domain.usecase
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.repository.FoodRepository
 import org.example.model.Meal
 
@@ -12,7 +12,7 @@ import org.example.model.Meal
             }
 
             if (iraqiMeals.isEmpty()) {
-                throw FoodException.NoIraqiFoodFound()
+                throw MealException.NoIraqiMealsFound()
             }
 
             return Result.success(iraqiMeals)

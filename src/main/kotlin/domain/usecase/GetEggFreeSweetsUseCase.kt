@@ -1,6 +1,6 @@
 package org.example.domain.usecase
 
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.repository.FoodRepository
 import org.example.model.Meal
 
@@ -17,7 +17,7 @@ class GetEggFreeSweetsUseCase(private val repository: FoodRepository) {
             }
         
         return if (availableSweets.isEmpty()) {
-            Result.failure(FoodException.NoMoreSweetsAvailable("No more egg-free sweets available"))
+            Result.failure(MealException.NoMoreSweetsAvailable("No more egg-free sweets available"))
         } else {
             val randomSweet = availableSweets.random()
             suggestedSweets.add(randomSweet.mealId)
