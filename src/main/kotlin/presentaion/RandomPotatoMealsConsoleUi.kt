@@ -3,7 +3,7 @@ package org.example.presentaion
 import org.example.domain.FoodException
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
 
-class RandomPotatoMealsUi(private val getRandomPotatoMealsUseCase: GetRandomPotatoMealsUseCase) {
+class RandomPotatoMealsConsoleUi(private val getRandomPotatoMealsUseCase: GetRandomPotatoMealsUseCase) {
 
     operator fun invoke() {
         try {

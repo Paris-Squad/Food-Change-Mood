@@ -3,7 +3,7 @@ package org.example.presentaion
 import org.example.domain.FoodException
 import org.example.domain.usecase.GetEggFreeSweetsUseCase
 
-class EggFreeSweetsUi(private val useCase: GetEggFreeSweetsUseCase) {
+class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
 
     fun startSuggestions() {
         println("--- EGG-FREE SWEETS SUGGESTER ---")

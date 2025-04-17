@@ -3,7 +3,7 @@ package org.example.presentaion
 import org.example.domain.usecase.GetIraqiMealsUseCase
 import org.example.domain.FoodException
 
-class GetIraqiMealsUi(private val getIraqiMealsUseCase: GetIraqiMealsUseCase) {
+class GetIraqiMealsConsoleUi(private val getIraqiMealsUseCase: GetIraqiMealsUseCase) {
 
     operator fun invoke() {
         try {

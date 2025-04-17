@@ -3,7 +3,7 @@ package org.example.presentaion
 import org.example.domain.FoodException
 import org.example.domain.usecase.GetSeafoodMealsUseCase
 
-class GetSeafoodMealsUI(
+class GetSeafoodMealsConsoleUi(
     private val getSeafoodMealsUseCase: GetSeafoodMealsUseCase
 ) {
     fun start() {

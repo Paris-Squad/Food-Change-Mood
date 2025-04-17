@@ -4,17 +4,17 @@ import org.example.presentaion.*
 import org.koin.dsl.module
 
 val uiModule = module {
-    single { EggFreeSweetsUi(get()) }
-    single { GetEasyFoodSuggestionUi(get()) }
-    single { GetFoodUi(get()) }
-    single {GetIraqiMealsUi(get())  }
-    single { GetMealsByCountryUi(get()) }
-    single { GetSeafoodMealsUI(get()) }
-    single { GuessGameUi(get()) }
-    single { RandomPotatoMealsUi(get()) }
-    single { GymHelperUI(get()) }
-    single { GetFoodUi(get()) }
-    single { GetEasyFoodSuggestionUi(get()) }
-    single { EggFreeSweetsUi(get()) }
-    single {SearchMealsByAddDateUi(get())}
+    single { EggFreeSweetsConsoleUi(get()) }
+    single { GetEasyFoodSuggestionConsoleUi(get()) }
+    single { GetFoodConsoleUi(get()) }
+    single {GetIraqiMealsConsoleUi(get())  }
+    single { GetMealsByCountryConsoleUi(get()) }
+    single { GetSeafoodMealsConsoleUi(get()) }
+    single { GuessGameConsoleUi(get()) }
+    single { RandomPotatoMealsConsoleUi(get()) }
+    single { GymHelperConsoleUi(get()) }
+    single { GetFoodConsoleUi(get()) }
+    single { GetEasyFoodSuggestionConsoleUi(get()) }
+    single { EggFreeSweetsConsoleUi(get()) }
+    single {SearchMealsByAddDateConsoleUi(get())}
 }

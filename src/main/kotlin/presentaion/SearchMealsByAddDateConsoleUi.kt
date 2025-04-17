@@ -4,7 +4,7 @@ import kotlinx.datetime.LocalDate
 import org.example.domain.FoodException
 import org.example.domain.usecase.SearchMealsByAddDateUseCase
 
-class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
+class SearchMealsByAddDateConsoleUi(private val useCase: SearchMealsByAddDateUseCase) {
 
     fun search() {
         var shouldRepeat = true

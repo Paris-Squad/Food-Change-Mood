@@ -3,7 +3,7 @@ package org.example.presentaion
 import org.example.domain.FoodException
 import org.example.domain.usecase.GetEasyFoodSuggestionUseCase
 
-class GetEasyFoodSuggestionUi(private val useCase: GetEasyFoodSuggestionUseCase) {
+class GetEasyFoodSuggestionConsoleUi(private val useCase: GetEasyFoodSuggestionUseCase) {
     fun invoke() {
         useCase.invoke().fold(
             onSuccess = {

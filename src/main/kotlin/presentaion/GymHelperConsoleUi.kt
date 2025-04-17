@@ -3,7 +3,7 @@ package org.example.presentaion
 import org.example.domain.usecase.GymHelperUseCase
 
 
-class GymHelperUI(
+class GymHelperConsoleUi(
     private val gymHelperUseCase: GymHelperUseCase
 ) {
     fun start() {

@@ -90,22 +90,22 @@ class FoodConsoleUI {
     }
 
     private fun identifyIraqiMeals() {
-        val iraqiMealsUi = getKoin().get<GetIraqiMealsUi>()
+        val iraqiMealsUi = getKoin().get<GetIraqiMealsConsoleUi>()
         iraqiMealsUi.invoke()
     }
 
     private fun easyFoodSuggestions() {
-        val easyFoodSuggestionUi = getKoin().get<GetEasyFoodSuggestionUi>()
+        val easyFoodSuggestionUi = getKoin().get<GetEasyFoodSuggestionConsoleUi>()
         easyFoodSuggestionUi.invoke()
     }
 
     private fun guessGame() {
-        val guessGameUi = getKoin().get<GuessGameUi>()
+        val guessGameUi = getKoin().get<GuessGameConsoleUi>()
         guessGameUi.startGame()
     }
 
     private fun sweetsNoEggs() {
-        val eggFreeSweetsUi = getKoin().get<EggFreeSweetsUi>()
+        val eggFreeSweetsUi = getKoin().get<EggFreeSweetsConsoleUi>()
         eggFreeSweetsUi.startSuggestions()
     }
 
@@ -123,7 +123,7 @@ class FoodConsoleUI {
     }
 
     private fun exploreCountryFood() {
-        val getMealsByCountryUi = getKoin().get<GetMealsByCountryUi>()
+        val getMealsByCountryUi = getKoin().get<GetMealsByCountryConsoleUi>()
         getMealsByCountryUi.invoke()
     }
 
@@ -132,7 +132,7 @@ class FoodConsoleUI {
     }
 
     private fun potatoLover() {
-        val randomPotatoMealsUi = getKoin().get<RandomPotatoMealsUi>()
+        val randomPotatoMealsUi = getKoin().get<RandomPotatoMealsConsoleUi>()
         randomPotatoMealsUi.invoke()
     }
 
@@ -141,7 +141,7 @@ class FoodConsoleUI {
     }
 
     private fun seafoodByProtein() {
-        val seafoodMealsUI = getKoin().get<GetSeafoodMealsUI>()
+        val seafoodMealsUI = getKoin().get<GetSeafoodMealsConsoleUi>()
         seafoodMealsUI.start()
     }
 

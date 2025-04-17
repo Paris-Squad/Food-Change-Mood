@@ -3,7 +3,7 @@ package org.example.presentaion
 import org.example.domain.FoodException
 import org.example.domain.usecase.GetMealsByCountryUseCase
 
-class GetMealsByCountryUi(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
+class GetMealsByCountryConsoleUi(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
 
     operator fun invoke() {
         print("Enter a country name : ")
