@@ -10,9 +10,9 @@ class GetSeafoodMealsConsoleUi(
         try {
             val allSeafoodMeals = getSeafoodMealsUseCase.execute()
             allSeafoodMeals.forEachIndexed { index, seafoodMeal ->
-                println("${index+1}- Name: ${seafoodMeal.first}, Protein: ${seafoodMeal.second}")
+                println("${index + 1}- Name: ${seafoodMeal.first}, Protein: ${seafoodMeal.second}")
             }
-        }catch (exception: MealException.NoSeaFoodMealsFound){
+        } catch (exception: MealException.NoSeaFoodMealsFound) {
             println(exception.message)
         }
 
