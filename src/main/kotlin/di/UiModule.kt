@@ -1,5 +1,6 @@
 package org.example.di
 
+import GetFoodUi
 import org.example.presentaion.*
 import org.koin.dsl.module
 
@@ -12,4 +13,5 @@ val uiModule = module {
     single { GetSeafoodMealsUI(get()) }
     single { GuessGameUi(get()) }
     single { RandomPotatoMealsUi(get()) }
+    single { GetIngredientGuessUI(get()) }
 }

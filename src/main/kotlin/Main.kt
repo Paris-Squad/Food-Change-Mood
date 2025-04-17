@@ -15,7 +15,5 @@ fun main() {
     val eggFreeSweetsUi = getKoin().get<EggFreeSweetsUi>()
 
     eggFreeSweetsUi.startSuggestions()
-    val  getIngredientGuessUI= getKoin().get<GetIngredientGuessUI>()
 
-    getIngredientGuessUI.invoke()
 }
