@@ -6,11 +6,11 @@ import org.example.model.Nutrition
 
 val FakeFoodList = listOf(
     Meal(
-        name = "arriba baked winter squash mexican style",
-        id = "137739",
-        minutes = 55,
+        mealName = "arriba baked winter squash mexican style",
+        mealId = "137739",
+        minutesForPreparation = 55,
         contributorId = "47892",
-        submitted = LocalDate.parse("2005-09-16"),
+        submittedDate = LocalDate.parse("2005-09-16"),
         tags = listOf(
             "60-minutes-or-less", "time-to-make", "course", "main-ingredient", "cuisine",
             "preparation", "occasion", "north-american", "side-dishes", "vegetables",
@@ -37,11 +37,11 @@ val FakeFoodList = listOf(
         numberOfIngredients = 7
     ),
     Meal(
-        name = "a bit different breakfast pizza",
-        id = "31490",
-        minutes = 30,
+        mealName = "a bit different breakfast pizza",
+        mealId = "31490",
+        minutesForPreparation = 30,
         contributorId = "26278",
-        submitted = LocalDate.parse("2002-06-17"),
+        submittedDate = LocalDate.parse("2002-06-17"),
         tags = listOf(
             "30-minutes-or-less", "time-to-make", "course", "main-ingredient", "cuisine",
             "preparation", "occasion", "north-american", "breakfast", "main-dish",
@@ -66,11 +66,11 @@ val FakeFoodList = listOf(
         numberOfIngredients = 6
     ),
     Meal(
-        name = "all in the kitchen chili",
-        id = "112140",
-        minutes = 130,
+        mealName = "all in the kitchen chili",
+        mealId = "112140",
+        minutesForPreparation = 130,
         contributorId = "196586",
-        submitted = LocalDate.parse("2005-02-25"),
+        submittedDate = LocalDate.parse("2005-02-25"),
         tags = listOf(
             "time-to-make", "course", "preparation", "main-dish", "chili",
             "crock-pot-slow-cooker", "dietary", "equipment", "4-hours-or-less"
@@ -90,11 +90,11 @@ val FakeFoodList = listOf(
         numberOfIngredients = 13
     ),
     Meal(
-        name = "alouette potatoes",
-        id = "59389",
-        minutes = 45,
+        mealName = "alouette potatoes",
+        mealId = "59389",
+        minutesForPreparation = 45,
         contributorId = "68585",
-        submitted = LocalDate.parse("2003-04-14"),
+        submittedDate = LocalDate.parse("2003-04-14"),
         tags = listOf(
             "60-minutes-or-less", "time-to-make", "course", "main-ingredient", "preparation",
             "occasion", "side-dishes", "eggs-dairy", "potatoes", "vegetables",
@@ -123,11 +123,11 @@ val FakeFoodList = listOf(
         numberOfIngredients = 11
     ),
     Meal(
-        name = "amish tomato ketchup for canning",
-        id = "44061",
-        minutes = 190,
+        mealName = "amish tomato ketchup for canning",
+        mealId = "44061",
+        minutesForPreparation = 190,
         contributorId = "41706",
-        submitted = LocalDate.parse("2002-10-25"),
+        submittedDate = LocalDate.parse("2002-10-25"),
         tags = listOf(
             "weeknight", "time-to-make", "course", "main-ingredient", "cuisine",
             "preparation", "occasion", "north-american", "canning", "condiments-etc",
@@ -149,11 +149,11 @@ val FakeFoodList = listOf(
         numberOfIngredients = 8
     ),
     Meal(
-        name = "apple a day milk shake",
-        id = "5289",
-        minutes = 0,
+        mealName = "apple a day milk shake",
+        mealId = "5289",
+        minutesForPreparation = 0,
         contributorId = "1533",
-        submitted = LocalDate.parse("1999-12-06"),
+        submittedDate = LocalDate.parse("1999-12-06"),
         tags = listOf(
             "15-minutes-or-less", "time-to-make", "course", "main-ingredient", "cuisine",
             "preparation", "occasion", "north-american", "low-protein", "5-ingredients-or-less",
@@ -174,11 +174,11 @@ val FakeFoodList = listOf(
         numberOfIngredients = 4
     ),
     Meal(
-        name = "aww marinated olives",
-        id = "25274",
-        minutes = 15,
+        mealName = "aww marinated olives",
+        mealId = "25274",
+        minutesForPreparation = 15,
         contributorId = "21730",
-        submitted = LocalDate.parse("2002-04-14"),
+        submittedDate = LocalDate.parse("2002-04-14"),
         tags = listOf(
             "15-minutes-or-less", "time-to-make", "course", "main-ingredient", "cuisine",
             "preparation", "occasion", "north-american", "appetizers", "fruit",
@@ -198,11 +198,11 @@ val FakeFoodList = listOf(
         numberOfIngredients = 9
     ),
     Meal(
-        name = "backyard style barbecued ribs",
-        id = "67888",
-        minutes = 120,
+        mealName = "backyard style barbecued ribs",
+        mealId = "67888",
+        minutesForPreparation = 120,
         contributorId = "10404",
-        submitted = LocalDate.parse("2003-07-30"),
+        submittedDate = LocalDate.parse("2003-07-30"),
         tags = listOf(
             "weeknight", "time-to-make", "course", "main-ingredient", "cuisine",
             "preparation", "occasion", "north-american", "south-west-pacific", "main-dish",

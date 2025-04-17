@@ -12,7 +12,7 @@ class GetMealsByCountryUseCase(private val repository: FoodRepository) {
             .filter { food -> isRelatedToCountry(food, country) }
             .shuffled()
             .take(minOf(count, 20))
-            .sortedBy{it.name}
+            .sortedBy{it.mealName}
 
         if (meals.isEmpty()) {
             throw FoodException.NoMealsFoundForCountry(country)
@@ -23,7 +23,7 @@ class GetMealsByCountryUseCase(private val repository: FoodRepository) {
 
     private fun isRelatedToCountry(food: Meal, country: String): Boolean {
         return listOfNotNull(
-            food.name,
+            food.mealName,
             food.description,
             *food.tags.toTypedArray(),
         ).any { it.contains(country, ignoreCase = true) }

@@ -10,7 +10,7 @@ class SearchMealsByAddDateUseCase(private val repository: FoodRepository) {
     private var meals: List<Meal> = emptyList()
 
     fun findMealsByDate(date: LocalDate): Result<List<Meal>> {
-         meals = repository.getFood().filter { it.submitted == date }
+         meals = repository.getFood().filter { it.submittedDate == date }
 
         return if (meals.isNotEmpty()) {
             Result.success(meals)
@@ -20,7 +20,7 @@ class SearchMealsByAddDateUseCase(private val repository: FoodRepository) {
     }
 
     fun findMealByIdInList(id: String): Result<Meal> {
-        return meals.find { it.id == id }
+        return meals.find { it.mealId == id }
             ?.let { Result.success(it) }
             ?: Result.failure(FoodException.NoMealsFoundException("Meal with ID $id not found"))
     }

@@ -9,8 +9,8 @@ class GetEasyFoodSuggestionConsoleUi(private val useCase: GetEasyFoodSuggestionU
             onSuccess = {
                 println("--- EASY MEAL SUGGESTIONS ---")
                 it.forEachIndexed { index, food ->
-                    println("${index + 1}. ${food.name ?: "Unnamed recipe"}")
-                    println("   Time: ${food.minutes} minutes")
+                    println("${index + 1}. ${food.mealName ?: "Unnamed recipe"}")
+                    println("   Time: ${food.minutesForPreparation} minutes")
                     println("   Ingredients (${food.numberOfIngredients}): ${food.ingredients.joinToString(", ")}")
                     println("   Steps: ${food.numberOfSteps} \n")
                 }

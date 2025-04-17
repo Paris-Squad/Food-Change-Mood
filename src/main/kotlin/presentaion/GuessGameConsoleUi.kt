@@ -10,7 +10,7 @@ class GuessGameConsoleUi(private val useCase: GuessGameUseCase) {
 
         val randomFood = useCase.getRandomFood()
         
-        println("Guess the preparation time (in minutes) for: ${randomFood.name ?: "Unnamed recipe"}")
+        println("Guess the preparation time (in minutes) for: ${randomFood.mealName ?: "Unnamed recipe"}")
         
         var gameRunning = true
         var attempts = 3
@@ -30,7 +30,7 @@ class GuessGameConsoleUi(private val useCase: GuessGameUseCase) {
             
             result.fold(
                 onSuccess = { food ->
-                    println("Correct! ${food.name} takes ${food.minutes} minutes to prepare.")
+                    println("Correct! ${food.mealName} takes ${food.minutesForPreparation} minutes to prepare.")
                     gameRunning = false
                 },
                 onFailure = { error ->

@@ -19,17 +19,17 @@ class GuessGameUseCase(private val repository: FoodRepository) {
     fun makeGuess(guessedTime: Int): Result<Meal> {
         val food = randomFood
         return when {
-            guessedTime == food.minutes -> {
+            guessedTime == food.minutesForPreparation -> {
                 attemptsLeft = 3
                 Result.success(food)
             }
 
             attemptsLeft <= 1 -> {
                 attemptsLeft = 3
-                Result.failure(FoodException.GuessException.GameOver(food.minutes))
+                Result.failure(FoodException.GuessException.GameOver(food.minutesForPreparation))
             }
 
-            guessedTime < food.minutes -> {
+            guessedTime < food.minutesForPreparation -> {
                 attemptsLeft--
                 Result.failure(FoodException.GuessException.TooLow(attemptsLeft))
             }

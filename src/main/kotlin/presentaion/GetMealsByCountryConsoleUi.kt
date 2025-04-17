@@ -6,11 +6,11 @@ import org.example.domain.usecase.GetMealsByCountryUseCase
 class GetMealsByCountryConsoleUi(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
 
     operator fun invoke() {
-        print("Enter a country name : ")
+        print("Enter a country mealName : ")
         val country = readlnOrNull()?.trim()
 
         if (country.isNullOrEmpty()) {
-            println("Country name cannot be empty.")
+            println("Country mealName cannot be empty.")
             return
         }
 
@@ -29,11 +29,11 @@ class GetMealsByCountryConsoleUi(private val getMealsByCountryUseCase: GetMealsB
             println("\n--- MEALS RELATED TO \"$country\" ---")
             meals.forEachIndexed { index, food ->
                 println("${index + 1}.")
-                println("   Name: ${food.name ?: "Unnamed recipe"}")
-                println("   ID: ${food.id}")
-                println("   Time: ${food.minutes} minutes")
+                println("   Name: ${food.mealName ?: "Unnamed recipe"}")
+                println("   ID: ${food.mealId}")
+                println("   Time: ${food.minutesForPreparation} minutes")
                 println("   Contributor ID: ${food.contributorId}")
-                println("   Submitted: ${food.submitted}")
+                println("   Submitted: ${food.submittedDate}")
                 println("   Tags: ${food.tags.joinToString(", ")}")
                 println("   Nutrition: ${food.nutrition}")
                 println("   Steps (${food.numberOfSteps}):")

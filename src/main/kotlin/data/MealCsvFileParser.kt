@@ -94,11 +94,11 @@ class MealCsvFileParser {
     }
 
     private fun createRecipe(fields: List<String>) = Meal(
-        name = fields[ColumnIndex.NAMES].trim(),
-        id = fields[ColumnIndex.ID].trim(),
-        minutes = fields[ColumnIndex.MINUTES].trim().toInt(),
+        mealName = fields[ColumnIndex.NAMES].trim(),
+        mealId = fields[ColumnIndex.ID].trim(),
+        minutesForPreparation = fields[ColumnIndex.MINUTES].trim().toInt(),
         contributorId = fields[ColumnIndex.CONTRIBUTOR_ID].trim(),
-        submitted = LocalDate.parse(fields[ColumnIndex.SUBMITTED_DATE].trim()),
+        submittedDate = LocalDate.parse(fields[ColumnIndex.SUBMITTED_DATE].trim()),
         tags = parseListField(fields[ColumnIndex.TAGS]),
         nutrition = parseNutrition(fields[ColumnIndex.NUTRITION]),
         numberOfSteps = fields[ColumnIndex.NUMBER_OF_STEPS].trim().toInt(),

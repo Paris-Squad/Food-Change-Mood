@@ -13,14 +13,14 @@ class GetEggFreeSweetsUseCase(private val repository: FoodRepository) {
             .filter { food -> 
                 food.tags.any { it.contains("dessert", ignoreCase = true) || it.contains("sweet", ignoreCase = true) } &&
                 !food.ingredients.any { it.contains("egg", ignoreCase = true) } &&
-                !suggestedSweets.contains(food.id)
+                !suggestedSweets.contains(food.mealId)
             }
         
         return if (availableSweets.isEmpty()) {
             Result.failure(FoodException.NoMoreSweetsAvailable("No more egg-free sweets available"))
         } else {
             val randomSweet = availableSweets.random()
-            suggestedSweets.add(randomSweet.id)
+            suggestedSweets.add(randomSweet.mealId)
             Result.success(randomSweet)
         }
     }

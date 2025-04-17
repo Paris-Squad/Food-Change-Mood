@@ -33,7 +33,7 @@ class SearchMealsByAddDateConsoleUi(private val useCase: SearchMealsByAddDateUse
 
                 println("\n========== MEALS ADDED ON $date ==========\n")
                 meals.forEachIndexed { index, meal ->
-                    println("Meal ${index + 1}: ID: ${meal.id} | Name: ${meal.name ?: "Unnamed Meal"}")
+                    println("Meal ${index + 1}: ID: ${meal.mealId} | Name: ${meal.mealName ?: "Unnamed Meal"}")
                 }
             }
 

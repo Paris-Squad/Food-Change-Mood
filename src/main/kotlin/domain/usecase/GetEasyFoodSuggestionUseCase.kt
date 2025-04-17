@@ -14,5 +14,5 @@ class GetEasyFoodSuggestionUseCase(private val repository: FoodRepository) {
     }
 
     private fun isEasyFood(food: Meal): Boolean =
-        food.minutes <= 30 && food.numberOfIngredients <= 5 && food.numberOfSteps <= 6
+        food.minutesForPreparation <= 30 && food.numberOfIngredients <= 5 && food.numberOfSteps <= 6
 }
