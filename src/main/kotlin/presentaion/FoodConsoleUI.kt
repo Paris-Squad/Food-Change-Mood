@@ -82,7 +82,8 @@ class FoodConsoleUI {
     }
 
     private fun listHealthyFastFood() {
-        TODO("Not yet implemented")
+        val getQuickHealthyPicksUI = getKoin().get<GetQuickHealthyPicksUI>()
+        getQuickHealthyPicksUI.invoke()
     }
 
     private fun searchMealByName() {
