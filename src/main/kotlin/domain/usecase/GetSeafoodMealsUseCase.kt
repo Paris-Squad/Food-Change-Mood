@@ -8,7 +8,7 @@ class GetSeafoodMealsUseCase(
 ) {
     fun execute(): List<Pair<String, Float>> {
         val allSeafood = foodRepository.getMeals().filter {
-            it.tags.contains("seafood") && it.mealName != null && it.nutrition.protein != null
+            it.tags.contains(SEAFOOD) && it.mealName != null && it.nutrition.protein != null
         }.sortedByDescending {
             it.nutrition.protein!!
         }.map { seafoodMeal ->
@@ -17,5 +17,9 @@ class GetSeafoodMealsUseCase(
 
         return allSeafood.takeIf { it.isNotEmpty() } ?: throw MealException.NoSeaFoodMealsFound("No Seafood meals found")
 
+    }
+
+    companion object{
+        const val SEAFOOD = "seafood"
     }
 }
