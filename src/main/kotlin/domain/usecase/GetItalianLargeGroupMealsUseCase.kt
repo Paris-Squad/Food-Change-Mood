@@ -10,7 +10,7 @@ class GetItalianLargeGroupMealsUseCase (
     fun invoke(): Result<List<Food>> {
         val meals = repository.getFood().filter { food ->
             val tags = food.tags.map { it.lowercase() }
-            "italian" in tags && "for-large-groups" in tags
+            ("italian" in tags || "italy" in tags)  && "for-large-groups" in tags
         }
         return if (meals.isNotEmpty()) {
             Result.success(meals.shuffled())

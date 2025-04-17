@@ -16,7 +16,5 @@ val appModule = module {
     single { FoodCsvFileParse() }
     single<FoodRepository> { CsvFoodRepository(get(), get()) }
 
-    single { GetFoodUi(get()) }
-    single { GetMealsByCountryUi(get()) }
     single { GetRandomPotatoMealsUseCase(get()) }
 }
