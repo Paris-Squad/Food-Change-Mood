@@ -150,6 +150,7 @@ class MealConsoleUI {
     }
 
     private fun italianLargeGroup() {
-        TODO("Not yet implemented")
+        val getItalianLargeGroupMealsUi  = getKoin().get<GetItalianLargeGroupMealsUi>()
+        getItalianLargeGroupMealsUi.invoke()
     }
 }

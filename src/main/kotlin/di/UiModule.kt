@@ -13,10 +13,8 @@ val uiModule = module {
     single { GuessGameConsoleUi(get()) }
     single { RandomPotatoMealsConsoleUi(get()) }
     single { GymHelperConsoleUi(get()) }
-    single { GetMealConsoleUi(get()) }
-    single { GetEasyMealSuggestionConsoleUi(get()) }
-    single { EggFreeSweetsConsoleUi(get()) }
-    single {SearchMealsByAddDateConsoleUi(get())}
+    single { SearchMealsByAddDateConsoleUi(get())}
     single { GetIngredientGuessUI(get()) }
     single { GetQuickHealthyPicksUI(get()) }
+    single { GetItalianLargeGroupMealsUi(get()) }
 }
