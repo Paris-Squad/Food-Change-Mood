@@ -1,12 +1,13 @@
 package org.example.domain.usecase
 
+import domain.model.Meal
 import org.example.domain.FoodException
-import org.example.domain.repository.FoodRepository
-import org.example.model.Food
+import org.example.domain.repository.MealRepository
 
-class KetoDietMealHelperUseCase(private val foodRepository: FoodRepository) {
 
-    val repeatedMeals = mutableSetOf<Food>()
+class KetoDietMealHelperUseCase(private val foodRepository: MealRepository) {
+
+    val repeatedMeals = mutableSetOf<Meal>()
     companion object{
         const val MAX_CARB = 50f
         const val MIN_FAT = 0.60f
@@ -14,13 +15,13 @@ class KetoDietMealHelperUseCase(private val foodRepository: FoodRepository) {
         const val MAX_PROTEIN = 0.4f
     }
 
-    fun ketoDietMeal(): Result<Food>{
+        fun ketoDietMeal(): Result<Meal>{
         return try{
             val ketoMeals =  ketoDietMeals().filter { food ->
                 !repeatedMeals.contains(food)
             }
             if (ketoMeals.isEmpty()){
-                Result.failure<Food>(FoodException.NoKetoDietMealFound("no keto meal found"))
+                Result.failure<Meal>(FoodException.NoKetoDietMealFound("no keto meal found"))
             }
             val suggestedMeal = ketoMeals.random()
             repeatedMeals.add(suggestedMeal)
@@ -35,11 +36,11 @@ class KetoDietMealHelperUseCase(private val foodRepository: FoodRepository) {
 
     }
 
-    private fun ketoDietMeals(): List<Food> {
-        return foodRepository.getFood()
+    private fun ketoDietMeals(): List<Meal> {
+        return foodRepository.getMeals()
            .filter { checkForKetoDietNutrition(it) }
     }
-   private fun checkForKetoDietNutrition(food : Food): Boolean{
+   private fun checkForKetoDietNutrition(food : Meal): Boolean{
         return food.nutrition.protein != null
                 && food.nutrition.totalFat != null
                 && food.nutrition.carbohydrates != null

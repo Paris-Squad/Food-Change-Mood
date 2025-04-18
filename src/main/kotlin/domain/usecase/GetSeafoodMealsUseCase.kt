@@ -1,21 +1,25 @@
 package org.example.domain.usecase
 
-import org.example.domain.FoodException
-import org.example.domain.repository.FoodRepository
+import org.example.domain.MealException
+import org.example.domain.repository.MealRepository
 
 class GetSeafoodMealsUseCase(
-    private val foodRepository: FoodRepository
+    private val foodRepository: MealRepository
 ) {
     fun execute(): List<Pair<String, Float>> {
-        val allSeafood = foodRepository.getFood().filter {
-            it.tags.contains("seafood") && it.name != null && it.nutrition.protein != null
+        val allSeafood = foodRepository.getMeals().filter {
+            it.tags.contains(SEAFOOD) && it.mealName != null && it.nutrition.protein != null
         }.sortedByDescending {
             it.nutrition.protein!!
         }.map { seafoodMeal ->
-            seafoodMeal.name!! to (seafoodMeal.nutrition.protein ?: 0f)
+            seafoodMeal.mealName!! to (seafoodMeal.nutrition.protein ?: 0f)
         }
 
-        return allSeafood.takeIf { it.isNotEmpty() } ?: throw FoodException.NoSeaFoodMealsFound("No Seafood meals found")
+        return allSeafood.takeIf { it.isNotEmpty() } ?: throw MealException.NoMealsFoundException("No Seafood meals found")
 
+    }
+
+    companion object{
+        const val SEAFOOD = "seafood"
     }
 }

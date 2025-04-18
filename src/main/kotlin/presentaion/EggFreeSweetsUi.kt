@@ -14,7 +14,7 @@ class EggFreeSweetsUi(private val useCase: GetEggFreeSweetsUseCase) {
         while (continueSearching) {
             useCase.getRandomEggFreeSweet().fold(
                 onSuccess = { sweet ->
-                    println("\n${sweet.name ?: "Unnamed Sweet"}")
+                    println("\n${sweet.mealName ?: "Unnamed Sweet"}")
                     println("Description: ${sweet.description ?: "No description available"}")
 
                     while (true) {

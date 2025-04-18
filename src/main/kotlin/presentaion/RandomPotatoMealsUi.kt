@@ -12,12 +12,12 @@ class RandomPotatoMealsUi(private val getRandomPotatoMealsUseCase: GetRandomPota
             println("========== RANDOM POTATO MEALS ==========\n")
 
             potatoMeals.forEachIndexed { index, meal ->
-                println("Meal ${index + 1}: ${meal.name ?: "Unnamed Recipe"}")
+                println("Meal ${index + 1}: ${meal.mealName ?: "Unnamed Recipe"}")
                 println("--------------------------------------------------")
-                println("ID: ${meal.id}")
-                println("Preparation Time: ${meal.minutes} minutes")
+                println("ID: ${meal.mealId}")
+                println("Preparation Time: ${meal.minutesForPreparation} minutes")
                 println("Contributor ID: ${meal.contributorId}")
-                println("Date Submitted: ${meal.submitted}")
+                println("Date Submitted: ${meal.submittedDate}")
                 println("Tags: ${meal.tags.joinToString(", ").ifEmpty { "No tags available" }}")
                 println("Nutrition Information: ${meal.nutrition}")
                 println("Steps (${meal.numberOfSteps}):")

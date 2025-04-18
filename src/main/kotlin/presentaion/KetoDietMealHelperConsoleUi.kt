@@ -2,7 +2,7 @@ package org.example.presentaion
 
 import org.example.domain.usecase.KetoDietMealHelperUseCase
 
-class KetoDietMealHelperUi(private val ketoDietMealHelperUseCase: KetoDietMealHelperUseCase) {
+class KetoDietMealHelperConsoleUi(private val ketoDietMealHelperUseCase: KetoDietMealHelperUseCase) {
 
     operator fun invoke(){
         println("click 1 if you want a suggested keto diet meal.")
@@ -13,9 +13,9 @@ class KetoDietMealHelperUi(private val ketoDietMealHelperUseCase: KetoDietMealHe
                 ketoDietMealHelperUseCase.ketoDietMeal().fold(
                     onSuccess = {
                         println("\nSuggested Keto Meal:")
-                        println("Name: ${it.name}")
+                        println("Name: ${it.mealName}")
                         println("Description: ${it.description ?: "No description available"}")
-                        println("Preparation Time: ${it.minutes} minutes")
+                        println("Preparation Time: ${it.minutesForPreparation} minutes")
                         println("\nNutrition Info:")
                         println("Carbs: ${it.nutrition.carbohydrates}g")
                         println("Fat: ${it.nutrition.totalFat}g")

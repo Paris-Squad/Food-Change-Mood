@@ -1,23 +1,20 @@
 package org.example.presentaion
 
-import org.example.domain.FoodException
-import org.example.domain.usecase.GetEasyFoodSuggestionUseCase
+import org.example.domain.MealException
+import org.example.domain.usecase.GetEasyMealSuggestionUseCase
 
-class GetEasyFoodSuggestionUi(private val useCase: GetEasyFoodSuggestionUseCase) {
+class GetEasyMealSuggestionConsoleUi(private val useCase: GetEasyMealSuggestionUseCase) {
     fun invoke() {
         useCase.invoke().fold(
             onSuccess = {
                 println("--- EASY MEAL SUGGESTIONS ---")
-                it.forEachIndexed { index, food ->
-                    println("${index + 1}. ${food.mealName ?: "Unnamed recipe"}")
-                    println("   Time: ${food.minutesForPreparation} minutes")
-                    println("   Ingredients (${food.numberOfIngredients}): ${food.ingredients.joinToString(", ")}")
-                    println("   Steps: ${food.numberOfSteps} \n")
+                it.forEachIndexed { index, meal ->
+                    println(meal.formatDetails())
                 }
             },
             onFailure = { error ->
                 when (error) {
-                    is FoodException.NoEasyFoodFound -> {
+                    is MealException.NoMealsFoundException -> {
                         println("--- EASY MEAL SUGGESTIONS ---")
                         println("No easy meals found that match your criteria")
                     }
