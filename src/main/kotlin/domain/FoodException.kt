@@ -17,4 +17,5 @@ sealed class FoodException(message: String?) : Exception(message) {
         class NoFoodAvailable(message: String) : GuessException(message)
     }
     class NoPotatoMealFound : FoodException("No meals found containing potatoes")
+    class NoItalianLargeGroupMealFound : FoodException("No Italian meals suitable for large groups were found.")
 }
