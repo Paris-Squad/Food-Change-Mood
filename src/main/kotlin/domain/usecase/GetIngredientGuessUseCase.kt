@@ -1,11 +1,11 @@
 package org.example.domain.usecase
 
-import org.example.domain.repository.FoodRepository
-import org.example.model.Food
-import org.example.model.IngredientGameRound
+import org.example.domain.model.IngredientGameRound
+import org.example.domain.repository.MealRepository
+import domain.model.Meal
 
-class GetIngredientGuessUseCase  (private val repository : FoodRepository) {
-    private fun getAllFood(): List<Food> = repository.getFood()
+class GetIngredientGuessUseCase  (private val repository : MealRepository) {
+    private fun getAllFood(): List<Meal> = repository.getMeals()
 
     private var score = 0
     private var correctAnswers = 0
@@ -14,21 +14,21 @@ class GetIngredientGuessUseCase  (private val repository : FoodRepository) {
 
     fun nextRound(): IngredientGameRound?  {
             val meal = getRandomMeal() ?:return null
-            usedMeals.add(meal.name!!)
+            usedMeals.add(meal.mealName!!)
             val correctIngredient = meal.ingredients.random()
             val wrongIngredients = getTwoRandomWrongIngredients(meal) ?: return null
             val options = (listOf(correctIngredient) + wrongIngredients).shuffled()
-            currentRound =IngredientGameRound(meal.name, options, correctIngredient)
+            currentRound =IngredientGameRound(meal.mealName, options, correctIngredient)
             return currentRound
     }
 
 
-    private fun getRandomMeal(): Food? {
-        val available = getAllFood().filterNot { it.name==null || usedMeals.contains(it.name) }
+    private fun getRandomMeal(): Meal? {
+        val available = getAllFood().filterNot { it.mealName==null || usedMeals.contains(it.mealName) }
         return if (available.isNotEmpty()) available.random() else null
     }
 
-    private fun getTwoRandomWrongIngredients(correctMeal: Food): List<String>? {
+    private fun getTwoRandomWrongIngredients(correctMeal: Meal): List<String>? {
         val allIngredients =  getAllFood().flatMap { it.ingredients }.distinct().filterNot { it in correctMeal.ingredients }
         return if(allIngredients.isNotEmpty())  allIngredients.shuffled().take(2) else null
 

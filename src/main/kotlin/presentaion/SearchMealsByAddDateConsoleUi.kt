@@ -1,10 +1,10 @@
 package org.example.presentaion
 
 import kotlinx.datetime.LocalDate
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.usecase.SearchMealsByAddDateUseCase
 
-class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
+class SearchMealsByAddDateConsoleUi(private val useCase: SearchMealsByAddDateUseCase) {
 
     fun search() {
         var shouldRepeat = true
@@ -33,7 +33,7 @@ class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
 
                 println("\n========== MEALS ADDED ON $date ==========\n")
                 meals.forEachIndexed { index, meal ->
-                    println("Meal ${index + 1}: ID: ${meal.id} | Name: ${meal.name ?: "Unnamed Meal"}")
+                    println("Meal ${index + 1}: ID: ${meal.mealId} | Name: ${meal.mealName ?: "Unnamed Meal"}")
                 }
             }
 
@@ -59,7 +59,7 @@ class SearchMealsByAddDateUi(private val useCase: SearchMealsByAddDateUseCase) {
         return try {
             Result.success(LocalDate.parse(input))
         } catch (e: IllegalArgumentException) {
-            Result.failure(FoodException.InvalidDateFormatException("Invalid date format: Use yyyy-MM-dd"))
+            Result.failure(MealException.InvalidDateFormatException("Invalid date format: Use yyyy-MM-dd"))
         }
     }
 }

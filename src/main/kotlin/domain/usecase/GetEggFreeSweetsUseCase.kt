@@ -1,28 +1,31 @@
 package org.example.domain.usecase
 
-import org.example.domain.FoodException
-import org.example.domain.repository.FoodRepository
-import org.example.model.Food
+import org.example.domain.MealException
+import org.example.domain.repository.MealRepository
+import domain.model.Meal
 
-class GetEggFreeSweetsUseCase(private val repository: FoodRepository) {
-    
-    private val suggestedSweets = mutableSetOf<String>()
-    
-    fun getRandomEggFreeSweet(): Result<Food> {
-        val availableSweets = repository.getFood()
-            .filter { food -> 
-                food.tags.any { it.contains("dessert", ignoreCase = true) || it.contains("sweet", ignoreCase = true) } &&
-                !food.ingredients.any { it.contains("egg", ignoreCase = true) } &&
-                !suggestedSweets.contains(food.id)
+class GetEggFreeSweetsUseCase(private val repository: MealRepository) {
+
+
+    fun getRandomEggFreeSweet(): Result<Meal> {
+        val availableSweets = repository.getMeals().filter { meal ->
+            meal.tags.any {
+                it.contains(DESSERT, ignoreCase = true) || it.contains(SWEET, ignoreCase = true)
+            } && !meal.ingredients.any {
+                it.contains(EGG, ignoreCase = true)
             }
-        
+        }
+
         return if (availableSweets.isEmpty()) {
-            Result.failure(FoodException.NoMoreSweetsAvailable("No more egg-free sweets available"))
+            Result.failure(MealException.NoMealsFoundException("No more egg-free sweets available"))
         } else {
-            val randomSweet = availableSweets.random()
-            suggestedSweets.add(randomSweet.id)
-            Result.success(randomSweet)
+            Result.success(availableSweets.random())
         }
     }
 
+    companion object {
+        private const val DESSERT = "dessert"
+        private const val SWEET = "sweet"
+        private const val EGG = "egg"
+    }
 }

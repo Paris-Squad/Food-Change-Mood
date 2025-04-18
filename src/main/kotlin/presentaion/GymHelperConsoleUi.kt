@@ -3,7 +3,7 @@ package org.example.presentaion
 import org.example.domain.usecase.GymHelperUseCase
 
 
-class GymHelperUI(
+class GymHelperConsoleUi(
     private val gymHelperUseCase: GymHelperUseCase
 ) {
     fun start() {
@@ -25,7 +25,7 @@ class GymHelperUI(
             if (gymMeals.isEmpty()) {
                 println("No meals founded with this values calories:$calories, protein:$protein")
             } else {
-                gymMeals.forEach { meal -> println(meal) }
+                gymMeals.forEach { meal -> println(meal.formatDetails()) }
             }
 
             return

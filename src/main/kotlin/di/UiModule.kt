@@ -1,27 +1,20 @@
 package org.example.di
 
-import GetFoodUi
 import org.example.presentaion.*
 import org.koin.dsl.module
 
 val uiModule = module {
-    single { EggFreeSweetsUi(get()) }
-    single { GetEasyFoodSuggestionUi(get()) }
-    single { GetFoodUi(get()) }
-    single {GetIraqiMealsUi(get())  }
-    single { GetMealsByCountryUi(get()) }
-    single { GetSeafoodMealsUI(get()) }
-    single { GuessGameUi(get()) }
-    single { GetFoodUi(get()) }
-    single { GetEasyFoodSuggestionUi(get()) }
-    single { EggFreeSweetsUi(get()) }
-    single { GetItalianLargeGroupMealsUi(get()) }
-    single { RandomPotatoMealsUi(get()) }
-    single { GetQuickHealthyPicksUI(get()) }
-    single { GymHelperUI(get()) }
-    single { GetFoodUi(get()) }
-    single { GetEasyFoodSuggestionUi(get()) }
-    single { EggFreeSweetsUi(get()) }
-    single {SearchMealsByAddDateUi(get())}
+    single { EggFreeSweetsConsoleUi(get()) }
+    single { GetEasyMealSuggestionConsoleUi(get()) }
+    single { GetMealConsoleUi(get()) }
+    single { GetIraqiMealsConsoleUi(get())  }
+    single { GetMealsByCountryConsoleUi(get()) }
+    single { GetSeafoodMealsConsoleUi(get()) }
+    single { GuessGameConsoleUi(get()) }
+    single { RandomPotatoMealsConsoleUi(get()) }
+    single { GymHelperConsoleUi(get()) }
+    single { SearchMealsByAddDateConsoleUi(get())}
     single { GetIngredientGuessUI(get()) }
+    single { GetQuickHealthyPicksConsoleUI(get()) }
+    single { GetItalianLargeGroupMealsConsoleUi(get()) }
 }
