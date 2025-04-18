@@ -1,24 +1,27 @@
 package org.example.domain.usecase
 
+import domain.model.Meal
 import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
-import domain.model.Meal
 
 class GetRandomPotatoMealsUseCase(private val repository: MealRepository) {
     companion object {
         private const val POTATO = "potato"
         private const val NUMBER_OF_MEALS = 10
+        private const val EXCEPTION_MESSAGE_NO_MEALS_FOUND = "No meals found containing potatoes"
     }
 
-    fun getRandomPotatoMeals(): List<Meal> {
+    fun getRandomPotatoMeals(): Result<List<Meal>> {
         val potatoMeals = getMealsContainingPotato()
-        if (potatoMeals.isEmpty()) throw MealException.NoMealsFoundException("No meals found containing potatoes")
-        return potatoMeals.shuffled().take(NUMBER_OF_MEALS)
+        if (potatoMeals.isEmpty()) return Result.failure(
+            MealException.NoMealsFoundException(EXCEPTION_MESSAGE_NO_MEALS_FOUND)
+        )
+        return Result.success(potatoMeals.shuffled().take(NUMBER_OF_MEALS))
     }
 
     private fun getMealsContainingPotato(): List<Meal> {
         return repository.getMeals()
-            .filter (::isMealContainsPotato)
+            .filter(::isMealContainsPotato)
     }
 
     private fun isMealContainsPotato(meal: Meal): Boolean =
