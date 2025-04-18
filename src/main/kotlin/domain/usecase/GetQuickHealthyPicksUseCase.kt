@@ -1,7 +1,7 @@
 package org.example.domain.usecase
 
 import org.example.domain.repository.MealRepository
-import org.example.model.Meal
+import domain.model.Meal
 
 class GetQuickHealthyPicksUseCase (private val repository : MealRepository) {
     private fun getAllFood(): List<Meal> = repository.getMeals()

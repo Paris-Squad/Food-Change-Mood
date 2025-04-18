@@ -1,4 +1,4 @@
-package org.example.model
+package domain.model
 
 import kotlinx.datetime.LocalDate
 
@@ -19,7 +19,6 @@ data class Meal(
 
     fun formatDetails(): String {
         val details = StringBuilder()
-        details.append("\n--- FULL DETAILS ---\n")
         details.append("Name: ${mealName ?: "Unnamed"}\n")
         details.append("Preparation time: $minutesForPreparation minutes\n")
         details.append("Description: ${description ?: "No description available"}\n")

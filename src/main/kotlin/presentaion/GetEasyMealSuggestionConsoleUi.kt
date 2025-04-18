@@ -9,15 +9,12 @@ class GetEasyMealSuggestionConsoleUi(private val useCase: GetEasyMealSuggestionU
             onSuccess = {
                 println("--- EASY MEAL SUGGESTIONS ---")
                 it.forEachIndexed { index, meal ->
-                    println("${index + 1}. ${meal.mealName ?: "Unnamed recipe"}")
-                    println("   Time: ${meal.minutesForPreparation} minutes")
-                    println("   Ingredients (${meal.numberOfIngredients}): ${meal.ingredients.joinToString(", ")}")
-                    println("   Steps: ${meal.numberOfSteps} \n")
+                    println(meal.formatDetails())
                 }
             },
             onFailure = { error ->
                 when (error) {
-                    is MealException.NoEasyMealsFound -> {
+                    is MealException.NoMealsFoundException -> {
                         println("--- EASY MEAL SUGGESTIONS ---")
                         println("No easy meals found that match your criteria")
                     }

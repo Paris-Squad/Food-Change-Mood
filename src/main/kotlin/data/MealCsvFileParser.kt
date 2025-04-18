@@ -3,8 +3,8 @@ package org.example.data
 import kotlinx.datetime.LocalDate
 import org.example.data.utils.ColumnIndex
 import org.example.data.utils.NutritionIndex
-import org.example.model.Meal
-import org.example.model.Nutrition
+import domain.model.Meal
+import domain.model.Nutrition
 import org.example.utils.lineHasEvenOrZeroQuoteCount
 import org.example.utils.lineHasOddQuoteCount
 

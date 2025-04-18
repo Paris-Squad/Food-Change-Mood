@@ -2,7 +2,7 @@ package org.example.domain.usecase
 
 import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
-import org.example.model.Meal
+import domain.model.Meal
 
 class GetRandomPotatoMealsUseCase(private val repository: MealRepository) {
     companion object {
@@ -12,7 +12,7 @@ class GetRandomPotatoMealsUseCase(private val repository: MealRepository) {
 
     fun getRandomPotatoMeals(): List<Meal> {
         val potatoMeals = getMealsContainingPotato()
-        if (potatoMeals.isEmpty()) throw MealException.NoPotatoMealFound()
+        if (potatoMeals.isEmpty()) throw MealException.NoMealsFoundException("No meals found containing potatoes")
         return potatoMeals.shuffled().take(NUMBER_OF_MEALS)
     }
 

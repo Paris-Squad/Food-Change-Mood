@@ -1,7 +1,7 @@
 package org.example.data
 
 import org.example.domain.repository.MealRepository
-import org.example.model.Meal
+import domain.model.Meal
 
 class CsvMealsRepository(
     private val fileReader: CsvFileReader,

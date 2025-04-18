@@ -15,7 +15,7 @@ class GetSeafoodMealsUseCase(
             seafoodMeal.mealName!! to (seafoodMeal.nutrition.protein ?: 0f)
         }
 
-        return allSeafood.takeIf { it.isNotEmpty() } ?: throw MealException.NoSeaFoodMealsFound("No Seafood meals found")
+        return allSeafood.takeIf { it.isNotEmpty() } ?: throw MealException.NoMealsFoundException("No Seafood meals found")
 
     }
 

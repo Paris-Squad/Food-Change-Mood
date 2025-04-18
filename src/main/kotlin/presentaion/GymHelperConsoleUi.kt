@@ -25,7 +25,7 @@ class GymHelperConsoleUi(
             if (gymMeals.isEmpty()) {
                 println("No meals founded with this values calories:$calories, protein:$protein")
             } else {
-                gymMeals.forEach { meal -> println(meal) }
+                gymMeals.forEach { meal -> println(meal.formatDetails()) }
             }
 
             return

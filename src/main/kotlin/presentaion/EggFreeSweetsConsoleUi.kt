@@ -2,48 +2,50 @@ package org.example.presentaion
 
 import org.example.domain.MealException
 import org.example.domain.usecase.GetEggFreeSweetsUseCase
+import kotlin.system.exitProcess
 
 class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
+    private enum class UserAction { ACCEPT, REJECT, QUIT, INVALID }
 
     fun startSuggestions() {
         println("--- EGG-FREE SWEETS SUGGESTER ---")
         println("Finding egg-free sweet options for users with allergies")
 
         var continueSearching = true
+        var showNewSuggestion = true
 
         while (continueSearching) {
             useCase.getRandomEggFreeSweet().fold(
                 onSuccess = { sweet ->
-                    println("\n${sweet.mealName ?: "Unnamed Sweet"}")
-                    println("Description: ${sweet.description ?: "No description available"}")
+                    if (showNewSuggestion) {
+                        println("\n${sweet.mealName ?: "Unnamed Sweet"}")
+                        println("Description: ${sweet.description ?: "No description available"}")
+                    }
+                    when (askUserPreference()) {
+                        UserAction.ACCEPT -> {
+                            println("\nGreat choice!")
+                            println(sweet.formatDetails())
+                            quitApplication()
+                        }
 
-                    while (true) {
-                        print("\nDo you like this suggestion? (Y/N/Q to quit): ")
-                        when (readln().trim().uppercase()) {
-                            "Y" -> {
-                                println(sweet.formatDetails())
-                                continueSearching = false
-                                break
-                            }
+                        UserAction.REJECT -> {
+                            println("Okay, looking for another egg-free sweet...\n")
+                            showNewSuggestion = true
+                        }
 
-                            "N" -> {
-                                println("Looking for another egg-free sweet...")
-                                break
-                            }
+                        UserAction.QUIT -> {
+                            quitApplication()
+                        }
 
-                            "Q" -> {
-                                println("Thank you for using the Egg-Free Sweets Suggester!")
-                                continueSearching = false
-                                break
-                            }
-
-                            else -> println("Please enter Y (yes), N (no), or Q (quit)")
+                        UserAction.INVALID -> {
+                            println("Invalid input. Please enter Y (yes), N (no), or Q (quit).")
+                            showNewSuggestion = false
                         }
                     }
                 },
                 onFailure = { error ->
                     when (error) {
-                        is MealException.NoMoreSweetsAvailable -> {
+                        is MealException.NoMealsFoundException -> {
                             println(error.message)
                             continueSearching = false
                         }
@@ -58,4 +60,21 @@ class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
         }
     }
 
+    private fun askUserPreference(): UserAction {
+        while (true) {
+            print("\nDo you like this suggestion? (Y/N/Q to quit): ")
+            val input = readlnOrNull()?.trim()?.uppercase()
+            return when (input) {
+                "Y" -> UserAction.ACCEPT
+                "N" -> UserAction.REJECT
+                "Q" -> UserAction.QUIT
+                else -> UserAction.INVALID
+            }
+        }
+    }
+
+    private fun quitApplication(exitCode: Int = 0) {
+        println("\nThank you for using the Egg-Free Sweets Suggester!")
+        exitProcess(exitCode)
+    }
 }

@@ -3,7 +3,7 @@ package org.example.domain.usecase
 import org.example.domain.repository.MealRepository
 import kotlinx.datetime.LocalDate
 import org.example.domain.MealException
-import org.example.model.Meal
+import domain.model.Meal
 
 
 class SearchMealsByAddDateUseCase(private val repository: MealRepository) {

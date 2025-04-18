@@ -1,7 +1,7 @@
 package org.example.domain.usecase
 
 import org.example.domain.repository.MealRepository
-import org.example.model.Meal
+import domain.model.Meal
 import org.example.utils.inRange
 
 class GymHelperUseCase(

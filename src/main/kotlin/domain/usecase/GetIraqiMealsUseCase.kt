@@ -2,7 +2,7 @@ package org.example.domain.usecase
 
 import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
-import org.example.model.Meal
+import domain.model.Meal
 
 class GetIraqiMealsUseCase(private val repository: MealRepository) {
 
@@ -12,7 +12,7 @@ class GetIraqiMealsUseCase(private val repository: MealRepository) {
         }
 
         if (iraqiMeals.isEmpty()) {
-            throw MealException.NoIraqiMealsFound()
+            throw MealException.NoMealsFoundException("No Iraqi Meals found")
         }
 
         return Result.success(iraqiMeals)

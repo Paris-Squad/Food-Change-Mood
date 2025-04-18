@@ -12,9 +12,8 @@ class GetSeafoodMealsConsoleUi(
             allSeafoodMeals.forEachIndexed { index, seafoodMeal ->
                 println("${index + 1}- Name: ${seafoodMeal.first}, Protein: ${seafoodMeal.second}")
             }
-        } catch (exception: MealException.NoSeaFoodMealsFound) {
+        } catch (exception: MealException.NoMealsFoundException) {
             println(exception.message)
         }
-
     }
 }

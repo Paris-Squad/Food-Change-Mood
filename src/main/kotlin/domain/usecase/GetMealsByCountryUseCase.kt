@@ -2,7 +2,7 @@ package org.example.domain.usecase
 
 import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
-import org.example.model.Meal
+import domain.model.Meal
 
 
 class GetMealsByCountryUseCase(private val repository: MealRepository) {
@@ -15,7 +15,7 @@ class GetMealsByCountryUseCase(private val repository: MealRepository) {
             .sortedBy{it.mealName}
 
         if (meals.isEmpty()) {
-            throw MealException.NoMealsFoundForCountry(country)
+            throw MealException.NoMealsFoundException("No meals found related to '$country'")
         }
 
         return Result.success(meals)
