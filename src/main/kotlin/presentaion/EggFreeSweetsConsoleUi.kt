@@ -25,7 +25,8 @@ class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
                         UserAction.ACCEPT -> {
                             println("\nGreat choice!")
                             println(sweet.formatDetails())
-                            quitApplication()
+                            println("\nThank you for using the Egg-Free Sweets Suggester!")
+                            continueSearching = false
                         }
 
                         UserAction.REJECT -> {
@@ -34,7 +35,8 @@ class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
                         }
 
                         UserAction.QUIT -> {
-                            quitApplication()
+                            println("\nThank you for using the Egg-Free Sweets Suggester!")
+                            continueSearching = false
                         }
 
                         UserAction.INVALID -> {
@@ -71,10 +73,5 @@ class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
                 else -> UserAction.INVALID
             }
         }
-    }
-
-    private fun quitApplication(exitCode: Int = 0) {
-        println("\nThank you for using the Egg-Free Sweets Suggester!")
-        exitProcess(exitCode)
     }
 }
