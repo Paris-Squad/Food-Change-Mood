@@ -112,7 +112,8 @@ class MealConsoleUI {
 
 
     private fun ketoDietHelper() {
-        TODO("Not yet implemented")
+        val ketoDietMealHelper = getKoin().get<KetoDietMealHelperConsoleUi>()
+        ketoDietMealHelper.invoke()
     }
 
     private fun searchByAddDate() {
