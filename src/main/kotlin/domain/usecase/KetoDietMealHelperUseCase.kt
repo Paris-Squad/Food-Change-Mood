@@ -15,7 +15,7 @@ class KetoDietMealHelperUseCase(private val foodRepository: MealRepository) {
         const val MAX_PROTEIN = 0.4f
     }
 
-        fun ketoDietMeal(): Result<Meal>{
+    fun ketoDietMeal(): Result<Meal>{
         return try{
             val ketoMeals =  ketoDietMeals().filter { food ->
                 !repeatedMeals.contains(food)
