@@ -1,28 +1,32 @@
 package org.example.presentaion
 
-import org.example.domain.MealException
+import domain.model.Meal
 import org.example.domain.usecase.GetMealWithHighCaloriesUseCase
 
-class GetMealWithHighCaloriesConsoleUi(private val useCase: GetMealWithHighCaloriesUseCase) {
+class GetMealWithHighCaloriesConsoleUi(private val mealsWithHighCaloriesUseCase: GetMealWithHighCaloriesUseCase) {
 
-    operator fun invoke() {
-        print("Are you like this meal ? \n if you like it enter 1 or 0 if you disLike \n")
-        val userInput: Int? = readlnOrNull()?.trim()?.toIntOrNull()
-        userInput?.let { inputValue ->
-            when (inputValue) {
-                1 -> useCase.invoke(requiredCalories = 700f).getOrNull()?.description
-                0 -> useCase.invoke(requiredCalories = 700f)
-                else -> validateUserInput(inputValue)
+    init {
+        getMealsWithHighCalories()
+    }
+
+    var randomMealWithHighCalories: Meal? = null
+
+     fun getMealsWithHighCalories() {
+        val mealsWithHighCaloriesResult = mealsWithHighCaloriesUseCase.invoke(REQUIRED_CALORIES)
+        mealsWithHighCaloriesResult.fold(
+            onSuccess = { meal ->
+                randomMealWithHighCalories = meal
+                println("Meal name is: ${meal.mealName}")
+                println("Meal description is: ${meal.description}")
+            },
+            onFailure = { exception ->
+                println(exception.message.toString())
             }
-        }
+        )
+
     }
 
-    private fun validateUserInput(isLiked: Int) {
-        try {
-            println("Invalid number. Please enter 1 or 0")
-        } catch (e: Exception) {
-            throw MealException.NoMealsFoundException("No Meal Founded")
-        }
+    companion object {
+        const val REQUIRED_CALORIES = 700f
     }
-
 }

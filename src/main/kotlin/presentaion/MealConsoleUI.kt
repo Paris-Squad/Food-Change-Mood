@@ -1,6 +1,7 @@
 package org.example.presentaion
 
 import org.koin.java.KoinJavaComponent.getKoin
+import kotlin.system.exitProcess
 
 class MealConsoleUI {
 
@@ -141,7 +142,27 @@ class MealConsoleUI {
     }
 
     private fun highCalorieMeal() {
-        TODO("Not yet implemented")
+
+        while (true) {
+            val mealsWithHighCaloriesConsoleUi = getKoin().get<GetMealWithHighCaloriesConsoleUi>()
+            println("Are you like this meal?\npress yes if you liked it and No if you do not liked it")
+            val userInput = readlnOrNull()
+            userInput?.let { input ->
+
+                if (input.equals("yes", false)) {
+                    mealsWithHighCaloriesConsoleUi.randomMealWithHighCalories?.let { randomMeal ->
+                        println(randomMeal.formatDetails())
+                        exitProcess(0)
+                    }
+                } else if (input.equals("no", false)) {
+                    mealsWithHighCaloriesConsoleUi.getMealsWithHighCalories()
+                } else {
+                    println("Invalid input format")
+                }
+
+            }
+        }
+
     }
 
     private fun seafoodByProtein() {
@@ -150,7 +171,7 @@ class MealConsoleUI {
     }
 
     private fun italianLargeGroup() {
-        val getItalianLargeGroupMealsUi  = getKoin().get<GetItalianLargeGroupMealsConsoleUi>()
+        val getItalianLargeGroupMealsUi = getKoin().get<GetItalianLargeGroupMealsConsoleUi>()
         getItalianLargeGroupMealsUi.invoke()
     }
 }
