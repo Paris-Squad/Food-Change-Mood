@@ -1,16 +1,20 @@
 package org.example.di
 
-import org.example.presentaion.GetEasyFoodSuggestionUi
-import org.example.presentaion.GetFoodUi
-import org.example.presentaion.GetMealWithHighCaloriesConsoleUi
-import org.example.presentaion.GuessGameUi
+import org.example.presentaion.*
 import org.koin.dsl.module
 
 val uiModule = module {
-    single { GetFoodUi(get()) }
-    single { GuessGameUi(get()) }
-    single { GetFoodUi(get()) }
-    single { GetEasyFoodSuggestionUi(get()) }
-    single { GetMealWithHighCaloriesConsoleUi(get()) }
-
+    single { EggFreeSweetsConsoleUi(get()) }
+    single { GetEasyMealSuggestionConsoleUi(get()) }
+    single { GetMealConsoleUi(get()) }
+    single { GetIraqiMealsConsoleUi(get())  }
+    single { GetMealsByCountryConsoleUi(get()) }
+    single { GetSeafoodMealsConsoleUi(get()) }
+    single { GuessGameConsoleUi(get()) }
+    single { RandomPotatoMealsConsoleUi(get()) }
+    single { GymHelperConsoleUi(get()) }
+    single { SearchMealsByAddDateConsoleUi(get())}
+    single { GetIngredientGuessUI(get()) }
+    single { GetQuickHealthyPicksConsoleUI(get()) }
+    single { GetItalianLargeGroupMealsConsoleUi(get()) }
 }

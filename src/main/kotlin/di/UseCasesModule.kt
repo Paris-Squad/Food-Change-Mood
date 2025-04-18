@@ -1,14 +1,20 @@
 package org.example.di
 
-import org.example.domain.usecase.GetEasyFoodSuggestionUseCase
-import org.example.domain.usecase.GetFoodUseCase
-import org.example.domain.usecase.GetMealWithHighCaloriesUseCase
-import org.example.domain.usecase.GuessGameUseCase
+import org.example.domain.usecase.*
 import org.koin.dsl.module
 
 val useCasesModule = module {
-    single { GetFoodUseCase(get()) }
-    single { GetEasyFoodSuggestionUseCase(get()) }
-    single { GuessGameUseCase(get()) }
-    single { GetMealWithHighCaloriesUseCase(get()) }
+    single { GetEasyMealSuggestionUseCase(get()) }
+    single { GetEggFreeSweetsUseCase(get()) }
+    single { GetMealUseCase(get()) }
+    single { GetIraqiMealsUseCase(get()) }
+    single { GetMealsByCountryUseCase(get()) }
+    single { GetRandomPotatoMealsUseCase(get()) }
+    single { GetItalianLargeGroupMealsUseCase(get()) }
+    single { GetSeafoodMealsUseCase(get()) }
+    single { GuessPreparationTimeGameUseCase(get()) }
+    single { GetIngredientGuessUseCase(get()) }
+    single { GetQuickHealthyPicksUseCase(get()) }
+    single { GymHelperUseCase(get()) }
+    single {SearchMealsByAddDateUseCase(get())}
 }
