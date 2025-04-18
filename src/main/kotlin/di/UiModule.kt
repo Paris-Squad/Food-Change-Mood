@@ -17,4 +17,5 @@ val uiModule = module {
     single { GetIngredientGuessUI(get()) }
     single { GetQuickHealthyPicksConsoleUI(get()) }
     single { GetItalianLargeGroupMealsConsoleUi(get()) }
+    single { SearchByMealNameConsoleUI(get()) }
 }
