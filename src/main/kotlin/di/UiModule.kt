@@ -4,9 +4,6 @@ import org.example.presentaion.*
 import org.koin.dsl.module
 
 val uiModule = module {
-
-
-
     single { EggFreeSweetsConsoleUi(get()) }
     single { GetEasyMealSuggestionConsoleUi(get()) }
     single { GetMealConsoleUi(get()) }
@@ -21,5 +18,5 @@ val uiModule = module {
     single { GetQuickHealthyPicksConsoleUI(get()) }
     single { GetItalianLargeGroupMealsConsoleUi(get()) }
     single { KetoDietMealHelperConsoleUi(get()) }
-
+    single { SearchByMealNameConsoleUI(get()) }
 }
