@@ -129,7 +129,8 @@ class FoodConsoleUI {
     }
 
     private fun ingredientGame() {
-        TODO("Not yet implemented")
+        val getIngredientGuessUI = getKoin().get<GetIngredientGuessUI>()
+        getIngredientGuessUI.invoke()
     }
 
     private fun potatoLover() {
@@ -147,6 +148,7 @@ class FoodConsoleUI {
     }
 
     private fun italianLargeGroup() {
-        TODO("Not yet implemented")
+        val getItalianLargeGroupMealsUi  = getKoin().get<GetItalianLargeGroupMealsUi>()
+        getItalianLargeGroupMealsUi.invoke()
     }
 }
