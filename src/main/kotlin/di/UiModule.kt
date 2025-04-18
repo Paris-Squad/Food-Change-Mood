@@ -15,6 +15,6 @@ val uiModule = module {
     single { GymHelperConsoleUi(get()) }
     single { SearchMealsByAddDateConsoleUi(get())}
     single { GetIngredientGuessUI(get()) }
-    single { GetQuickHealthyPicksUI(get()) }
-    single { GetItalianLargeGroupMealsUi(get()) }
+    single { GetQuickHealthyPicksConsoleUI(get()) }
+    single { GetItalianLargeGroupMealsConsoleUi(get()) }
 }

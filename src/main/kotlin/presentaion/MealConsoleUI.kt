@@ -82,7 +82,7 @@ class MealConsoleUI {
     }
 
     private fun listHealthyFastMeal() {
-        val getQuickHealthyPicksUI = getKoin().get<GetQuickHealthyPicksUI>()
+        val getQuickHealthyPicksUI = getKoin().get<GetQuickHealthyPicksConsoleUI>()
         getQuickHealthyPicksUI.invoke()
     }
 
@@ -150,7 +150,7 @@ class MealConsoleUI {
     }
 
     private fun italianLargeGroup() {
-        val getItalianLargeGroupMealsUi  = getKoin().get<GetItalianLargeGroupMealsUi>()
+        val getItalianLargeGroupMealsUi  = getKoin().get<GetItalianLargeGroupMealsConsoleUi>()
         getItalianLargeGroupMealsUi.invoke()
     }
 }
