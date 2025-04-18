@@ -1,7 +1,7 @@
 package org.example.domain.usecase
 
 import domain.model.Meal
-import org.example.domain.FoodException
+import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
 
 
@@ -15,19 +15,19 @@ class KetoDietMealHelperUseCase(private val foodRepository: MealRepository) {
         const val MAX_PROTEIN = 0.4f
     }
 
-    fun ketoDietMeal(): Result<Meal>{
+    fun getSuggestedKetoMeal(): Result<Meal>{
         return try{
-            val ketoMeals =  ketoDietMeals().filter { food ->
+            val ketoMeals =  getAllKetoMeals().filter { food ->
                 !repeatedMeals.contains(food)
             }
             if (ketoMeals.isEmpty()){
-                Result.failure<Meal>(FoodException.NoKetoDietMealFound("no keto meal found"))
+                Result.failure<Meal>(MealException.NoKetoDietMealFound("no keto meal found"))
             }
             val suggestedMeal = ketoMeals.random()
             repeatedMeals.add(suggestedMeal)
             Result.success(suggestedMeal)
         }catch (exception : Exception){
-            Result.failure(FoodException.NoKetoDietMealFound("Error Fetching Meals: ${exception.message}"))
+            Result.failure(MealException.NoKetoDietMealFound("Error Fetching Meals: ${exception.message}"))
         }
 
 
@@ -36,7 +36,7 @@ class KetoDietMealHelperUseCase(private val foodRepository: MealRepository) {
 
     }
 
-    private fun ketoDietMeals(): List<Meal> {
+    private fun getAllKetoMeals(): List<Meal> {
         return foodRepository.getMeals()
            .filter { checkForKetoDietNutrition(it) }
     }
