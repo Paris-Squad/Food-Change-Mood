@@ -88,7 +88,8 @@ class MealConsoleUI {
     }
 
     private fun searchMealByName() {
-        TODO("Not yet implemented")
+        val searchMealByNameUi = getKoin().get<SearchByMealNameConsoleUI>()
+        searchMealByNameUi.invoke()
     }
 
     private fun identifyIraqiMeals() {
