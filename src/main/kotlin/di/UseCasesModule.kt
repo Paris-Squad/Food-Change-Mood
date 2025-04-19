@@ -17,6 +17,6 @@ val useCasesModule = module {
     single { GetQuickHealthyPicksUseCase(get()) }
     single { GymHelperUseCase(get()) }
     single {SearchMealsByAddDateUseCase(get())}
+    single {GetMealWithHighCaloriesUseCase(get())}
     single { KetoDietMealHelperUseCase(get()) }
     single {SearchByMealNameUseCase(get())}
-}
