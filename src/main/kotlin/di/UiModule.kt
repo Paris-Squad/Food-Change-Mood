@@ -21,6 +21,4 @@ val uiModule = module {
     single { KetoDietMealHelperConsoleUi(get()) }
     single { SearchByMealNameConsoleUI(get()) }
 }
-}
-
 
