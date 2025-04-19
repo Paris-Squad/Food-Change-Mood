@@ -1,11 +1,12 @@
 package org.example.presentaion
 
-import org.example.domain.usecase.KetoDietMealHelperUseCase
+import domain.model.Meal
+import org.example.domain.usecase.GetKetoDietMealUseCase
 
-class KetoDietMealHelperConsoleUi(private val ketoDietMealHelperUseCase: KetoDietMealHelperUseCase) {
-
+class KetoDietMealHelperConsoleUi(private val getKetoDietMealUseCase: GetKetoDietMealUseCase) {
+    private val repeatedMeals = mutableSetOf<Meal>()
     companion object {
-        private const val SUGGESTED_KETO_MEAL_OPTION = "1"
+        private const val SUGGEST_KETO_MEAL_OPTION = "1"
         private const val EXIT_OPTION = "2"
     }
 
@@ -14,9 +15,10 @@ class KetoDietMealHelperConsoleUi(private val ketoDietMealHelperUseCase: KetoDie
         println("click 2 to exit.")
         val pickedChoice = readln()
         when(pickedChoice.trim()){
-            SUGGESTED_KETO_MEAL_OPTION -> {
-                ketoDietMealHelperUseCase.getSuggestedKetoMeal().fold(
+            SUGGEST_KETO_MEAL_OPTION -> {
+                getKetoDietMealUseCase.getSuggestedKetoMeal(repeatedMeals).fold(
                     onSuccess = {
+                        repeatedMeals.add(it)
                         println("\nSuggested Keto Meal:")
                         println("Name: ${it.mealName}")
                         println("Description: ${it.description ?: "No description available"}")
