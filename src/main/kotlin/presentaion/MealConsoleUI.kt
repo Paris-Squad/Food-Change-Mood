@@ -78,7 +78,7 @@ class MealConsoleUI {
     }
 
     private fun easyMealSuggestions() {
-        val easyMealSuggestionUi = getKoin().get<GetEasyMealSuggestionConsoleUi>()
+        val easyMealSuggestionUi = getKoin().get<GetEasyMealSuggestionInteractor>()
         easyMealSuggestionUi.invoke()
     }
 

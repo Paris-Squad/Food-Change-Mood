@@ -5,7 +5,7 @@ import org.koin.dsl.module
 
 val uiModule = module {
     single { EggFreeSweetsConsoleUi(get()) }
-    single { GetEasyMealSuggestionConsoleUi(get()) }
+    single { GetEasyMealSuggestionInteractor(get()) }
     single { GetMealConsoleUi(get()) }
     single { GetIraqiMealsConsoleUi(get())  }
     single { GetMealsByCountryConsoleUi(get()) }
