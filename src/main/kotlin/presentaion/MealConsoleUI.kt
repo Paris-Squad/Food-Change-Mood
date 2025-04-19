@@ -93,8 +93,8 @@ class MealConsoleUI {
     }
 
     private fun identifyIraqiMeals() {
-        val iraqiMealsUi = getKoin().get<GetIraqiMealsConsoleUi>()
-        iraqiMealsUi.invoke()
+        val iraqiMealsConsoleUi = getKoin().get<GetIraqiMealsInteractor>()
+        iraqiMealsConsoleUi.getIraqiMeals()
     }
 
     private fun easyMealSuggestions() {
@@ -129,8 +129,8 @@ class MealConsoleUI {
     }
 
     private fun exploreCountryMeal() {
-        val getMealsByCountryUi = getKoin().get<GetMealsByCountryConsoleUi>()
-        getMealsByCountryUi.invoke()
+        val getMealsByCountryConsoleUi = getKoin().get<GetMealsByCountryInteractor>()
+        getMealsByCountryConsoleUi.getMealsByCountry()
     }
 
     private fun ingredientGame() {
