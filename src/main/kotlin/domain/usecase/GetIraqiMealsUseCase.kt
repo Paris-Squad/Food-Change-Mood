@@ -12,7 +12,7 @@ class GetIraqiMealsUseCase(private val mealRepository: MealRepository) {
         }
 
         if (iraqiMeals.isEmpty()) {
-            throw MealException.NoMealsFoundException("No Iraqi Meals found")
+            return Result.failure(MealException.NoMealsFoundException("No Iraqi Meals found"))
         }
 
         return Result.success(iraqiMeals)
