@@ -3,8 +3,8 @@ package org.example.domain.usecase
 import org.example.domain.repository.MealRepository
 import domain.model.Meal
 
-class GetQuickHealthyPicksUseCase (private val repository : MealRepository) {
-    private fun getAllFood(): List<Meal> = repository.getMeals()
+class GetQuickHealthyPicksUseCase (private val mealRepository : MealRepository) {
+    private fun getAllFood(): List<Meal> = mealRepository.getMeals()
     fun quickHealthyPicks():List<Meal>{
         return  getAllFood()
             .filter(::isValidQuickMeal)

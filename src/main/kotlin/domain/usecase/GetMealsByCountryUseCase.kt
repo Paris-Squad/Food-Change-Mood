@@ -5,10 +5,10 @@ import org.example.domain.repository.MealRepository
 import domain.model.Meal
 
 
-class GetMealsByCountryUseCase(private val repository: MealRepository) {
+class GetMealsByCountryUseCase(private val mealRepository: MealRepository) {
 
     fun getMealsByCountry(country: String, count: Int): Result<List<Meal>> {
-        val meals = repository.getMeals()
+        val meals = mealRepository.getMeals()
             .filter { meal -> isRelatedToCountry(meal, country) }
             .shuffled()
             .take(minOf(count, 20))

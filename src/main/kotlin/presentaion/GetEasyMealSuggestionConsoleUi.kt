@@ -2,6 +2,7 @@ package org.example.presentaion
 
 import org.example.domain.MealException
 import org.example.domain.usecase.GetEasyMealSuggestionUseCase
+import org.example.utils.formatDetails
 
 class GetEasyMealSuggestionConsoleUi(private val useCase: GetEasyMealSuggestionUseCase) {
     fun invoke() {

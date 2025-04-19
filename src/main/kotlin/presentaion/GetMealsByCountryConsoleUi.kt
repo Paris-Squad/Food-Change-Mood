@@ -2,6 +2,7 @@ package org.example.presentaion
 
 import org.example.domain.MealException
 import org.example.domain.usecase.GetMealsByCountryUseCase
+import org.example.utils.formatDetails
 
 class GetMealsByCountryConsoleUi(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
 

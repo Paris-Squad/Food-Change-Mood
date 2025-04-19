@@ -5,13 +5,13 @@ import org.example.domain.repository.MealRepository
 import domain.model.Meal
 import kotlin.random.Random
 
-class GuessPreparationTimeGameUseCase(private val repository: MealRepository) {
+class GuessPreparationTimeGameUseCase(private val mealRepository: MealRepository) {
 
     private var attemptsLeft = 3
     private lateinit var randomMeal: Meal
 
     fun getRandomMeal(): Meal {
-        randomMeal = repository.getMeals().takeIf { it.isNotEmpty() }?.let { it[Random.nextInt(it.size)] }
+        randomMeal = mealRepository.getMeals().takeIf { it.isNotEmpty() }?.let { it[Random.nextInt(it.size)] }
             ?: throw MealException.NoMealsFoundException("No Meals Available.")
         return randomMeal
     }

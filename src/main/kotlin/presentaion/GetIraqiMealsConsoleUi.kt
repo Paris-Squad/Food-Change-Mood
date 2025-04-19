@@ -2,6 +2,7 @@ package org.example.presentaion
 
 import org.example.domain.usecase.GetIraqiMealsUseCase
 import org.example.domain.MealException
+import org.example.utils.formatDetails
 
 class GetIraqiMealsConsoleUi(private val getIraqiMealsUseCase: GetIraqiMealsUseCase) {
 

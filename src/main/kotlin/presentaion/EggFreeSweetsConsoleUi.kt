@@ -2,7 +2,7 @@ package org.example.presentaion
 
 import org.example.domain.MealException
 import org.example.domain.usecase.GetEggFreeSweetsUseCase
-import kotlin.system.exitProcess
+import org.example.utils.formatDetails
 
 class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
     private enum class UserAction { ACCEPT, REJECT, QUIT, INVALID }

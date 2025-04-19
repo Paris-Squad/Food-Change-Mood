@@ -5,11 +5,11 @@ import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
 
 
-class SearchByMealNameUseCase(private val repository: MealRepository) {
+class SearchByMealNameUseCase(private val mealRepository: MealRepository) {
     fun invoke(name: String): Result<List<Meal>> {
         val searchWords = name.trim().lowercase().split(" ")
 
-        val result = repository.getMeals().filter { meal ->
+        val result = mealRepository.getMeals().filter { meal ->
             val foodWords = meal.mealName?.lowercase()?.split(" ")
 
             if (foodWords.isNullOrEmpty()) {
