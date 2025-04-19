@@ -1,6 +1,7 @@
 package org.example.presentaion
 
 import org.example.domain.usecase.GetMealsByCountryUseCase
+import org.example.utils.formatDetails
 
 class GetMealsByCountryInteractor(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
 

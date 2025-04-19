@@ -4,7 +4,7 @@ import domain.model.Meal
 import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
 
-class GetRandomPotatoMealsUseCase(private val repository: MealRepository) {
+class GetRandomPotatoMealsUseCase(private val mealRepository: MealRepository) {
     companion object {
         private const val POTATO = "potato"
         private const val NUMBER_OF_MEALS = 10
@@ -20,7 +20,7 @@ class GetRandomPotatoMealsUseCase(private val repository: MealRepository) {
     }
 
     private fun getMealsContainingPotato(): List<Meal> {
-        return repository.getMeals()
+        return mealRepository.getMeals()
             .filter(::isMealContainsPotato)
     }
 

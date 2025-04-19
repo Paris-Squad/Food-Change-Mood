@@ -4,8 +4,8 @@ import org.example.domain.model.IngredientGameRound
 import org.example.domain.repository.MealRepository
 import domain.model.Meal
 
-class GetIngredientGuessUseCase  (private val repository : MealRepository) {
-    private fun getAllFood(): List<Meal> = repository.getMeals()
+class GetIngredientGuessUseCase  (private val mealRepository : MealRepository) {
+    private fun getAllFood(): List<Meal> = mealRepository.getMeals()
 
     private var score = 0
     private var correctAnswers = 0

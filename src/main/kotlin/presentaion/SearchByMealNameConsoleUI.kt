@@ -3,6 +3,7 @@ package org.example.presentaion
 import domain.model.Meal
 import org.example.domain.usecase.SearchByMealNameUseCase
 import kotlin.collections.forEachIndexed
+import org.example.utils.formatDetails
 
 class SearchByMealNameConsoleUI(
     private val searchByMealNameUseCase: SearchByMealNameUseCase

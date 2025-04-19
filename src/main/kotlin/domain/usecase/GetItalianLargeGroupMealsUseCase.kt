@@ -4,11 +4,9 @@ import domain.model.Meal
 import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
 
-class GetItalianLargeGroupMealsUseCase(
-    private val repository: MealRepository
-) {
+class GetItalianLargeGroupMealsUseCase(private val mealRepository: MealRepository) {
     fun invoke(): Result<List<Meal>> {
-        val meals = repository.getMeals().filter { meal ->
+        val meals = mealRepository.getMeals().filter { meal ->
             val tags = meal.tags.map { it.lowercase() }
             (ITALIAN in tags || ITALY in tags) && FOR_LARGE_GROUPS in tags
         }

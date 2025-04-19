@@ -3,6 +3,7 @@ package org.example.presentaion
 import kotlinx.datetime.LocalDate
 import org.example.domain.MealException
 import org.example.domain.usecase.SearchMealsByAddDateUseCase
+import org.example.utils.formatDetails
 
 class SearchMealsByAddDateConsoleUi(private val useCase: SearchMealsByAddDateUseCase) {
 

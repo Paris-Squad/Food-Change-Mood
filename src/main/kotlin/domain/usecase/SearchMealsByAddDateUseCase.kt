@@ -6,11 +6,11 @@ import org.example.domain.MealException
 import domain.model.Meal
 
 
-class SearchMealsByAddDateUseCase(private val repository: MealRepository) {
+class SearchMealsByAddDateUseCase(private val mealRepository: MealRepository) {
     private var meals: List<Meal> = emptyList()
 
     fun findMealsByDate(date: LocalDate): Result<List<Meal>> {
-         meals = repository.getMeals().filter { it.submittedDate == date }
+         meals = mealRepository.getMeals().filter { it.submittedDate == date }
 
         return if (meals.isNotEmpty()) {
             Result.success(meals)
