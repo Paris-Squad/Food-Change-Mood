@@ -2,6 +2,7 @@ package org.example.presentaion
 
 import org.example.domain.MealException
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
+import org.example.utils.formatDetails
 
 class RandomPotatoMealsConsoleUi(private val getRandomPotatoMealsUseCase: GetRandomPotatoMealsUseCase) {
 

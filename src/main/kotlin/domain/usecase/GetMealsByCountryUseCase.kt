@@ -5,7 +5,7 @@ import org.example.domain.repository.MealRepository
 import domain.model.Meal
 
 
-class GetMealsByCountryUseCase(private val repository: MealRepository) {
+class GetMealsByCountryUseCase(private val mealRepository: MealRepository) {
 
     fun getMealsByCountry(country: String?, count: Int?): Result<List<Meal>> {
 
@@ -17,11 +17,8 @@ class GetMealsByCountryUseCase(private val repository: MealRepository) {
             return Result.failure(IllegalArgumentException("Invalid Count."))
         }
 
-        val meals = repository.getMeals()
-            .filter { meal -> isRelatedToCountry(meal, country) }
-            .shuffled()
-            .take(minOf(count, 20))
-            .sortedBy{it.mealName}
+        val meals = mealRepository.getMeals().filter { meal -> isRelatedToCountry(meal, country) }.shuffled()
+            .take(minOf(count, 20)).sortedBy { it.mealName }
 
         if (meals.isEmpty()) {
             return Result.failure(MealException.NoMealsFoundException("No meals found related to '$country'"))

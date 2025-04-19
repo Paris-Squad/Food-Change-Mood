@@ -1,6 +1,7 @@
 package org.example.presentaion
 
 import org.example.domain.usecase.GymHelperUseCase
+import org.example.utils.formatDetails
 
 
 class GymHelperConsoleUi(
