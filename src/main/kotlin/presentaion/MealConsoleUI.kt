@@ -1,8 +1,9 @@
 package org.example.presentaion
 
 import org.koin.java.KoinJavaComponent.getKoin
+import kotlin.system.exitProcess
 
-class FoodConsoleUI {
+class MealConsoleUI {
 
 
 //    1- Allow the user to get a list of healthy fast food meals that can be prepared in 15 minutes or less, with very low total fat, saturated fat, and carbohydrate values compared to other meals in the dataset.
@@ -25,22 +26,22 @@ class FoodConsoleUI {
 //
 
     fun start() {
-        println("Welcome to the food app where u can search and find ur meals recipe.")
+        println("Welcome to the meal app where u can search and find ur meals recipe.")
         while (true) {
             println(
                 """
             === Food Recommendation System ===
             Choose an option:
-            1. List healthy fast food meals
+            1. List healthy fast meals
             2. Search meal by name
             3. Identify Iraqi meals
-            4. Easy food suggestions
+            4. Easy meal suggestions
             5. Guess preparation time game
             6. Sweets with no eggs
             7. Keto diet meal helper
             8. Search foods by add date
             9. Gym helper
-            10. Explore food by country
+            10. Explore meals by country
             11. Ingredient guessing game
             12. I love potato
             13. High calorie meal suggestion
@@ -54,16 +55,16 @@ class FoodConsoleUI {
             val input = readlnOrNull()
 
             when (input) {
-                "1" -> listHealthyFastFood()
+                "1" -> listHealthyFastMeal()
                 "2" -> searchMealByName()
                 "3" -> identifyIraqiMeals()
-                "4" -> easyFoodSuggestions()
+                "4" -> easyMealSuggestions()
                 "5" -> guessGame()
                 "6" -> sweetsNoEggs()
                 "7" -> ketoDietHelper()
                 "8" -> searchByAddDate()
                 "9" -> gymHelper()
-                "10" -> exploreCountryFood()
+                "10" -> exploreCountryMeal()
                 "11" -> ingredientGame()
                 "12" -> potatoLover()
                 "13" -> highCalorieMeal()
@@ -81,32 +82,33 @@ class FoodConsoleUI {
         }
     }
 
-    private fun listHealthyFastFood() {
-        val getQuickHealthyPicksUI = getKoin().get<GetQuickHealthyPicksUI>()
+    private fun listHealthyFastMeal() {
+        val getQuickHealthyPicksUI = getKoin().get<GetQuickHealthyPicksConsoleUI>()
         getQuickHealthyPicksUI.invoke()
     }
 
     private fun searchMealByName() {
-        TODO("Not yet implemented")
+        val searchMealByNameUi = getKoin().get<SearchByMealNameConsoleUI>()
+        searchMealByNameUi.invoke()
     }
 
     private fun identifyIraqiMeals() {
-        val iraqiMealsUi = getKoin().get<GetIraqiMealsUi>()
+        val iraqiMealsUi = getKoin().get<GetIraqiMealsConsoleUi>()
         iraqiMealsUi.invoke()
     }
 
-    private fun easyFoodSuggestions() {
-        val easyFoodSuggestionUi = getKoin().get<GetEasyFoodSuggestionUi>()
-        easyFoodSuggestionUi.invoke()
+    private fun easyMealSuggestions() {
+        val easyMealSuggestionUi = getKoin().get<GetEasyMealSuggestionConsoleUi>()
+        easyMealSuggestionUi.invoke()
     }
 
     private fun guessGame() {
-        val guessGameUi = getKoin().get<GuessGameUi>()
+        val guessGameUi = getKoin().get<GuessGameConsoleUi>()
         guessGameUi.startGame()
     }
 
     private fun sweetsNoEggs() {
-        val eggFreeSweetsUi = getKoin().get<EggFreeSweetsUi>()
+        val eggFreeSweetsUi = getKoin().get<EggFreeSweetsConsoleUi>()
         eggFreeSweetsUi.startSuggestions()
     }
 
@@ -116,15 +118,17 @@ class FoodConsoleUI {
     }
 
     private fun searchByAddDate() {
-        TODO("Not yet implemented")
+        val searchMealsByAddDateConsoleUi = getKoin().get<SearchMealsByAddDateConsoleUi>()
+        searchMealsByAddDateConsoleUi.search()
     }
 
     private fun gymHelper() {
-        TODO("Not yet implemented")
+        val gymHelperUI = getKoin().get<GymHelperConsoleUi>()
+        gymHelperUI.start()
     }
 
-    private fun exploreCountryFood() {
-        val getMealsByCountryUi = getKoin().get<GetMealsByCountryUi>()
+    private fun exploreCountryMeal() {
+        val getMealsByCountryUi = getKoin().get<GetMealsByCountryConsoleUi>()
         getMealsByCountryUi.invoke()
     }
 
@@ -134,21 +138,41 @@ class FoodConsoleUI {
     }
 
     private fun potatoLover() {
-        val randomPotatoMealsUi = getKoin().get<RandomPotatoMealsUi>()
+        val randomPotatoMealsUi = getKoin().get<RandomPotatoMealsConsoleUi>()
         randomPotatoMealsUi.invoke()
     }
 
     private fun highCalorieMeal() {
-        TODO("Not yet implemented")
+
+        while (true) {
+            val mealsWithHighCaloriesConsoleUi = getKoin().get<GetMealWithHighCaloriesConsoleUi>()
+            println("Are you like this meal?\npress yes if you liked it and No if you do not liked it")
+            val userInput = readlnOrNull()
+            userInput?.let { input ->
+
+                if (input.equals("yes", false)) {
+                    mealsWithHighCaloriesConsoleUi.randomMealWithHighCalories?.let { randomMeal ->
+                        println(randomMeal.formatDetails())
+                        exitProcess(0)
+                    }
+                } else if (input.equals("no", false)) {
+                    mealsWithHighCaloriesConsoleUi.getMealsWithHighCalories()
+                } else {
+                    println("Invalid input format")
+                }
+
+            }
+        }
+
     }
 
     private fun seafoodByProtein() {
-        val seafoodMealsUI = getKoin().get<GetSeafoodMealsUI>()
+        val seafoodMealsUI = getKoin().get<GetSeafoodMealsConsoleUi>()
         seafoodMealsUI.start()
     }
 
     private fun italianLargeGroup() {
-        val getItalianLargeGroupMealsUi  = getKoin().get<GetItalianLargeGroupMealsUi>()
+        val getItalianLargeGroupMealsUi = getKoin().get<GetItalianLargeGroupMealsConsoleUi>()
         getItalianLargeGroupMealsUi.invoke()
     }
 }

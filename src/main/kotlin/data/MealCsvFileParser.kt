@@ -3,16 +3,16 @@ package org.example.data
 import kotlinx.datetime.LocalDate
 import org.example.data.utils.ColumnIndex
 import org.example.data.utils.NutritionIndex
-import org.example.model.Food
-import org.example.model.Nutrition
+import domain.model.Meal
+import domain.model.Nutrition
 import org.example.utils.lineHasEvenOrZeroQuoteCount
 import org.example.utils.lineHasOddQuoteCount
 
-class FoodCsvFileParse {
+class MealCsvFileParser {
 
-    fun parseFoods(lines: List<String>): List<Food> {
-        val foodLines = mutableListOf<String>()
-        val foods = mutableListOf<Food>()
+    fun parseMeals(lines: List<String>): List<Meal> {
+        val mealLines = mutableListOf<String>()
+        val meals = mutableListOf<Meal>()
         val lineBuilder = StringBuilder()
         var inMultilineField = false
 
@@ -20,19 +20,19 @@ class FoodCsvFileParse {
             inMultilineField = handleLine(line, lineBuilder, inMultilineField)
 
             if (inMultilineField.not() && lineBuilder.isNotBlank()) {
-                val foodLine = lineBuilder.toString().trim()
-                foodLines.add(foodLine)
+                val mealLine = lineBuilder.toString().trim()
+                mealLines.add(mealLine)
                 lineBuilder.clear()
             }
         }
 
-        foodLines.forEach { foodLine ->
-            tryParseRecipe(foodLine)?.let { food ->
-                foods.add(food)
+        mealLines.forEach { mealLine ->
+            tryParseRecipe(mealLine)?.let { meal ->
+                meals.add(meal)
             }
         }
 
-        return foods
+        return meals
     }
 
     private fun handleLine(
@@ -49,7 +49,7 @@ class FoodCsvFileParse {
         }
     }
 
-    private fun tryParseRecipe(csvLine: String): Food? {
+    private fun tryParseRecipe(csvLine: String): Meal? {
         val fields = parseCsvLine(csvLine)
         return if (fields.size >= 12) {
             try {
@@ -93,12 +93,12 @@ class FoodCsvFileParse {
         return result
     }
 
-    private fun createRecipe(fields: List<String>) = Food(
-        name = fields[ColumnIndex.NAMES].trim(),
-        id = fields[ColumnIndex.ID].trim(),
-        minutes = fields[ColumnIndex.MINUTES].trim().toInt(),
+    private fun createRecipe(fields: List<String>) = Meal(
+        mealName = fields[ColumnIndex.NAMES].trim(),
+        mealId = fields[ColumnIndex.ID].trim(),
+        minutesForPreparation = fields[ColumnIndex.MINUTES].trim().toInt(),
         contributorId = fields[ColumnIndex.CONTRIBUTOR_ID].trim(),
-        submitted = LocalDate.parse(fields[ColumnIndex.SUBMITTED_DATE].trim()),
+        submittedDate = LocalDate.parse(fields[ColumnIndex.SUBMITTED_DATE].trim()),
         tags = parseListField(fields[ColumnIndex.TAGS]),
         nutrition = parseNutrition(fields[ColumnIndex.NUTRITION]),
         numberOfSteps = fields[ColumnIndex.NUMBER_OF_STEPS].trim().toInt(),

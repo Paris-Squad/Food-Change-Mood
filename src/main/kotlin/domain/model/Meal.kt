@@ -1,13 +1,13 @@
-package org.example.model
+package domain.model
 
 import kotlinx.datetime.LocalDate
 
-data class Food(
-    val name: String?,
-    val id: String,
-    val minutes: Int,
+data class Meal(
+    val mealName: String?,
+    val mealId: String,
+    val minutesForPreparation: Int,
     val contributorId: String,
-    val submitted: LocalDate,
+    val submittedDate: LocalDate,
     val tags: List<String>,
     val nutrition: Nutrition,
     val numberOfSteps: Int,
@@ -19,9 +19,8 @@ data class Food(
 
     fun formatDetails(): String {
         val details = StringBuilder()
-        details.append("\n--- FULL DETAILS ---\n")
-        details.append("Name: ${name ?: "Unnamed"}\n")
-        details.append("Preparation time: $minutes minutes\n")
+        details.append("Name: ${mealName ?: "Unnamed"}\n")
+        details.append("Preparation time: $minutesForPreparation minutes\n")
         details.append("Description: ${description ?: "No description available"}\n")
         details.append("Ingredients (${numberOfIngredients}):\n")
         ingredients.forEach { details.append("- $it\n") }
