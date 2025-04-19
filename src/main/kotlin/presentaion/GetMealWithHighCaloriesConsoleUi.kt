@@ -11,22 +11,28 @@ class GetMealWithHighCaloriesConsoleUi(private val mealsWithHighCaloriesUseCase:
 
     var randomMealWithHighCalories: Meal? = null
 
-     fun getMealsWithHighCalories() {
+    fun getMealsWithHighCalories() {
         val mealsWithHighCaloriesResult = mealsWithHighCaloriesUseCase.invoke(REQUIRED_CALORIES)
         mealsWithHighCaloriesResult.fold(
-            onSuccess = { meal ->
-                randomMealWithHighCalories = meal
-                println("Meal name is: ${meal.mealName}")
-                println("Meal description is: ${meal.description}")
-            },
-            onFailure = { exception ->
-                println(exception.message.toString())
-            }
+            onSuccess = ::onGetMealWithHighCaloriesSuccess,
+            onFailure = ::onGetMealWithHighCaloriesFailure
         )
-
     }
 
     companion object {
         const val REQUIRED_CALORIES = 700f
     }
+
+    fun onGetMealWithHighCaloriesSuccess(meal: Meal) {
+        randomMealWithHighCalories = meal
+        println("Meal name is: ${meal.mealName}")
+        println("Meal description is: ${meal.description}")
+    }
+
+    fun onGetMealWithHighCaloriesFailure(exception: Throwable) {
+        println(exception.message.toString())
+    }
 }
+
+
+

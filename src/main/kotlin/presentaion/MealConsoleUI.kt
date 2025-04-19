@@ -146,25 +146,24 @@ class MealConsoleUI {
     private fun highCalorieMeal() {
 
         while (true) {
-            val mealsWithHighCaloriesConsoleUi = getKoin().get<GetMealWithHighCaloriesConsoleUi>()
             println("Are you like this meal?\npress yes if you liked it and No if you do not liked it")
             val userInput = readlnOrNull()
-            userInput?.let { input ->
-
-                if (input.equals("yes", false)) {
-                    mealsWithHighCaloriesConsoleUi.randomMealWithHighCalories?.let { randomMeal ->
-                        println(randomMeal.formatDetails())
-                        exitProcess(0)
-                    }
-                } else if (input.equals("no", false)) {
-                    mealsWithHighCaloriesConsoleUi.getMealsWithHighCalories()
-                } else {
-                    println("Invalid input format")
-                }
-
-            }
+            userInput?.let { checkUserInputOnGetMealWithHighCalories(it) }
         }
+    }
 
+    private fun checkUserInputOnGetMealWithHighCalories(input: String) {
+        val mealsWithHighCaloriesConsoleUi = getKoin().get<GetMealWithHighCaloriesConsoleUi>()
+        if (input.equals("yes", false)) {
+            mealsWithHighCaloriesConsoleUi.randomMealWithHighCalories?.let { randomMeal ->
+                println(randomMeal.formatDetails())
+                exitProcess(0)
+            }
+        } else if (input.equals("no", false)) {
+            mealsWithHighCaloriesConsoleUi.getMealsWithHighCalories()
+        } else {
+            println("Invalid input format")
+        }
     }
 
     private fun seafoodByProtein() {

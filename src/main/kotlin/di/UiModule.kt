@@ -20,5 +20,5 @@ val uiModule = module {
     single { GetMealWithHighCaloriesConsoleUi(get()) }
     single { KetoDietMealHelperConsoleUi(get()) }
     single { SearchByMealNameConsoleUI(get()) }
-
+}
 
