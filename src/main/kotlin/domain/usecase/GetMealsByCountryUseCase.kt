@@ -7,7 +7,16 @@ import domain.model.Meal
 
 class GetMealsByCountryUseCase(private val repository: MealRepository) {
 
-    fun getMealsByCountry(country: String, count: Int): Result<List<Meal>> {
+    fun getMealsByCountry(country: String?, count: Int?): Result<List<Meal>> {
+
+        if (country.isNullOrBlank()) {
+            return Result.failure(IllegalArgumentException("Country name cannot be empty."))
+        }
+
+        if (count == null || count <= 0) {
+            return Result.failure(IllegalArgumentException("Invalid Count."))
+        }
+
         val meals = repository.getMeals()
             .filter { meal -> isRelatedToCountry(meal, country) }
             .shuffled()
@@ -15,7 +24,7 @@ class GetMealsByCountryUseCase(private val repository: MealRepository) {
             .sortedBy{it.mealName}
 
         if (meals.isEmpty()) {
-            throw MealException.NoMealsFoundException("No meals found related to '$country'")
+            return Result.failure(MealException.NoMealsFoundException("No meals found related to '$country'"))
         }
 
         return Result.success(meals)
