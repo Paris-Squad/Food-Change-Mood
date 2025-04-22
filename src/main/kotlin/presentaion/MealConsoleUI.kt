@@ -130,7 +130,7 @@ class MealConsoleUI {
         val calories = readln().toFloatOrNull() ?: return
         print("Enter the protein amount u want:  ")
         val protein = readln().toFloatOrNull() ?: return
-        gymHelperUI.start(calories , protein)
+        gymHelperUI.start(calories, protein)
     }
 
     private fun exploreCountryMeal() {
@@ -151,6 +151,7 @@ class MealConsoleUI {
     private fun highCalorieMeal() {
 
         while (true) {
+            getKoin().get<GetMealWithHighCaloriesPresenter>()
             println("Are you like this meal?\npress yes if you liked it and No if you do not liked it")
             val userInput = readlnOrNull()
             userInput?.let { checkUserInputOnGetMealWithHighCalories(it) }
@@ -168,6 +169,7 @@ class MealConsoleUI {
             mealsWithHighCaloriesConsoleUi.getMealsWithHighCalories()
         } else {
             println("Invalid input format")
+            mealsWithHighCaloriesConsoleUi.getMealsWithHighCalories()
         }
     }
 
