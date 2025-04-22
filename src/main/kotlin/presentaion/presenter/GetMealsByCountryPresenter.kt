@@ -1,17 +1,16 @@
-package org.example.presentaion
+package org.example.presentaion.presenter
 
+import domain.model.Meal
 import org.example.domain.usecase.GetMealsByCountryUseCase
 import org.example.utils.formatDetails
 
-class GetMealsByCountryInteractor(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
+class GetMealsByCountryPresenter(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
 
     fun getMealsByCountry() {
         val country = getCountryInput()
         val count = getCountInput()
 
-        val result = getMealsByCountryUseCase.getMealsByCountry(country, count)
-
-        result.fold(
+        getMealsByCountryUseCase(country, count).fold(
             onSuccess = ::onGetMealsByCountrySuccess,
             onFailure = ::onGetMealsByCountryError
         )
@@ -27,7 +26,7 @@ class GetMealsByCountryInteractor(private val getMealsByCountryUseCase: GetMeals
         return readlnOrNull()?.trim()?.toIntOrNull()
     }
 
-    private fun onGetMealsByCountrySuccess(meals: List<domain.model.Meal>) {
+    private fun onGetMealsByCountrySuccess(meals: List<Meal>) {
         meals.forEachIndexed { index, meal ->
             println("${index + 1}.")
             println(meal.formatDetails())

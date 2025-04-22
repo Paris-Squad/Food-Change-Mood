@@ -5,8 +5,6 @@ import org.example.domain.repository.MealRepository
 import domain.model.Meal
 
 class GetIngredientGuessUseCase  (private val mealRepository : MealRepository) {
-    private fun getAllFood(): List<Meal> = mealRepository.getMeals()
-
     private var score = 0
     private var correctAnswers = 0
     private val usedMeals = mutableSetOf<String>()
@@ -24,16 +22,15 @@ class GetIngredientGuessUseCase  (private val mealRepository : MealRepository) {
 
 
     private fun getRandomMeal(): Meal? {
-        val available = getAllFood().filterNot { it.mealName==null || usedMeals.contains(it.mealName) }
+        val available =  mealRepository.getMeals().filterNot { it.mealName==null || usedMeals.contains(it.mealName) }
         return if (available.isNotEmpty()) available.random() else null
     }
 
     private fun getTwoRandomWrongIngredients(correctMeal: Meal): List<String>? {
-        val allIngredients =  getAllFood().flatMap { it.ingredients }.distinct().filterNot { it in correctMeal.ingredients }
+        val allIngredients =  mealRepository.getMeals().flatMap { it.ingredients }.distinct().filterNot { it in correctMeal.ingredients }
         return if(allIngredients.isNotEmpty())  allIngredients.shuffled().take(2) else null
-
-
     }
+
     fun hasNextRound(): Boolean = correctAnswers < 15
     fun submitGuess(guess: String): Boolean {
         val round = currentRound ?: return false
@@ -44,7 +41,5 @@ class GetIngredientGuessUseCase  (private val mealRepository : MealRepository) {
         } else false
     }
     fun getScore(): Int = score
-
-
 }
 

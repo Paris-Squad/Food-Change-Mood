@@ -4,7 +4,7 @@ import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
 
 class GetSeafoodMealsUseCase(private val mealRepository: MealRepository) {
-    fun execute(): List<Pair<String, Float>> {
+    operator fun invoke(): Result<List<Pair<String, Float>>> {
         val allSeafood = mealRepository.getMeals().filter {
             it.tags.contains(SEAFOOD) && it.mealName != null && it.nutrition.protein != null
         }.sortedByDescending {
@@ -13,8 +13,9 @@ class GetSeafoodMealsUseCase(private val mealRepository: MealRepository) {
             seafoodMeal.mealName!! to (seafoodMeal.nutrition.protein ?: 0f)
         }
 
-        return allSeafood.takeIf { it.isNotEmpty() } ?: throw MealException.NoMealsFoundException("No Seafood meals found")
+        if (allSeafood.isEmpty()) return Result.failure(MealException.NoMealsFoundException("No Seafood meals found"))
 
+        return Result.success(allSeafood)
     }
 
     companion object{

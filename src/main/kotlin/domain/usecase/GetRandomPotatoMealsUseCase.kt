@@ -5,13 +5,7 @@ import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
 
 class GetRandomPotatoMealsUseCase(private val mealRepository: MealRepository) {
-    companion object {
-        private const val POTATO = "potato"
-        private const val NUMBER_OF_MEALS = 10
-        private const val EXCEPTION_MESSAGE_NO_MEALS_FOUND = "No meals found containing potatoes"
-    }
-
-    fun getRandomPotatoMeals(): Result<List<Meal>> {
+    operator fun invoke(): Result<List<Meal>> {
         val potatoMeals = getMealsContainingPotato()
         if (potatoMeals.isEmpty()) return Result.failure(
             MealException.NoMealsFoundException(EXCEPTION_MESSAGE_NO_MEALS_FOUND)
@@ -28,6 +22,12 @@ class GetRandomPotatoMealsUseCase(private val mealRepository: MealRepository) {
         meal.ingredients.any { ingredient ->
             ingredient.contains(POTATO, ignoreCase = true)
         }
+
+    companion object {
+        private const val POTATO = "potato"
+        private const val NUMBER_OF_MEALS = 10
+        private const val EXCEPTION_MESSAGE_NO_MEALS_FOUND = "No meals found containing potatoes"
+    }
 }
 
 

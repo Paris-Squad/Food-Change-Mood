@@ -6,16 +6,6 @@ import org.example.domain.repository.MealRepository
 
 
 class GetKetoDietMealUseCase(private val mealRepository: MealRepository) {
-
-    companion object{
-        const val MAX_CARB = 50f
-        const val MIN_FAT = 0.60f
-        const val MIN_PROTEIN = 0.15f
-        const val MAX_PROTEIN = 0.4f
-        const val TOTAL_FAT_CALORIES_FACTOR = 9
-        const val PROTEIN_CALORIES_FACTOR = 4
-    }
-
     fun getSuggestedKetoMeal(repeatedMeals : MutableSet<Meal>): Result<Meal>{
             val ketoMeals =  getAllKetoDietMeals().filter { meal ->
                 !repeatedMeals.contains(meal)
@@ -56,6 +46,13 @@ class GetKetoDietMealUseCase(private val mealRepository: MealRepository) {
                 && meal.nutrition.calories != null
     }
 
-
+    companion object{
+        const val MAX_CARB = 50f
+        const val MIN_FAT = 0.60f
+        const val MIN_PROTEIN = 0.15f
+        const val MAX_PROTEIN = 0.4f
+        const val TOTAL_FAT_CALORIES_FACTOR = 9
+        const val PROTEIN_CALORIES_FACTOR = 4
+    }
 }
 

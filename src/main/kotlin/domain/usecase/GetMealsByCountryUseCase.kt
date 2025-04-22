@@ -7,14 +7,14 @@ import domain.model.Meal
 
 class GetMealsByCountryUseCase(private val mealRepository: MealRepository) {
 
-    fun getMealsByCountry(country: String?, count: Int?): Result<List<Meal>> {
+    operator fun invoke(country: String?, count: Int?): Result<List<Meal>> {
 
         if (country.isNullOrBlank()) {
-            return Result.failure(IllegalArgumentException("Country name cannot be empty."))
+            return Result.failure(MealException.IllegalArgumentException("Country name cannot be empty."))
         }
 
         if (count == null || count <= 0) {
-            return Result.failure(IllegalArgumentException("Invalid Count."))
+            return Result.failure(MealException.IllegalArgumentException("Invalid Count."))
         }
 
         val meals = mealRepository.getMeals().filter { meal -> isRelatedToCountry(meal, country) }.shuffled()
