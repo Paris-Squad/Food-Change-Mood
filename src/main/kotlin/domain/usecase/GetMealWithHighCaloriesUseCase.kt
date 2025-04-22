@@ -6,7 +6,7 @@ import org.example.domain.repository.MealRepository
 
 open class GetMealWithHighCaloriesUseCase(private val mealRepository: MealRepository) {
 
-    fun invoke(requiredCalories: Float): Result<Meal> {
+    operator fun invoke(requiredCalories: Float): Result<Meal> {
         val getFoodWithHighCalories = getMealsWithRequiredCalories(requiredCalories)
 
         return if (getFoodWithHighCalories.isEmpty()) {

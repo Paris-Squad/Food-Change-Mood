@@ -1,10 +1,10 @@
-package org.example.presentaion
+package org.example.presentaion.presenter
 
 import org.example.domain.MealException
 import org.example.domain.usecase.GetEggFreeSweetsUseCase
 import org.example.utils.formatDetails
 
-class EggFreeSweetsConsoleUi(private val useCase: GetEggFreeSweetsUseCase) {
+class EggFreeSweetsPresenter(private val useCase: GetEggFreeSweetsUseCase) {
     private enum class UserAction { ACCEPT, REJECT, QUIT, INVALID }
 
     fun startSuggestions() {
