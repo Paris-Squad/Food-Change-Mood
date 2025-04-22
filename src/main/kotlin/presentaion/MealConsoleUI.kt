@@ -1,5 +1,6 @@
 package org.example.presentaion
 
+import jdk.jshell.execution.Util
 import org.example.presentaion.presenter.EggFreeSweetsPresenter
 import org.example.presentaion.presenter.GetEasyMealSuggestionPresenter
 import org.example.presentaion.presenter.GetIngredientGuessPresenter
@@ -151,15 +152,17 @@ class MealConsoleUI {
     private fun highCalorieMeal() {
 
         while (true) {
-            getKoin().get<GetMealWithHighCaloriesPresenter>()
+            val mealsWithHighCaloriesConsoleUi = getKoin().get<GetMealWithHighCaloriesPresenter>()
             println("Are you like this meal?\npress yes if you liked it and No if you do not liked it")
             val userInput = readlnOrNull()
-            userInput?.let { checkUserInputOnGetMealWithHighCalories(it) }
+            userInput?.let { checkUserInputOnGetMealWithHighCalories(it, mealsWithHighCaloriesConsoleUi) }
         }
     }
 
-    private fun checkUserInputOnGetMealWithHighCalories(input: String) {
-        val mealsWithHighCaloriesConsoleUi = getKoin().get<GetMealWithHighCaloriesPresenter>()
+    private fun checkUserInputOnGetMealWithHighCalories(
+        input: String,
+        mealsWithHighCaloriesConsoleUi: GetMealWithHighCaloriesPresenter
+    ) {
         if (input.equals("yes", false)) {
             mealsWithHighCaloriesConsoleUi.randomMealWithHighCalories?.let { randomMeal ->
                 println(randomMeal.formatDetails())
