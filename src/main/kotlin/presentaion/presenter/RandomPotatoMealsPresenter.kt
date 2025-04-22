@@ -6,7 +6,7 @@ import org.example.utils.formatDetails
 
 class RandomPotatoMealsPresenter(private val getRandomPotatoMealsUseCase: GetRandomPotatoMealsUseCase) {
     fun startRandomPotatoMeals() {
-        val potatoMeals = getRandomPotatoMealsUseCase()
+        val potatoMeals = getRandomPotatoMealsUseCase(10)
 
         println("========== RANDOM POTATO MEALS ==========\n")
         potatoMeals.fold(

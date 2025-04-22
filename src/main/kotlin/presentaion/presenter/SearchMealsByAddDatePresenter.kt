@@ -1,5 +1,6 @@
 package org.example.presentaion.presenter
 
+import domain.model.Meal
 import kotlinx.datetime.LocalDate
 import org.example.domain.MealException
 import org.example.domain.usecase.SearchMealsByAddDateUseCase
@@ -11,6 +12,7 @@ class SearchMealsByAddDatePresenter(private val useCase: SearchMealsByAddDateUse
         var date: LocalDate? = null
 
         while (shouldRepeat) {
+            var meals = emptyList<Meal>()
             if (date == null) {
                 println("Enter a date (yyyy-MM-dd):")
                 val input = readln()
@@ -29,7 +31,7 @@ class SearchMealsByAddDatePresenter(private val useCase: SearchMealsByAddDateUse
                     continue
                 }
 
-                val meals = mealsResult.getOrThrow()
+                meals = mealsResult.getOrThrow()
 
                 println("\n========== MEALS ADDED ON $date ==========\n")
                 meals.forEachIndexed { index, meal ->
@@ -39,7 +41,7 @@ class SearchMealsByAddDatePresenter(private val useCase: SearchMealsByAddDateUse
 
             println("\nEnter the ID of a meal to view full details:")
             val mealId = readln()
-            val detailResult = useCase.findMealByIdInList(mealId)
+            val detailResult = useCase.findMealByIdInList(mealId, meals)
 
             if (detailResult.isFailure) {
                 println(" ${detailResult.exceptionOrNull()?.message}")
