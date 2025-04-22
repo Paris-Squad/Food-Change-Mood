@@ -1,9 +1,9 @@
-package org.example.presentaion
+package org.example.presentaion.presenter
 
 import org.example.domain.usecase.GetIngredientGuessUseCase
 
-class GetIngredientGuessUI(private val useCase: GetIngredientGuessUseCase) {
-     fun invoke() {
+class GetIngredientGuessPresenter(private val useCase: GetIngredientGuessUseCase) {
+     fun startIngredientGuess() {
         while (useCase.hasNextRound()) {
             val round = useCase.nextRound() ?: break
             println("Meal: ${round.mealName}")

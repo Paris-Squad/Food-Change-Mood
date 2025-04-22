@@ -1,12 +1,12 @@
-package org.example.presentaion
+package org.example.presentaion.presenter
 
 import domain.model.Meal
 import org.example.domain.MealException
 import org.example.domain.usecase.GetEasyMealSuggestionUseCase
 import org.example.utils.formatDetails
 
-class GetEasyMealSuggestionInteractor(private val useCase: GetEasyMealSuggestionUseCase) {
-    fun invoke() {
+class GetEasyMealSuggestionPresenter(private val useCase: GetEasyMealSuggestionUseCase) {
+    fun startEasyMeals() {
         useCase.invoke().fold(onSuccess = ::handleSuccess, onFailure = ::handleFailure)
     }
 

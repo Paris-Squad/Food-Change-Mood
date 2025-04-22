@@ -1,12 +1,11 @@
-package org.example.presentaion
+package org.example.presentaion.presenter
 
 import kotlinx.datetime.LocalDate
 import org.example.domain.MealException
 import org.example.domain.usecase.SearchMealsByAddDateUseCase
 import org.example.utils.formatDetails
 
-class SearchMealsByAddDateConsoleUi(private val useCase: SearchMealsByAddDateUseCase) {
-
+class SearchMealsByAddDatePresenter(private val useCase: SearchMealsByAddDateUseCase) {
     fun search() {
         var shouldRepeat = true
         var date: LocalDate? = null
@@ -22,7 +21,7 @@ class SearchMealsByAddDateConsoleUi(private val useCase: SearchMealsByAddDateUse
                 }
 
                 date = dateResult.getOrThrow()
-                val mealsResult = useCase.findMealsByDate(date)
+                val mealsResult = useCase(date)
 
                 if (mealsResult.isFailure) {
                     println(" ${mealsResult.exceptionOrNull()?.message}")
