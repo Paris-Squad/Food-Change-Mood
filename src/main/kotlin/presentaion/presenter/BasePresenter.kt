@@ -18,6 +18,10 @@ abstract class BasePresenter {
                 println("Invalid date format: ${error.message}")
             }
 
+            is MealException.NoEnoughMealsFound -> {
+                println(error.message)
+            }
+
             else -> {
                 println("--- UNEXPECTED ERROR ---")
                 println("An unexpected error occurred: ${error.message}")
