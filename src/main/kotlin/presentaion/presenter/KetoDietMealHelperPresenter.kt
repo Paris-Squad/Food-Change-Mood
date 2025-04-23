@@ -3,7 +3,7 @@ package org.example.presentaion.presenter
 import domain.model.Meal
 import org.example.domain.usecase.GetKetoDietMealUseCase
 
-class KetoDietMealHelperPresenter(private val getKetoDietMealUseCase: GetKetoDietMealUseCase) {
+class KetoDietMealHelperPresenter(private val getKetoDietMealUseCase: GetKetoDietMealUseCase) : BasePresenter() {
     private val repeatedMeals = mutableSetOf<Meal>()
 
     fun startKetoHelper() {
@@ -13,7 +13,8 @@ class KetoDietMealHelperPresenter(private val getKetoDietMealUseCase: GetKetoDie
         when (pickedChoice.trim()) {
             SUGGEST_KETO_MEAL_OPTION -> {
                 getKetoDietMealUseCase.getSuggestedKetoMeal(repeatedMeals).fold(
-                    onSuccess = ::handleSuccess, onFailure = { println("Error: ${it.message}") })
+                    onSuccess = ::handleSuccess, onFailure = ::handleException
+                )
             }
 
             EXIT_OPTION -> return

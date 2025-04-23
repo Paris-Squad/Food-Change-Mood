@@ -1,29 +1,14 @@
 package org.example.presentaion.presenter
 
 import domain.model.Meal
-import org.example.domain.MealException
 import org.example.domain.usecase.GetItalianLargeGroupMealsUseCase
 
 class GetItalianLargeGroupMealsPresenter(
     private val useCase: GetItalianLargeGroupMealsUseCase
-) {
+) : BasePresenter() {
     fun startItalianLargeGroupMeal() {
-        useCase.invoke().fold(onSuccess = ::handleSuccess, onFailure = ::handleFailure)
+        useCase.invoke().fold(onSuccess = ::handleSuccess, onFailure = ::handleException)
     }
-
-    private fun handleFailure(err: Throwable) {
-        when (err) {
-            is MealException.NoMealsFoundException -> {
-                println("--- ITALIAN MEALS FOR LARGE GROUPS ---")
-                println(err.message)
-            }
-
-            else -> {
-                println("Unexpected error: ${err.message}")
-            }
-        }
-    }
-
     private fun handleSuccess(meals: List<Meal>) {
         println("--- ITALIAN MEALS FOR LARGE GROUPS ---")
         meals.forEachIndexed { idx, meal ->

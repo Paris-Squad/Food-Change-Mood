@@ -3,7 +3,7 @@ package org.example.presentaion.presenter
 import org.example.domain.usecase.GetRandomMealUseCase
 import domain.model.Meal
 
-class GuessGameConsolePresenter(private val getRandomMealUseCase: GetRandomMealUseCase) {
+class GuessGameConsolePresenter(private val getRandomMealUseCase: GetRandomMealUseCase): BasePresenter() {
 
     private var meal: Meal? = null
     private var attempts = 3
@@ -21,9 +21,7 @@ class GuessGameConsolePresenter(private val getRandomMealUseCase: GetRandomMealU
                 println("Guess the preparation time (in minutes) for: ${randomMeal.mealName ?: "Unnamed recipe"}")
                 println("Your guess (attempts left: $attempts): ")
             },
-            onFailure = { error ->
-                println("Failed to start game: ${error.message}")
-            }
+            onFailure = ::handleException
         )
     }
 

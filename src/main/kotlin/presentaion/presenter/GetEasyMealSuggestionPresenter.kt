@@ -1,13 +1,12 @@
 package org.example.presentaion.presenter
 
 import domain.model.Meal
-import org.example.domain.MealException
 import org.example.domain.usecase.GetEasyMealSuggestionUseCase
 import org.example.utils.formatDetails
 
-class GetEasyMealSuggestionPresenter(private val useCase: GetEasyMealSuggestionUseCase) {
+class GetEasyMealSuggestionPresenter(private val useCase: GetEasyMealSuggestionUseCase): BasePresenter() {
     fun startEasyMeals() {
-        useCase.invoke().fold(onSuccess = ::handleSuccess, onFailure = ::handleFailure)
+        useCase.invoke().fold(onSuccess = ::handleSuccess, onFailure = ::handleException)
     }
 
     private fun handleSuccess(meals: List<Meal>) {
@@ -17,16 +16,4 @@ class GetEasyMealSuggestionPresenter(private val useCase: GetEasyMealSuggestionU
         }
     }
 
-    private fun handleFailure(error: Throwable) {
-        when (error) {
-            is MealException.NoMealsFoundException -> {
-                println("--- EASY MEAL SUGGESTIONS ---")
-                println("No easy meals found that match your criteria")
-            }
-            else -> {
-                println("--- UNEXPECTED ERROR ---")
-                println("An unexpected error occurred: ${error.message}")
-            }
-        }
-    }
 }

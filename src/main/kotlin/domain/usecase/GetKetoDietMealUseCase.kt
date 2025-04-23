@@ -11,7 +11,7 @@ class GetKetoDietMealUseCase(private val mealRepository: MealRepository) {
                 !repeatedMeals.contains(meal)
             }
             if (ketoMeals.isEmpty()){
-                return Result.failure(MealException.NoKetoDietMealFound("no keto meal found"))
+                return Result.failure(MealException.NoMealsFoundException("no keto meal found"))
             }
             val suggestedMeal = ketoMeals.random()
             return Result.success(suggestedMeal)
