@@ -14,6 +14,10 @@ dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     implementation 'io.insert-koin:koin-core:4.0.3'
     implementation 'org.jetbrains.kotlinx:kotlinx-datetime:0.6.2'
+    // for unite test
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "io.mockk:mockk:1.13.5"
+    testImplementation "com.google.truth:truth:1.1.5"
 }
 
 test {
