@@ -1,8 +1,10 @@
 package org.example.di
 
+import org.example.presentaion.guessIngredient.GuessIngredientConsoleUi
+import org.example.presentaion.guessIngredient.IngredientGuessInteractionListener
+import org.example.presentaion.guessIngredient.IngredientGuessPresenter
 import org.example.presentaion.presenter.EggFreeSweetsPresenter
 import org.example.presentaion.presenter.GetEasyMealSuggestionPresenter
-import org.example.presentaion.presenter.GetIngredientGuessPresenter
 import org.example.presentaion.presenter.GetIraqiMealsPresenter
 import org.example.presentaion.presenter.GetItalianLargeGroupMealsPresenter
 import org.example.presentaion.presenter.GetMealWithHighCaloriesPresenter
@@ -15,6 +17,8 @@ import org.example.presentaion.presenter.KetoDietMealHelperPresenter
 import org.example.presentaion.presenter.RandomPotatoMealsPresenter
 import org.example.presentaion.presenter.SearchByMealNamePresenter
 import org.example.presentaion.presenter.SearchMealsByAddDatePresenter
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val uiModule = module {
@@ -27,7 +31,9 @@ val uiModule = module {
     single { RandomPotatoMealsPresenter(get()) }
     single { GymHelperConsolePresenter(get()) }
     single { SearchMealsByAddDatePresenter(get()) }
-    single { GetIngredientGuessPresenter(get()) }
+    singleOf(::GuessIngredientConsoleUi)
+    singleOf(::IngredientGuessPresenter)
+    singleOf(::IngredientGuessPresenter) bind IngredientGuessInteractionListener::class
     single { GetQuickHealthyPicksPresenter(get()) }
     single { GetItalianLargeGroupMealsPresenter(get()) }
     single { GetMealWithHighCaloriesPresenter(get()) }

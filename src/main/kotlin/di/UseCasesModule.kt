@@ -1,6 +1,9 @@
 package org.example.di
 
+import domain.usecase.GetIngredientGuessUseCase.GetUniqueRandomMealUseCase
 import org.example.domain.usecase.*
+import org.example.domain.usecase.GetIngredientGuessUseCase.GetRandomWrongIngredientsUseCase
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val useCasesModule = module {
@@ -12,8 +15,9 @@ val useCasesModule = module {
     single { GetItalianLargeGroupMealsUseCase(get()) }
     single { GetSeafoodMealsUseCase(get()) }
     single { GetRandomMealUseCase(get()) }
-    single { GetIngredientGuessUseCase(get()) }
-    single { GetQuickHealthyPicksUseCase(get()) }
+    singleOf(::GetUniqueRandomMealUseCase)
+    singleOf(::GetRandomWrongIngredientsUseCase)
+    single { GetHealthyMealsUseCase(get()) }
     single { GymHelperUseCase(get()) }
     single {SearchMealsByAddDateUseCase(get())}
     single {GetMealWithHighCaloriesUseCase(get())}
