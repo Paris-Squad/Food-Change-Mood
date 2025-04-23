@@ -1,8 +1,9 @@
 package org.example.presentaion
 
+import org.example.presentaion.guessIngredient.GuessIngredientConsoleUi
 import org.example.presentaion.presenter.EggFreeSweetsPresenter
 import org.example.presentaion.presenter.GetEasyMealSuggestionPresenter
-import org.example.presentaion.presenter.GetIngredientGuessPresenter
+import org.example.presentaion.guessIngredient.IngredientGuessPresenter
 import org.example.presentaion.presenter.GetIraqiMealsPresenter
 import org.example.presentaion.presenter.GetItalianLargeGroupMealsPresenter
 import org.example.presentaion.presenter.GetMealWithHighCaloriesPresenter
@@ -139,8 +140,8 @@ class MealConsoleUI {
     }
 
     private fun ingredientGame() {
-        val getIngredientGuessPresenter = getKoin().get<GetIngredientGuessPresenter>()
-        getIngredientGuessPresenter.startIngredientGuess()
+        val getIngredientGuessConsoleUi = getKoin().get<GuessIngredientConsoleUi>()
+        getIngredientGuessConsoleUi.ingredientGuessConsoleUi()
     }
 
     private fun potatoLover() {
