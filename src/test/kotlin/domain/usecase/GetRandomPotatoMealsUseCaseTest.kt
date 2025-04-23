@@ -35,9 +35,9 @@ class GetRandomPotatoMealsUseCaseTest() {
     fun `should throw exception when the list doesn't contain potato`() {
         // Given
         every { mealRepository.getMeals() } returns listOf(
-            createMeal("Rice and Chicken", listOf("Rice", "Chicken", "Salt")),
-            createMeal("Vegetable Soup", listOf("Carrot", "Onion", "Zucchini")),
-            createMeal("Pasta Alfredo", listOf("Pasta", "Cream", "Cheese")),
+            createMeal(mealName = "Rice and Chicken",ingredients = listOf("Rice", "Chicken", "Salt")),
+            createMeal(mealName = "Vegetable Soup",  ingredients = listOf("Carrot", "Onion", "Zucchini")),
+            createMeal(mealName = "Pasta Alfredo",   ingredients = listOf("Pasta", "Cream", "Cheese")),
         )
         // When
         val result = getRandomPotatoMealsUseCase()
@@ -52,10 +52,10 @@ class GetRandomPotatoMealsUseCaseTest() {
     fun `should throw exception when meals are not enough`() {
         // Given
         every { mealRepository.getMeals() } returns listOf(
-            createMeal("Potato 1", listOf("Potato")),
-            createMeal("Potato 2", listOf("Potato")),
-            createMeal("Potato 3", listOf("Potato")),
-            createMeal("Potato 4", listOf("Potato")),
+            createMeal(mealName = "Potato 1", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 2", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 3", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 4", ingredients = listOf("Potato")),
 
             )
         // When
@@ -70,16 +70,16 @@ class GetRandomPotatoMealsUseCaseTest() {
     fun `should return 10 random potato meals when no count is passed to the use case`() {
         // Given
         every { mealRepository.getMeals() } returns listOf(
-            createMeal("Potato 1", listOf("Potato")),
-            createMeal("Potato 2", listOf("Potato")),
-            createMeal("Potato 3", listOf("Potato")),
-            createMeal("Potato 4", listOf("Potato")),
-            createMeal("Potato 5", listOf("Potato")),
-            createMeal("Potato 6", listOf("Potato")),
-            createMeal("Potato 7", listOf("Potato")),
-            createMeal("Potato 8", listOf("Potato")),
-            createMeal("Potato 9", listOf("Potato")),
-            createMeal("Potato 10", listOf("Potato")),
+            createMeal(mealName = "Potato 1", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 2", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 3", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 4", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 5", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 6", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 7", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 8", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 9", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 10",ingredients = listOf("Potato")),
         )
         // When
         val result = getRandomPotatoMealsUseCase()
@@ -92,16 +92,16 @@ class GetRandomPotatoMealsUseCaseTest() {
     fun `should return the given number of random potato meals when count is passed to the use case`() {
         // Given
         every { mealRepository.getMeals() } returns listOf(
-            createMeal("Potato 1", listOf("Potato")),
-            createMeal("Potato 2", listOf("Potato")),
-            createMeal("Potato 3", listOf("Potato")),
-            createMeal("Potato 4", listOf("Potato")),
-            createMeal("Potato 5", listOf("Potato")),
-            createMeal("Potato 6", listOf("Potato")),
-            createMeal("Potato 7", listOf("Potato")),
-            createMeal("Potato 8", listOf("Potato")),
-            createMeal("Potato 9", listOf("Potato")),
-            createMeal("Potato 10", listOf("Potato")),
+            createMeal(mealName = "Potato 1", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 2", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 3", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 4", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 5", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 6", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 7", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 8", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 9", ingredients = listOf("Potato")),
+            createMeal(mealName = "Potato 10",ingredients = listOf("Potato")),
         )
         // When
         val countOfMeals = 4
