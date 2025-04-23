@@ -7,8 +7,8 @@ import org.example.utils.inRange
 
 class GymHelperUseCase(private val mealRepository: MealRepository) {
     operator fun invoke(calories: Float, protein: Float): Result<List<Meal>> {
-        val caloriesRange = (calories - 3).coerceAtLeast(0f)..(calories + 3)
-        val proteinRange = (protein - 3).coerceAtLeast(0f)..(protein + 3)
+        val caloriesRange = (calories - THRESHOLD).coerceAtLeast(0f)..(calories + THRESHOLD)
+        val proteinRange = (protein - THRESHOLD).coerceAtLeast(0f)..(protein + THRESHOLD)
 
         val filteredMeals = mealRepository.getMeals().filter { meal ->
             meal.nutrition.calories.inRange(caloriesRange) &&
@@ -18,5 +18,9 @@ class GymHelperUseCase(private val mealRepository: MealRepository) {
         if (filteredMeals.isEmpty()) return Result.failure(MealException.NoMealsFoundException("No meals found"))
 
         return Result.success(filteredMeals)
+    }
+
+    companion object {
+        const val THRESHOLD = 3
     }
 }
