@@ -9,11 +9,12 @@ class GetQuickHealthyPicksUseCase(private val mealRepository: MealRepository) {
     operator fun invoke(): Result<List<Meal>> {
         val allMeals = mealRepository.getMeals()
 
-        if (allMeals.isEmpty()) return Result.failure(MealException.NoMealsFoundException())
-
         val result = allMeals
             .filter(::isValidQuickMeal)
             .sortedBy { it.nutrition.totalFat!! + it.nutrition.saturatedFat!! + it.nutrition.carbohydrates!! }
+
+        if (result.isEmpty()) return Result.failure(MealException.NoMealsFoundException())
+
         return Result.success(result)
     }
 

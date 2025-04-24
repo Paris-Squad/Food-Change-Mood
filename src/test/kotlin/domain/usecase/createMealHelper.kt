@@ -6,7 +6,8 @@ import kotlinx.datetime.LocalDate
 fun createMeal(
     mealName: String? = null,
     mealId: String = "22",
-    minutesForPreparation: String = "22",
+    minutesForPreparation: Int = 22,
+    contributorId: String = "32322332",
     submittedDate: LocalDate = LocalDate.parse("1999-08-07"),
     tags: List<String> = emptyList(),
     nutrition: Nutrition = createNutrition(),
@@ -18,8 +19,8 @@ fun createMeal(
 ): Meal = Meal(
     mealName = mealName,
     mealId = mealId,
-    minutesForPreparation = 30,
-    contributorId = minutesForPreparation,
+    minutesForPreparation = minutesForPreparation,
+    contributorId = contributorId,
     submittedDate = submittedDate,
     tags = tags,
     nutrition = nutrition,
