@@ -4,7 +4,7 @@ import domain.model.Meal
 import org.example.domain.usecase.GetMealsByCountryUseCase
 import org.example.utils.formatDetails
 
-class GetMealsByCountryPresenter(private val getMealsByCountryUseCase: GetMealsByCountryUseCase) {
+class GetMealsByCountryPresenter(private val getMealsByCountryUseCase: GetMealsByCountryUseCase):BasePresenter() {
 
     fun getMealsByCountry() {
         val country = getCountryInput()
@@ -12,7 +12,7 @@ class GetMealsByCountryPresenter(private val getMealsByCountryUseCase: GetMealsB
 
         getMealsByCountryUseCase(country, count).fold(
             onSuccess = ::onGetMealsByCountrySuccess,
-            onFailure = ::onGetMealsByCountryError
+            onFailure = ::handleException
         )
     }
 
@@ -31,9 +31,5 @@ class GetMealsByCountryPresenter(private val getMealsByCountryUseCase: GetMealsB
             println("${index + 1}.")
             println(meal.formatDetails())
         }
-    }
-
-    private fun onGetMealsByCountryError(error: Throwable) {
-        println(error.message)
     }
 }

@@ -6,7 +6,7 @@ import org.example.domain.MealException
 import org.example.domain.usecase.SearchMealsByAddDateUseCase
 import org.example.utils.formatDetails
 
-class SearchMealsByAddDatePresenter(private val useCase: SearchMealsByAddDateUseCase) {
+class SearchMealsByAddDatePresenter(private val SearchMealsByAddDate: SearchMealsByAddDateUseCase) {
     fun search() {
         var shouldRepeat = true
         var date: LocalDate? = null
@@ -23,7 +23,7 @@ class SearchMealsByAddDatePresenter(private val useCase: SearchMealsByAddDateUse
                 }
 
                 date = dateResult.getOrThrow()
-                val mealsResult = useCase(date)
+                val mealsResult = SearchMealsByAddDate(date)
 
                 if (mealsResult.isFailure) {
                     println(" ${mealsResult.exceptionOrNull()?.message}")
@@ -41,7 +41,7 @@ class SearchMealsByAddDatePresenter(private val useCase: SearchMealsByAddDateUse
 
             println("\nEnter the ID of a meal to view full details:")
             val mealId = readln()
-            val detailResult = useCase.findMealByIdInList(mealId, meals)
+            val detailResult = SearchMealsByAddDate.findMealByIdInList(mealId, meals)
 
             if (detailResult.isFailure) {
                 println(" ${detailResult.exceptionOrNull()?.message}")
