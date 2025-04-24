@@ -122,6 +122,7 @@ class MealConsoleUI(private val useCaseContainer: UseCaseContainer) {
         val protein = readln().toFloatOrNull() ?: return
         gymHelperUI.start(calories, protein)
         useCaseContainer.gymHelperConsolePresenter.presentGymMeals(calories, protein)
+
     }
 
     private fun exploreCountryMeal() {
@@ -149,6 +150,8 @@ class MealConsoleUI(private val useCaseContainer: UseCaseContainer) {
         input: String,
         mealsWithHighCaloriesConsoleUi: GetMealWithHighCaloriesPresenter
     ) {
+
+
     private fun checkUserInputOnGetMealWithHighCalories(input: String) {
         val mealsWithHighCaloriesConsoleUi = useCaseContainer.mealWithHighCaloriesPresenter
         if (input.equals("yes", false)) {
