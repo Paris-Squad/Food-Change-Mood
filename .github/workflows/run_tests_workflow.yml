@@ -2,7 +2,6 @@ name: Check Testes
 on:
   pull_request:
     branches: [ "dev" ]
-  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
