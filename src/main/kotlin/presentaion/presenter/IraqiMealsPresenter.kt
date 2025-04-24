@@ -15,7 +15,6 @@ class IraqiMealsPresenter(private val iraqiMeals: GetIraqiMealsUseCase, printer:
     private fun onGetIraqiMealsSuccess(iraqiMeals: List<Meal>) {
         printer.displayLn("--- IRAQI MEALS ---")
         iraqiMeals.forEachIndexed { index, meal ->
-            printer.displayLn("${index + 1}.")
             printer.displayLn(meal.formatDetails())
         }
     }
