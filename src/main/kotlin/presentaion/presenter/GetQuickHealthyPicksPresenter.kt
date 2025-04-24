@@ -3,11 +3,11 @@ package org.example.presentaion.presenter
 import org.example.domain.usecase.GetQuickHealthyPicksUseCase
 import org.example.utils.formatDetails
 
-class GetQuickHealthyPicksPresenter(private val useCase: GetQuickHealthyPicksUseCase) {
+class GetQuickHealthyPicksPresenter(private val getQuickHealthyPicks: GetQuickHealthyPicksUseCase) : BasePresenter() {
     fun invoke() {
-        useCase().fold(
+        getQuickHealthyPicks().fold(
             onSuccess = { healthyPicks -> healthyPicks.forEach { println(it.formatDetails()) } },
-            onFailure = { println("Error: ${it.message}") }
+            onFailure = ::handleException
         )
     }
 }
