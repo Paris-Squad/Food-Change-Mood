@@ -4,10 +4,10 @@ import domain.model.Meal
 import org.example.domain.usecase.GetIraqiMealsUseCase
 import org.example.utils.formatDetails
 
-class GetIraqiMealsPresenter(private val getIraqiMealsUseCase: GetIraqiMealsUseCase):BasePresenter() {
+class GetIraqiMealsPresenter(private val getIraqiMeals: GetIraqiMealsUseCase):BasePresenter() {
 
     fun getIraqiMeals() {
-        val iraqiMealsResult = getIraqiMealsUseCase.getIraqiMeals()
+        val iraqiMealsResult = getIraqiMeals.getIraqiMeals()
         iraqiMealsResult.fold(onSuccess = ::onGetIraqiMealsSuccess, onFailure = ::handleException)
     }
 

@@ -5,7 +5,7 @@ import org.example.domain.usecase.SearchByMealNameUseCase
 import kotlin.collections.forEachIndexed
 import org.example.utils.formatDetails
 
-class SearchByMealNamePresenter(private val searchByMealNameUseCase: SearchByMealNameUseCase) : BasePresenter() {
+class SearchByMealNamePresenter(private val searchByMealName: SearchByMealNameUseCase) : BasePresenter() {
     fun startSearchByName() {
         println("\n=== Search Meals by Name ===")
         println("Enter a meal name to search")
@@ -14,7 +14,7 @@ class SearchByMealNamePresenter(private val searchByMealNameUseCase: SearchByMea
         val searchTerm = readlnOrNull()?.trim()
 
         if (!searchTerm.isNullOrEmpty()) {
-            val result = searchByMealNameUseCase.invoke(searchTerm)
+            val result = searchByMealName.invoke(searchTerm)
 
             result.fold(onSuccess = { handleSuccess(it, searchTerm) }, onFailure = ::handleException)
         } else println("Please enter a valid search term.")

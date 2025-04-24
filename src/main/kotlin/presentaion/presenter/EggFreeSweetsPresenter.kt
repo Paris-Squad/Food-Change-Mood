@@ -3,7 +3,7 @@ package org.example.presentaion.presenter
 import org.example.domain.usecase.GetEggFreeSweetsUseCase
 import org.example.utils.formatDetails
 
-class EggFreeSweetsPresenter(private val useCase: GetEggFreeSweetsUseCase):BasePresenter() {
+class EggFreeSweetsPresenter(private val getEggFreeSweets: GetEggFreeSweetsUseCase):BasePresenter() {
     private enum class UserAction { ACCEPT, REJECT, QUIT, INVALID }
 
     fun startSuggestions() {
@@ -14,7 +14,7 @@ class EggFreeSweetsPresenter(private val useCase: GetEggFreeSweetsUseCase):BaseP
         var showNewSuggestion = true
 
         while (continueSearching) {
-            useCase.getRandomEggFreeSweet().fold(
+            getEggFreeSweets.getRandomEggFreeSweet().fold(
                 onSuccess = { sweet ->
                     if (showNewSuggestion) {
                         println("\n${sweet.mealName ?: "Unnamed Sweet"}")

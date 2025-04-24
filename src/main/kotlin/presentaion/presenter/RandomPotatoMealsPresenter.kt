@@ -4,9 +4,9 @@ import domain.model.Meal
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
 import org.example.utils.formatDetails
 
-class RandomPotatoMealsPresenter(private val getRandomPotatoMealsUseCase: GetRandomPotatoMealsUseCase) : BasePresenter() {
+class RandomPotatoMealsPresenter(private val getRandomPotatoMeals: GetRandomPotatoMealsUseCase) : BasePresenter() {
     fun startRandomPotatoMeals() {
-        val potatoMeals = getRandomPotatoMealsUseCase(10)
+        val potatoMeals = getRandomPotatoMeals(10)
 
         println("========== RANDOM POTATO MEALS ==========\n")
         potatoMeals.fold(

@@ -4,16 +4,15 @@ import domain.model.Meal
 import org.example.domain.usecase.GetEasyMealSuggestionUseCase
 import org.example.utils.formatDetails
 
-class GetEasyMealSuggestionPresenter(private val useCase: GetEasyMealSuggestionUseCase): BasePresenter() {
+class GetEasyMealSuggestionPresenter(private val getEasyMealSuggestion: GetEasyMealSuggestionUseCase): BasePresenter() {
     fun startEasyMeals() {
-        useCase.invoke().fold(onSuccess = ::handleSuccess, onFailure = ::handleException)
+        getEasyMealSuggestion().fold(onSuccess = ::onGettingEasyMealSuggestionSuccess, onFailure = ::handleException)
     }
 
-    private fun handleSuccess(meals: List<Meal>) {
+    private fun onGettingEasyMealSuggestionSuccess(meals: List<Meal>) {
         println("--- EASY MEAL SUGGESTIONS ---")
         meals.forEachIndexed { index, meal ->
             println(meal.formatDetails())
         }
     }
-
 }

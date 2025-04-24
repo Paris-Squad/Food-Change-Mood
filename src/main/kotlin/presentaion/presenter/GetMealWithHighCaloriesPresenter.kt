@@ -3,7 +3,7 @@ package org.example.presentaion.presenter
 import domain.model.Meal
 import org.example.domain.usecase.GetMealWithHighCaloriesUseCase
 
-class GetMealWithHighCaloriesPresenter(private val mealsWithHighCaloriesUseCase: GetMealWithHighCaloriesUseCase):BasePresenter() {
+class GetMealWithHighCaloriesPresenter(private val getMealsWithHighCalories: GetMealWithHighCaloriesUseCase):BasePresenter() {
 
     init {
         getMealsWithHighCalories()
@@ -12,7 +12,7 @@ class GetMealWithHighCaloriesPresenter(private val mealsWithHighCaloriesUseCase:
     var randomMealWithHighCalories: Meal? = null
 
     fun getMealsWithHighCalories() {
-        val mealsWithHighCaloriesResult = mealsWithHighCaloriesUseCase(REQUIRED_CALORIES)
+        val mealsWithHighCaloriesResult = getMealsWithHighCalories(REQUIRED_CALORIES)
         mealsWithHighCaloriesResult.fold(
             onSuccess = ::onGetMealWithHighCaloriesSuccess,
             onFailure = ::handleException

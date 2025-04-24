@@ -2,9 +2,9 @@ package org.example.presentaion.presenter
 
 import org.example.domain.usecase.GetSeafoodMealsUseCase
 
-class GetSeafoodMealsPresenter(private val getSeafoodMealsUseCase: GetSeafoodMealsUseCase) : BasePresenter() {
+class GetSeafoodMealsPresenter(private val getSeafoodMeals: GetSeafoodMealsUseCase) : BasePresenter() {
     fun start() {
-        val allSeafoodMeals = getSeafoodMealsUseCase()
+        val allSeafoodMeals = getSeafoodMeals()
         allSeafoodMeals.fold(
             onSuccess = ::handleSuccess,
             onFailure = ::handleException

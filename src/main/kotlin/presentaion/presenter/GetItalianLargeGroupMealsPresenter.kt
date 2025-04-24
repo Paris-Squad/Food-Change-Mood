@@ -3,13 +3,14 @@ package org.example.presentaion.presenter
 import domain.model.Meal
 import org.example.domain.usecase.GetItalianLargeGroupMealsUseCase
 
-class GetItalianLargeGroupMealsPresenter(
-    private val useCase: GetItalianLargeGroupMealsUseCase
-) : BasePresenter() {
+class GetItalianLargeGroupMealsPresenter(private val getItalianMealForLargeGroup: GetItalianLargeGroupMealsUseCase) :
+    BasePresenter() {
     fun startItalianLargeGroupMeal() {
-        useCase.invoke().fold(onSuccess = ::handleSuccess, onFailure = ::handleException)
+        getItalianMealForLargeGroup.invoke()
+            .fold(onSuccess = ::onGetItalianLargeGroupSuccess, onFailure = ::handleException)
     }
-    private fun handleSuccess(meals: List<Meal>) {
+
+    private fun onGetItalianLargeGroupSuccess(meals: List<Meal>) {
         println("--- ITALIAN MEALS FOR LARGE GROUPS ---")
         meals.forEachIndexed { idx, meal ->
             println("${idx + 1}. ${meal.mealName ?: "Unnamed"} (ID: ${meal.mealId})")
