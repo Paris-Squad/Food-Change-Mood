@@ -5,11 +5,11 @@ import org.example.domain.usecase.GetItalianLargeGroupMealsUseCase
 import org.example.presentaion.presenter.io.Printer
 
 class ItalianLargeGroupMealsPresenter(
-    private val getItalianMealForLargeGroup: GetItalianLargeGroupMealsUseCase,
+    private val italianMealForLargeGroup: GetItalianLargeGroupMealsUseCase,
     printer: Printer
 ) : BasePresenter(printer) {
     fun startItalianLargeGroupMeal() {
-        getItalianMealForLargeGroup.invoke()
+        italianMealForLargeGroup.invoke()
             .fold(onSuccess = ::onGetItalianLargeGroupSuccess, onFailure = ::handleException)
     }
 

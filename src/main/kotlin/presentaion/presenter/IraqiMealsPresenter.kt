@@ -5,10 +5,10 @@ import org.example.domain.usecase.GetIraqiMealsUseCase
 import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
-class IraqiMealsPresenter(private val getIraqiMeals: GetIraqiMealsUseCase, printer: Printer) : BasePresenter(printer) {
+class IraqiMealsPresenter(private val iraqiMeals: GetIraqiMealsUseCase, printer: Printer) : BasePresenter(printer) {
 
     fun getIraqiMeals() {
-        val iraqiMealsResult = getIraqiMeals.getIraqiMeals()
+        val iraqiMealsResult = iraqiMeals.getIraqiMeals()
         iraqiMealsResult.fold(onSuccess = ::onGetIraqiMealsSuccess, onFailure = ::handleException)
     }
 

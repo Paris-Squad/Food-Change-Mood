@@ -7,14 +7,14 @@ import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
 class MealsByCountryPresenter(
-    private val getMealsByCountryUseCase: GetMealsByCountryUseCase, private val reader: InputReader, printer: Printer
+    private val mealsByCountryUseCase: GetMealsByCountryUseCase, private val reader: InputReader, printer: Printer
 ) : BasePresenter(printer) {
 
     fun getMealsByCountry() {
         val country = getCountryInput()
         val count = getCountInput()
 
-        getMealsByCountryUseCase(country, count).fold(
+        mealsByCountryUseCase(country, count).fold(
             onSuccess = ::onGetMealsByCountrySuccess, onFailure = ::handleException
         )
     }

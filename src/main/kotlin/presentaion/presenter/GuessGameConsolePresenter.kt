@@ -6,7 +6,7 @@ import org.example.presentaion.presenter.io.InputReader
 import org.example.presentaion.presenter.io.Printer
 
 class GuessGameConsolePresenter(
-    private val getRandomMeal: GetRandomMealUseCase, printer: Printer, private val reader: InputReader
+    private val randomMeal: GetRandomMealUseCase, printer: Printer, private val reader: InputReader
 ) : BasePresenter(printer) {
 
     private var meal: Meal? = null
@@ -15,19 +15,17 @@ class GuessGameConsolePresenter(
 
     fun startGame() {
         printer.displayLn("--- MEAL PREPARATION TIME GUESSING GAME ---")
-        val randomMealResult = getRandomMeal.invoke()
+        val randomMealResult = randomMeal.invoke()
 
-        randomMealResult.fold(
-            onSuccess = { randomMeal ->
-                meal = randomMeal
-                gameActive = true
-                attempts = 3
-                printer.displayLn("Guess the preparation time (in minutes) for: ${randomMeal.mealName ?: "Unnamed recipe"}")
-                printer.displayLn("Your guess (attempts left: $attempts): ")
-            }, onFailure = ::handleException
-        )
+        randomMealResult.fold(onSuccess = ::handleSuccessfulMeal, onFailure = ::handleException)
     }
-
+    private fun handleSuccessfulMeal(randomMeal: Meal) {
+        meal = randomMeal
+        gameActive = true
+        attempts = 3
+        printer.displayLn("Guess the preparation time (in minutes) for: ${randomMeal.mealName ?: "Unnamed recipe"}")
+        printer.displayLn("Your guess (attempts left: $attempts): ")
+    }
     fun isGameActive(): Boolean = gameActive
 
     fun processGuess(input: String): Boolean {

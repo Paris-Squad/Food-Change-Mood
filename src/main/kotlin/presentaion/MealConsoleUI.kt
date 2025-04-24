@@ -79,7 +79,7 @@ class MealConsoleUI {
 
     private fun listHealthyFastMeal() {
         val getQuickHealthyPicksUI = getKoin().get<QuickHealthyPicksPresenter>()
-        getQuickHealthyPicksUI.invoke()
+        getQuickHealthyPicksUI.presentQuickHealthyMeals()
     }
 
     private fun searchMealByName() {
@@ -94,7 +94,7 @@ class MealConsoleUI {
 
     private fun easyMealSuggestions() {
         val easyMealSuggestionUi = getKoin().get<EasyMealSuggestionPresenter>()
-        easyMealSuggestionUi.startEasyMeals()
+        easyMealSuggestionUi.getEasyMeals()
     }
 
     private fun guessGame() {
@@ -120,7 +120,7 @@ class MealConsoleUI {
 
     private fun searchByAddDate() {
         val searchMealsByAddDateConsolePresenter = getKoin().get<SearchMealsByAddDatePresenter>()
-        searchMealsByAddDateConsolePresenter.search()
+        searchMealsByAddDateConsolePresenter.searchMealsByCreationDate()
     }
 
     private fun gymHelper() {
@@ -130,7 +130,7 @@ class MealConsoleUI {
         val calories = readln().toFloatOrNull() ?: return
         print("Enter the protein amount u want:  ")
         val protein = readln().toFloatOrNull() ?: return
-        gymHelperUI.start(calories , protein)
+        gymHelperUI.presentGymMeals(calories , protein)
     }
 
     private fun exploreCountryMeal() {
@@ -173,7 +173,7 @@ class MealConsoleUI {
 
     private fun seafoodByProtein() {
         val seafoodMealsUI = getKoin().get<SeafoodMealsPresenter>()
-        seafoodMealsUI.start()
+        seafoodMealsUI.presentSeafoodMeals()
     }
 
     private fun italianLargeGroup() {

@@ -5,7 +5,7 @@ import org.example.domain.usecase.GetMealWithHighCaloriesUseCase
 import org.example.presentaion.presenter.io.Printer
 
 class MealWithHighCaloriesPresenter(
-    private val getMealsWithHighCalories: GetMealWithHighCaloriesUseCase, printer: Printer
+    private val mealsWithHighCalories: GetMealWithHighCaloriesUseCase, printer: Printer
 ) : BasePresenter(printer) {
 
     init {
@@ -15,7 +15,7 @@ class MealWithHighCaloriesPresenter(
     var randomMealWithHighCalories: Meal? = null
 
     fun getMealsWithHighCalories() {
-        val mealsWithHighCaloriesResult = getMealsWithHighCalories(REQUIRED_CALORIES)
+        val mealsWithHighCaloriesResult = mealsWithHighCalories(REQUIRED_CALORIES)
         mealsWithHighCaloriesResult.fold(
             onSuccess = ::onGetMealWithHighCaloriesSuccess, onFailure = ::handleException
         )

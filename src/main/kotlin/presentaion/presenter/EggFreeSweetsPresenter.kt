@@ -6,7 +6,7 @@ import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
 class EggFreeSweetsPresenter(
-    private val getEggFreeSweets: GetEggFreeSweetsUseCase, printer: Printer, private val reader: InputReader
+    private val eggFreeSweets: GetEggFreeSweetsUseCase, printer: Printer, private val reader: InputReader
 ) : BasePresenter(printer) {
     private enum class UserAction { ACCEPT, REJECT, QUIT, INVALID }
 
@@ -18,7 +18,7 @@ class EggFreeSweetsPresenter(
         var showNewSuggestion = true
 
         while (continueSearching) {
-            getEggFreeSweets.getRandomEggFreeSweet().fold(
+            eggFreeSweets.getRandomEggFreeSweet().fold(
                 onSuccess = { sweet ->
                     if (showNewSuggestion) {
                         printer.displayLn("\n${sweet.mealName ?: "Unnamed Sweet"}")

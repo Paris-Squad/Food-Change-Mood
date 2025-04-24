@@ -11,7 +11,7 @@ import org.example.utils.formatDetails
 class SearchMealsByAddDatePresenter(
     private val searchMealsByAddDate: SearchMealsByAddDateUseCase, printer: Printer, private val reader: InputReader
 ) : BasePresenter(printer) {
-    fun search() {
+    fun searchMealsByCreationDate() {
         var shouldRepeat = true
         var date: LocalDate? = null
 

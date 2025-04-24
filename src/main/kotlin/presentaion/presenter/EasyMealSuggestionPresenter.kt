@@ -5,10 +5,10 @@ import org.example.domain.usecase.GetEasyMealSuggestionUseCase
 import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
-class EasyMealSuggestionPresenter(private val getEasyMealSuggestion: GetEasyMealSuggestionUseCase, printer: Printer) :
+class EasyMealSuggestionPresenter(private val easyMealSuggestion: GetEasyMealSuggestionUseCase, printer: Printer) :
     BasePresenter(printer) {
-    fun startEasyMeals() {
-        getEasyMealSuggestion().fold(onSuccess = ::onGettingEasyMealSuggestionSuccess, onFailure = ::handleException)
+    fun getEasyMeals() {
+        easyMealSuggestion().fold(onSuccess = ::onGettingEasyMealSuggestionSuccess, onFailure = ::handleException)
     }
 
     private fun onGettingEasyMealSuggestionSuccess(meals: List<Meal>) {

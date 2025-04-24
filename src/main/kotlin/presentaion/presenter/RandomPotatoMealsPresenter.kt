@@ -6,10 +6,10 @@ import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
 class RandomPotatoMealsPresenter(
-    private val getRandomPotatoMeals: GetRandomPotatoMealsUseCase, printer: Printer
+    private val randomPotatoMeals: GetRandomPotatoMealsUseCase, printer: Printer
 ) : BasePresenter(printer) {
     fun startRandomPotatoMeals() {
-        val potatoMeals = getRandomPotatoMeals(10)
+        val potatoMeals = randomPotatoMeals(10)
 
         printer.displayLn("========== RANDOM POTATO MEALS ==========\n")
         potatoMeals.fold(

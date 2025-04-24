@@ -4,10 +4,10 @@ import org.example.domain.usecase.GetSeafoodMealsUseCase
 import org.example.presentaion.presenter.io.Printer
 
 class SeafoodMealsPresenter(
-    private val getSeafoodMeals: GetSeafoodMealsUseCase, printer: Printer
+    private val seafoodMeals: GetSeafoodMealsUseCase, printer: Printer
 ) : BasePresenter(printer) {
-    fun start() {
-        val allSeafoodMeals = getSeafoodMeals()
+    fun presentSeafoodMeals() {
+        val allSeafoodMeals = seafoodMeals()
         allSeafoodMeals.fold(
             onSuccess = ::handleSuccess, onFailure = ::handleException
         )

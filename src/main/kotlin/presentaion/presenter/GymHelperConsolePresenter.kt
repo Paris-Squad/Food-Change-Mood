@@ -7,7 +7,7 @@ import org.example.utils.formatDetails
 
 class GymHelperConsolePresenter(private val gymHelperUseCase: GymHelperUseCase, printer: Printer) :
     BasePresenter(printer) {
-    fun start(calories: Float, protein: Float) {
+    fun presentGymMeals(calories: Float, protein: Float) {
         gymHelperUseCase(calories = calories, protein = protein).fold(
             onSuccess = { gymMeals ->
                 gymMeals.forEach { meal -> printer.displayLn(meal.formatDetails()) }

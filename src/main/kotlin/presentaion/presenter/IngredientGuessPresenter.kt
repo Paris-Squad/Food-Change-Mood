@@ -5,11 +5,11 @@ import org.example.presentaion.presenter.io.InputReader
 import org.example.presentaion.presenter.io.Printer
 
 class IngredientGuessPresenter(
-    private val getIngredientGuess: GetIngredientGuessUseCase, printer: Printer, private val reader: InputReader
+    private val ingredientGuess: GetIngredientGuessUseCase, printer: Printer, private val reader: InputReader
 ) : BasePresenter(printer) {
     fun startIngredientGuess() {
-        while (getIngredientGuess.hasNextRound()) {
-            val round = getIngredientGuess.nextRound() ?: break
+        while (ingredientGuess.hasNextRound()) {
+            val round = ingredientGuess.nextRound() ?: break
             printer.displayLn("Meal: ${round.mealName}")
             printer.displayLn("Choose the correct ingredient:")
             round.options.forEachIndexed { index, opt -> printer.displayLn("${index + 1}. $opt") }
@@ -17,14 +17,14 @@ class IngredientGuessPresenter(
             val guess = reader.readInt()
             val chosen = round.options.getOrNull(guess?.minus(1) ?: -1)
 
-            if (chosen != null && getIngredientGuess.submitGuess(chosen)) {
-                printer.displayLn("Correct! Score: ${getIngredientGuess.getScore()}")
+            if (chosen != null && ingredientGuess.submitGuess(chosen)) {
+                printer.displayLn("Correct! Score: ${ingredientGuess.getScore()}")
             } else {
                 printer.displayLn("Incorrect! The correct answer was: ${round.correctAnswer}")
                 break
             }
         }
 
-        printer.displayLn("Game Over! Final Score: ${getIngredientGuess.getScore()}")
+        printer.displayLn("Game Over! Final Score: ${ingredientGuess.getScore()}")
     }
 }
