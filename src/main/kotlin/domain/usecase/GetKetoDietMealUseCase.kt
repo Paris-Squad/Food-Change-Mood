@@ -6,7 +6,7 @@ import org.example.domain.repository.MealRepository
 
 
 class GetKetoDietMealUseCase(private val mealRepository: MealRepository) {
-    fun getSuggestedKetoMeal(repeatedMeals : MutableSet<Meal>): Result<Meal>{
+    fun getSuggestedKetoMeal(repeatedMeals : Set<Meal>): Result<Meal>{
             val ketoMeals =  getAllKetoDietMeals().filter { meal ->
                 !repeatedMeals.contains(meal)
             }
@@ -15,9 +15,6 @@ class GetKetoDietMealUseCase(private val mealRepository: MealRepository) {
             }
             val suggestedMeal = ketoMeals.random()
             return Result.success(suggestedMeal)
-
-        //choose random meal then offer it for the user
-        // 70% fat 20% protein 10% carbs
     }
 
     private fun getAllKetoDietMeals(): List<Meal> {
