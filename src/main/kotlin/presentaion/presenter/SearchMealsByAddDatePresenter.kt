@@ -4,54 +4,58 @@ import domain.model.Meal
 import kotlinx.datetime.LocalDate
 import org.example.domain.MealException
 import org.example.domain.usecase.SearchMealsByAddDateUseCase
+import org.example.presentaion.presenter.io.InputReader
+import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
-class SearchMealsByAddDatePresenter(private val SearchMealsByAddDate: SearchMealsByAddDateUseCase) {
-    fun search() {
+class SearchMealsByAddDatePresenter(
+    private val searchMealsByAddDate: SearchMealsByAddDateUseCase, printer: Printer, private val reader: InputReader
+) : BasePresenter(printer) {
+    fun searchMealsByCreationDate() {
         var shouldRepeat = true
         var date: LocalDate? = null
 
         while (shouldRepeat) {
             var meals = emptyList<Meal>()
             if (date == null) {
-                println("Enter a date (yyyy-MM-dd):")
+                printer.displayLn("Enter a date (yyyy-MM-dd):")
                 val input = readln()
                 val dateResult = parseDate(input)
                 if (dateResult.isFailure) {
-                    println(" ${dateResult.exceptionOrNull()?.message}")
+                    printer.displayLn(" ${dateResult.exceptionOrNull()?.message}")
                     continue
                 }
 
                 date = dateResult.getOrThrow()
-                val mealsResult = SearchMealsByAddDate(date)
+                val mealsResult = searchMealsByAddDate(date)
 
                 if (mealsResult.isFailure) {
-                    println(" ${mealsResult.exceptionOrNull()?.message}")
+                    printer.displayLn(" ${mealsResult.exceptionOrNull()?.message}")
                     date = null
                     continue
                 }
 
                 meals = mealsResult.getOrThrow()
 
-                println("\n========== MEALS ADDED ON $date ==========\n")
+                printer.displayLn("\n========== MEALS ADDED ON $date ==========\n")
                 meals.forEachIndexed { index, meal ->
-                    println("Meal ${index + 1}: ID: ${meal.mealId} | Name: ${meal.mealName ?: "Unnamed Meal"}")
+                    printer.displayLn("Meal ${index + 1}: ID: ${meal.mealId} | Name: ${meal.mealName ?: "Unnamed Meal"}")
                 }
             }
 
-            println("\nEnter the ID of a meal to view full details:")
+            printer.displayLn("\nEnter the ID of a meal to view full details:")
             val mealId = readln()
-            val detailResult = SearchMealsByAddDate.findMealByIdInList(mealId, meals)
+            val detailResult = searchMealsByAddDate.findMealByIdInList(mealId, meals)
 
             if (detailResult.isFailure) {
-                println(" ${detailResult.exceptionOrNull()?.message}")
+                printer.displayLn(" ${detailResult.exceptionOrNull()?.message}")
                 continue
             }
 
             detailResult.onSuccess { meal ->
-                println("--------------------------------------------------")
-                println(meal.formatDetails())
-                println("--------------------------------------------------\n")
+                printer.displayLn("--------------------------------------------------")
+                printer.displayLn(meal.formatDetails())
+                printer.displayLn("--------------------------------------------------\n")
             }
             shouldRepeat = false
         }
