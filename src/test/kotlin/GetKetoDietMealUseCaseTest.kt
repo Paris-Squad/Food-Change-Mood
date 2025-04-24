@@ -96,7 +96,7 @@ class GetKetoDietMealUseCaseTest{
         val result  = getKetoDietMealUseCase.getSuggestedKetoMeal(emptySet())
 
         // Then
-        assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoKetoDietMealFound::class.java)
+        assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
     }
 
     companion object{
