@@ -25,16 +25,15 @@ class GetIraqiMealsUseCaseTest {
     @Test
     fun `should return meals tagged as Iraqi`() {
         // Given
-        every { mealRepository.getMeals() } returns listOf(
-            createMeal(mealName = "Dolma", description = "Tasty Dolma", tags = listOf("iraqi", "traditional")),
-            createMeal(mealName = "Burger", description = "Fast food", tags = listOf("american"))
-        )
+        val meal1 = createMeal(mealName = "Dolma", description = "Tasty Dolma", tags = listOf("iraqi", "traditional"))
+        val meal2 = createMeal(mealName = "Burger", description = "Fast food", tags = listOf("american"))
+        every { mealRepository.getMeals() } returns listOf(meal1 ,meal2)
 
         // When
         val result = getIraqiMealsUseCase.getIraqiMeals()
 
         // Then
-        assertEquals("Dolma", result.getOrNull()?.first()?.mealName)
+        assertThat(result.getOrNull()).containsExactly(meal1)
     }
 
     @Test
@@ -55,16 +54,15 @@ class GetIraqiMealsUseCaseTest {
     @Test
     fun `should return meals when either tag is Iraqi or description mentions Iraq`() {
         // Given
-        every { mealRepository.getMeals() } returns listOf(
-            createMeal(mealName = "Dolma", description = "Popular in Iraq", tags = listOf("iraqi")),
-            createMeal(mealName = "Kebab", description = "Iraqi-style grilled meat", tags = listOf("grilled"))
-        )
+        val meal1 = createMeal(mealName = "Dolma", description = "Popular in Iraq", tags = listOf("iraqi"))
+        val meal2 = createMeal(mealName = "Kebab", description = "Iraqi-style grilled meat", tags = listOf("grilled"))
+        every { mealRepository.getMeals() } returns listOf(meal1 ,meal2)
 
         // When
         val result = getIraqiMealsUseCase.getIraqiMeals()
 
         // Then
-        assertThat(result.getOrNull()?.map { it.mealName }).containsExactly("Dolma", "Kebab")
+        assertThat(result.getOrNull()).containsExactly(meal1, meal2)
     }
 
     @Test
