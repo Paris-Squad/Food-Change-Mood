@@ -7,10 +7,9 @@ import domain.model.Meal
 
 
 class SearchMealsByAddDateUseCase(private val mealRepository: MealRepository) {
-    private var meals: List<Meal> = emptyList()
 
     operator fun invoke(date: LocalDate): Result<List<Meal>> {
-         meals = mealRepository.getMeals().filter { it.submittedDate == date }
+        val meals = mealRepository.getMeals().filter { it.submittedDate == date }
 
         return if (meals.isNotEmpty()) {
             Result.success(meals)
@@ -19,7 +18,7 @@ class SearchMealsByAddDateUseCase(private val mealRepository: MealRepository) {
         }
     }
 
-    fun findMealByIdInList(id: String): Result<Meal> {
+    fun findMealByIdInList(id: String, meals: List<Meal>): Result<Meal> {
         return meals.find { it.mealId == id }
             ?.let { Result.success(it) }
             ?: Result.failure(MealException.NoMealsFoundException("Meal with ID $id not found"))

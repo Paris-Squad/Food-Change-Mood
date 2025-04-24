@@ -2,52 +2,51 @@ package org.example.presentaion.presenter
 
 import domain.model.Meal
 import org.example.domain.usecase.SearchByMealNameUseCase
-import kotlin.collections.forEachIndexed
+import org.example.presentaion.presenter.io.InputReader
+import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
 class SearchByMealNamePresenter(
-    private val searchByMealNameUseCase: SearchByMealNameUseCase
-) {
+    private val searchByMealName: SearchByMealNameUseCase, printer: Printer, private val reader: InputReader
+) : BasePresenter(printer) {
     fun startSearchByName() {
-        println("\n=== Search Meals by Name ===")
-        println("Enter a meal name to search")
+        printer.displayLn("\n=== Search Meals by Name ===")
+        printer.displayLn("Enter a meal name to search")
 
-        print("> ")
-        val searchTerm = readlnOrNull()?.trim()
+        printer.display("> ")
+        val searchTerm = reader.readString()
 
         if (!searchTerm.isNullOrEmpty()) {
-            val result = searchByMealNameUseCase.invoke(searchTerm)
+            val result = searchByMealName.invoke(searchTerm)
 
-            result.fold(
-                onSuccess = { handleSuccess(it, searchTerm) },
-                onFailure = { println("Error: ${it.message ?: "An error occurred during search."}") })
-        } else println("Please enter a valid search term.")
+            result.fold(onSuccess = { handleSuccess(it, searchTerm) }, onFailure = ::handleException)
+        } else printer.displayLn("Please enter a valid search term.")
     }
 
     private fun handleSuccess(meals: List<Meal>, searchTerm: String) {
         if (meals.isEmpty()) {
-            println("No meals found matching '$searchTerm'.")
+            printer.displayLn("No meals found matching '$searchTerm'.")
         } else {
-            println("\n--- Search Results ---")
+            printer.displayLn("\n--- Search Results ---")
             meals.forEachIndexed { index, meal ->
-                println("${index + 1}. ${meal.mealName ?: "Unnamed Meal"}")
+                printer.displayLn("${index + 1}. ${meal.mealName ?: "Unnamed Meal"}")
             }
-            println("--------------------")
+            printer.displayLn("--------------------")
 
             selectMeal(meals)
         }
     }
 
     private fun selectMeal(meals: List<Meal>) {
-        println("\nEnter the number of the meal to see details:")
-        print("> ")
+        printer.displayLn("\nEnter the number of the meal to see details:")
+        printer.display("> ")
 
         val selectionIndex = readlnOrNull()?.trim()?.toIntOrNull()
         if (selectionIndex != null && selectionIndex > 0 && selectionIndex <= meals.size) {
             val selectedMeal = meals[selectionIndex - 1]
-            println(selectedMeal.formatDetails())
+            printer.displayLn(selectedMeal.formatDetails())
         } else {
-            println("Invalid selection.")
+            printer.displayLn("Invalid selection.")
         }
     }
 }

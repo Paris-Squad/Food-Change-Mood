@@ -18,7 +18,7 @@ class GetMealsByCountryUseCase(private val mealRepository: MealRepository) {
         }
 
         val meals = mealRepository.getMeals().filter { meal -> isRelatedToCountry(meal, country) }.shuffled()
-            .take(minOf(count, 20)).sortedBy { it.mealName }
+            .take(minOf(count, MAX_COUNTRIES_NUMBER)).sortedBy { it.mealName }
 
         if (meals.isEmpty()) {
             return Result.failure(MealException.NoMealsFoundException("No meals found related to '$country'"))
@@ -33,6 +33,10 @@ class GetMealsByCountryUseCase(private val mealRepository: MealRepository) {
             meal.description,
             *meal.tags.toTypedArray(),
         ).any { it.contains(country, ignoreCase = true) }
+    }
+
+    companion object {
+        const val MAX_COUNTRIES_NUMBER = 20
     }
 
 }

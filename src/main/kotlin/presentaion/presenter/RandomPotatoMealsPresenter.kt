@@ -2,23 +2,25 @@ package org.example.presentaion.presenter
 
 import domain.model.Meal
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
+import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
-class RandomPotatoMealsPresenter(private val getRandomPotatoMealsUseCase: GetRandomPotatoMealsUseCase) {
+class RandomPotatoMealsPresenter(
+    private val randomPotatoMeals: GetRandomPotatoMealsUseCase, printer: Printer
+) : BasePresenter(printer) {
     fun startRandomPotatoMeals() {
-        val potatoMeals = getRandomPotatoMealsUseCase()
+        val potatoMeals = randomPotatoMeals(10)
 
-        println("========== RANDOM POTATO MEALS ==========\n")
+        printer.displayLn("========== RANDOM POTATO MEALS ==========\n")
         potatoMeals.fold(
-            onSuccess = ::handleSuccess,
-            onFailure = { println(it.message) }
+            onSuccess = ::handleSuccess, onFailure = ::handleException
         )
     }
 
     private fun handleSuccess(meal: List<Meal>) {
         meal.forEachIndexed { index, meal ->
-            println("Meal ${index + 1}: ${meal.mealName ?: "Unnamed Meal"}")
-            println(meal.formatDetails())
+            printer.displayLn("Meal ${index + 1}: ${meal.mealName ?: "Unnamed Meal"}")
+            printer.displayLn(meal.formatDetails())
         }
     }
 }

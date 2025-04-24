@@ -2,18 +2,21 @@ package org.example.presentaion.presenter
 
 import domain.model.Meal
 import org.example.domain.usecase.GetKetoDietMealUseCase
+import org.example.presentaion.presenter.io.Printer
 
-class KetoDietMealHelperPresenter(private val getKetoDietMealUseCase: GetKetoDietMealUseCase) {
+class KetoDietMealHelperPresenter(private val ketoDietMeal: GetKetoDietMealUseCase, printer: Printer) :
+    BasePresenter(printer) {
     private val repeatedMeals = mutableSetOf<Meal>()
 
     fun startKetoHelper() {
-        println("click 1 if you want a suggested keto diet meal.")
-        println("click 2 to exit.")
+        printer.displayLn("click 1 if you want a suggested keto diet meal.")
+        printer.displayLn("click 2 to exit.")
         val pickedChoice = readln()
         when (pickedChoice.trim()) {
             SUGGEST_KETO_MEAL_OPTION -> {
-                getKetoDietMealUseCase.getSuggestedKetoMeal(repeatedMeals).fold(
-                    onSuccess = ::handleSuccess, onFailure = { println("Error: ${it.message}") })
+                ketoDietMeal.getSuggestedKetoMeal(repeatedMeals).fold(
+                    onSuccess = ::handleSuccess, onFailure = ::handleException
+                )
             }
 
             EXIT_OPTION -> return
@@ -23,14 +26,14 @@ class KetoDietMealHelperPresenter(private val getKetoDietMealUseCase: GetKetoDie
 
     private fun handleSuccess(meal: Meal) {
         repeatedMeals.add(meal)
-        println("\nSuggested Keto Meal:")
-        println("Name: ${meal.mealName}")
-        println("Description: ${meal.description ?: "No description available"}")
-        println("Preparation Time: ${meal.minutesForPreparation} minutes")
-        println("\nNutrition Info:")
-        println("Carbs: ${meal.nutrition.carbohydrates}g")
-        println("Fat: ${meal.nutrition.totalFat}g")
-        println("Protein: ${meal.nutrition.protein}g")
+        printer.displayLn("\nSuggested Keto Meal:")
+        printer.displayLn("Name: ${meal.mealName}")
+        printer.displayLn("Description: ${meal.description ?: "No description available"}")
+        printer.displayLn("Preparation Time: ${meal.minutesForPreparation} minutes")
+        printer.displayLn("\nNutrition Info:")
+        printer.displayLn("Carbs: ${meal.nutrition.carbohydrates}g")
+        printer.displayLn("Fat: ${meal.nutrition.totalFat}g")
+        printer.displayLn("Protein: ${meal.nutrition.protein}g")
     }
 
     companion object {
