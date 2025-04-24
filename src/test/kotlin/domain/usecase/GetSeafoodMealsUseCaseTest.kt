@@ -35,20 +35,7 @@ class GetSeafoodMealsUseCaseTest {
     @Test
     fun `should return Failure Result of NoMealsFoundException when can't find any meal that contain seafood in tags`() {
         //Given
-        every { mealsRepository.getMeals() } returns listOf(
-            createMeal(
-                tags = listOf("seafood"),
-                nutrition = createNutrition(protein = 20f)
-            ),
-            createMeal(
-                tags = listOf("seafood", "cuisine"),
-                nutrition = createNutrition(protein = 30f)
-            ),
-            createMeal(
-                tags = listOf("pasta"),
-                nutrition = createNutrition(protein = 10f)
-            )
-        )
+        every { mealsRepository.getMeals() } returns MockMeals.invalidSeafoodByNotContainsTags
 
         //When
         val result = useCase.invoke()
@@ -60,20 +47,7 @@ class GetSeafoodMealsUseCaseTest {
     @Test
     fun `should return Failure Result of NoMealsFoundException when all seafoods meals name ar null`() {
         //Given
-        every { mealsRepository.getMeals() } returns listOf(
-            createMeal(
-                tags = listOf("seafood"),
-                nutrition = createNutrition(protein = 10f)
-            ),
-            createMeal(
-                tags = listOf("seafood"),
-                nutrition = createNutrition(protein = 10f)
-            ),
-            createMeal(
-                tags = listOf("seafood"),
-                nutrition = createNutrition(protein = 10f)
-            ),
-        )
+        every { mealsRepository.getMeals() } returns MockMeals.invalidSeafoodByNullName
 
         //When
         val result = useCase.invoke()
@@ -86,20 +60,7 @@ class GetSeafoodMealsUseCaseTest {
     @Test
     fun `should return Failure Result of NoMealsFoundException when all seafoods meals protein ar null`() {
         //Given
-        every { mealsRepository.getMeals() } returns listOf(
-            createMeal(
-                mealName = "put down your fork tuna and bean salad",
-                tags = listOf("seafood")
-            ),
-            createMeal(
-                mealName = "smoked  salmon  cracker spread",
-                tags = listOf("seafood")
-            ),
-            createMeal(
-                mealName = "voodoo  calamari ink  pasta",
-                tags = listOf("seafood")
-            ),
-        )
+        every { mealsRepository.getMeals() } returns MockMeals.invalidSeafoodByNullNutrition
 
         //When
         val result = useCase.invoke()
@@ -109,26 +70,9 @@ class GetSeafoodMealsUseCaseTest {
     }
 
     @Test
-    fun `should return Success Result List of Pair MealName & protein when all meals contain seafoods in tags and Name & Protein ar not null`() {
+    fun `should return Success with MealName-Protein pairs when all meals have seafood tags and valid values`() {
         //Given
-        val mealsList = listOf(
-            createMeal(
-                mealName = "put down your fork tuna and bean salad",
-                tags = listOf("seafood"),
-                nutrition = createNutrition(protein = 20f)
-            ),
-            createMeal(
-                mealName = "smoked  salmon  cracker spread",
-                tags = listOf("seafood", "cuisine"),
-                nutrition = createNutrition(protein = 30f)
-            ),
-            createMeal(
-                mealName = "voodoo  calamari ink  pasta",
-                tags = listOf("pasta"),
-                nutrition = createNutrition(protein = 10f)
-            )
-        )
-        every { mealsRepository.getMeals() } returns mealsList
+        every { mealsRepository.getMeals() } returns MockMeals.validSeaFoodMeals
 
         //When
         val result = useCase.invoke()

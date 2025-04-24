@@ -8,7 +8,7 @@ class GetSeafoodMealsUseCase(private val mealRepository: MealRepository) {
         val allSeafood = mealRepository.getMeals().filter {
             it.tags.contains(SEAFOOD) && it.mealName != null && it.nutrition.protein != null
         }.sortedByDescending {
-            it.nutrition.protein!!
+            it.nutrition.protein
         }.map { seafoodMeal ->
             seafoodMeal.mealName!! to seafoodMeal.nutrition.protein!!
         }
