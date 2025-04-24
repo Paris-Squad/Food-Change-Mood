@@ -11,7 +11,7 @@ class GetQuickHealthyPicksUseCase(private val mealRepository: MealRepository) {
 
         val result = allMeals
             .filter(::isValidQuickMeal)
-            .sortedBy { it.nutrition.totalFat!! + it.nutrition.saturatedFat!! + it.nutrition.carbohydrates!! }
+            .sortedBy { (it.nutrition.totalFat ?: 0f) + (it.nutrition.saturatedFat ?: 0f) + (it.nutrition.carbohydrates ?: 0f) }
 
         if (result.isEmpty()) return Result.failure(MealException.NoMealsFoundException())
 
