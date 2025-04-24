@@ -1,30 +1,30 @@
 package org.example.presentaion.presenter
 
 import org.example.domain.MealException
+import org.example.presentaion.presenter.io.Printer
 
-abstract class BasePresenter {
-
+abstract class BasePresenter(protected val printer: Printer) {
     protected fun handleException(error: Throwable) {
         when (error) {
             is MealException.NoMealsFoundException -> {
-                println(error.message)
+                printer.displayLn(error.message)
             }
 
             is MealException.IllegalArgumentException -> {
-                println(error.message)
+                printer.displayLn(error.message)
             }
 
             is MealException.InvalidDateFormatException -> {
-                println("Invalid date format: ${error.message}")
+                printer.displayLn("Invalid date format: ${error.message}")
             }
 
             is MealException.NoEnoughMealsFound -> {
-                println(error.message)
+                printer.displayLn(error.message)
             }
 
             else -> {
-                println("--- UNEXPECTED ERROR ---")
-                println("An unexpected error occurred: ${error.message}")
+                printer.displayLn("--- UNEXPECTED ERROR ---")
+                printer.displayLn("An unexpected error occurred: ${error.message}")
             }
         }
     }

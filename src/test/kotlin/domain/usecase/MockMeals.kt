@@ -201,4 +201,73 @@ object MockMeals {
             numberOfIngredients = 3
         )
     }
+
+    val invalidSeafoodByNotContainsTags = listOf(
+        createMeal(
+            tags = listOf("seafood"),
+            nutrition = createNutrition(protein = 20f)
+        ),
+        createMeal(
+            tags = listOf("seafood", "cuisine"),
+            nutrition = createNutrition(protein = 30f)
+        ),
+        createMeal(
+            tags = listOf("pasta"),
+            nutrition = createNutrition(protein = 10f)
+        )
+    )
+
+    val invalidSeafoodByNullName = listOf(
+        createMeal(
+            mealName = null,
+            tags = listOf("seafood"),
+            nutrition = createNutrition(protein = 10f)
+        ),
+        createMeal(
+            mealName = null,
+            tags = listOf("seafood"),
+            nutrition = createNutrition(protein = 10f)
+        ),
+        createMeal(
+            mealName = null,
+            tags = listOf("seafood"),
+            nutrition = createNutrition(protein = 10f)
+        ),
+    )
+
+    val invalidSeafoodByNullNutrition = listOf(
+        createMeal(
+            mealName = "put down your fork tuna and bean salad",
+            tags = listOf("seafood"),
+            nutrition = createNutrition(protein = null)
+        ),
+        createMeal(
+            mealName = "smoked  salmon  cracker spread",
+            tags = listOf("seafood"),
+            nutrition = createNutrition(protein = null)
+        ),
+        createMeal(
+            mealName = "voodoo  calamari ink  pasta",
+            tags = listOf("seafood"),
+            nutrition = createNutrition(protein = null)
+        ),
+    )
+
+    val validSeaFoodMeals = listOf(
+        createMeal(
+            mealName = "put down your fork tuna and bean salad",
+            tags = listOf("seafood"),
+            nutrition = createNutrition(protein = 20f)
+        ),
+        createMeal(
+            mealName = "smoked  salmon  cracker spread",
+            tags = listOf("seafood", "cuisine"),
+            nutrition = createNutrition(protein = 30f)
+        ),
+        createMeal(
+            mealName = "voodoo  calamari ink  pasta",
+            tags = listOf("pasta"),
+            nutrition = createNutrition(protein = 10f)
+        )
+    )
 }
