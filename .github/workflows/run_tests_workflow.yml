@@ -2,6 +2,9 @@ name: Check Testes
 on:
   pull_request:
     branches: [ "development" ]
+
+  # workflow_dispatch Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
