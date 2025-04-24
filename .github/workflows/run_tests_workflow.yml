@@ -1,7 +1,7 @@
 name: Check Testes
 on:
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "development" ]
 jobs:
   test:
     runs-on: ubuntu-latest
