@@ -1,8 +1,10 @@
 import groovy.xml.XmlSlurper
+import org.gradle.testing.jacoco.tasks.JacocoReport
 
 plugins {
     kotlin("jvm") version "2.1.10"
     application
+    id("jacoco")
 }
 
 group = "org.example"
@@ -52,7 +54,19 @@ tasks.register("checkTestPassRate") {
     }
 }
 
-tasks.test {
+tasks.named<Test>("test") {
     useJUnitPlatform()
     ignoreFailures = true
+    finalizedBy(tasks.named("jacocoTestReport"))
+}
+
+tasks.named<JacocoReport>("jacocoTestReport") {
+    dependsOn(tasks.named<Test>("test"))
+    reports {
+        html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco/html"))
+    }
+}
+
+tasks.named("check") {
+    dependsOn(tasks.named("jacocoTestReport"))
 }
