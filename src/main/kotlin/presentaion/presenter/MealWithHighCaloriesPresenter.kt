@@ -2,8 +2,11 @@ package org.example.presentaion.presenter
 
 import domain.model.Meal
 import org.example.domain.usecase.GetMealWithHighCaloriesUseCase
+import org.example.presentaion.presenter.io.Printer
 
-class GetMealWithHighCaloriesPresenter(private val getMealsWithHighCalories: GetMealWithHighCaloriesUseCase):BasePresenter() {
+class MealWithHighCaloriesPresenter(
+    private val getMealsWithHighCalories: GetMealWithHighCaloriesUseCase, printer: Printer
+) : BasePresenter(printer) {
 
     init {
         getMealsWithHighCalories()
@@ -14,8 +17,7 @@ class GetMealWithHighCaloriesPresenter(private val getMealsWithHighCalories: Get
     fun getMealsWithHighCalories() {
         val mealsWithHighCaloriesResult = getMealsWithHighCalories(REQUIRED_CALORIES)
         mealsWithHighCaloriesResult.fold(
-            onSuccess = ::onGetMealWithHighCaloriesSuccess,
-            onFailure = ::handleException
+            onSuccess = ::onGetMealWithHighCaloriesSuccess, onFailure = ::handleException
         )
     }
 
@@ -25,8 +27,8 @@ class GetMealWithHighCaloriesPresenter(private val getMealsWithHighCalories: Get
 
     fun onGetMealWithHighCaloriesSuccess(meal: Meal) {
         randomMealWithHighCalories = meal
-        println("Meal name is: ${meal.mealName}")
-        println("Meal description is: ${meal.description}")
+        printer.displayLn("Meal name is: ${meal.mealName}")
+        printer.displayLn("Meal description is: ${meal.description}")
     }
 }
 

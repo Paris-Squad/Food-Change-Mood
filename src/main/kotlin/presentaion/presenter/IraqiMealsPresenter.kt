@@ -2,9 +2,10 @@ package org.example.presentaion.presenter
 
 import domain.model.Meal
 import org.example.domain.usecase.GetIraqiMealsUseCase
+import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 
-class GetIraqiMealsPresenter(private val getIraqiMeals: GetIraqiMealsUseCase):BasePresenter() {
+class IraqiMealsPresenter(private val getIraqiMeals: GetIraqiMealsUseCase, printer: Printer) : BasePresenter(printer) {
 
     fun getIraqiMeals() {
         val iraqiMealsResult = getIraqiMeals.getIraqiMeals()
@@ -12,10 +13,10 @@ class GetIraqiMealsPresenter(private val getIraqiMeals: GetIraqiMealsUseCase):Ba
     }
 
     private fun onGetIraqiMealsSuccess(iraqiMeals: List<Meal>) {
-        println("--- IRAQI MEALS ---")
+        printer.displayLn("--- IRAQI MEALS ---")
         iraqiMeals.forEachIndexed { index, meal ->
-            println("${index + 1}.")
-            println(meal.formatDetails())
+            printer.displayLn("${index + 1}.")
+            printer.displayLn(meal.formatDetails())
         }
     }
 }

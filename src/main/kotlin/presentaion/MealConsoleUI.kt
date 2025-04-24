@@ -1,14 +1,14 @@
 package org.example.presentaion
 
 import org.example.presentaion.presenter.EggFreeSweetsPresenter
-import org.example.presentaion.presenter.GetEasyMealSuggestionPresenter
-import org.example.presentaion.presenter.GetIngredientGuessPresenter
-import org.example.presentaion.presenter.GetIraqiMealsPresenter
-import org.example.presentaion.presenter.GetItalianLargeGroupMealsPresenter
-import org.example.presentaion.presenter.GetMealWithHighCaloriesPresenter
-import org.example.presentaion.presenter.GetMealsByCountryPresenter
-import org.example.presentaion.presenter.GetQuickHealthyPicksPresenter
-import org.example.presentaion.presenter.GetSeafoodMealsPresenter
+import org.example.presentaion.presenter.EasyMealSuggestionPresenter
+import org.example.presentaion.presenter.IngredientGuessPresenter
+import org.example.presentaion.presenter.IraqiMealsPresenter
+import org.example.presentaion.presenter.ItalianLargeGroupMealsPresenter
+import org.example.presentaion.presenter.MealWithHighCaloriesPresenter
+import org.example.presentaion.presenter.MealsByCountryPresenter
+import org.example.presentaion.presenter.QuickHealthyPicksPresenter
+import org.example.presentaion.presenter.SeafoodMealsPresenter
 import org.example.presentaion.presenter.GuessGameConsolePresenter
 import org.example.presentaion.presenter.GymHelperConsolePresenter
 import org.example.presentaion.presenter.KetoDietMealHelperPresenter
@@ -78,7 +78,7 @@ class MealConsoleUI {
     }
 
     private fun listHealthyFastMeal() {
-        val getQuickHealthyPicksUI = getKoin().get<GetQuickHealthyPicksPresenter>()
+        val getQuickHealthyPicksUI = getKoin().get<QuickHealthyPicksPresenter>()
         getQuickHealthyPicksUI.invoke()
     }
 
@@ -88,12 +88,12 @@ class MealConsoleUI {
     }
 
     private fun identifyIraqiMeals() {
-        val iraqiMealsConsoleUi = getKoin().get<GetIraqiMealsPresenter>()
+        val iraqiMealsConsoleUi = getKoin().get<IraqiMealsPresenter>()
         iraqiMealsConsoleUi.getIraqiMeals()
     }
 
     private fun easyMealSuggestions() {
-        val easyMealSuggestionUi = getKoin().get<GetEasyMealSuggestionPresenter>()
+        val easyMealSuggestionUi = getKoin().get<EasyMealSuggestionPresenter>()
         easyMealSuggestionUi.startEasyMeals()
     }
 
@@ -134,13 +134,13 @@ class MealConsoleUI {
     }
 
     private fun exploreCountryMeal() {
-        val getMealsByCountryConsoleUi = getKoin().get<GetMealsByCountryPresenter>()
+        val getMealsByCountryConsoleUi = getKoin().get<MealsByCountryPresenter>()
         getMealsByCountryConsoleUi.getMealsByCountry()
     }
 
     private fun ingredientGame() {
-        val getIngredientGuessPresenter = getKoin().get<GetIngredientGuessPresenter>()
-        getIngredientGuessPresenter.startIngredientGuess()
+        val ingredientGuessPresenter = getKoin().get<IngredientGuessPresenter>()
+        ingredientGuessPresenter.startIngredientGuess()
     }
 
     private fun potatoLover() {
@@ -158,7 +158,7 @@ class MealConsoleUI {
     }
 
     private fun checkUserInputOnGetMealWithHighCalories(input: String) {
-        val mealsWithHighCaloriesConsoleUi = getKoin().get<GetMealWithHighCaloriesPresenter>()
+        val mealsWithHighCaloriesConsoleUi = getKoin().get<MealWithHighCaloriesPresenter>()
         if (input.equals("yes", false)) {
             mealsWithHighCaloriesConsoleUi.randomMealWithHighCalories?.let { randomMeal ->
                 println(randomMeal.formatDetails())
@@ -172,12 +172,12 @@ class MealConsoleUI {
     }
 
     private fun seafoodByProtein() {
-        val seafoodMealsUI = getKoin().get<GetSeafoodMealsPresenter>()
+        val seafoodMealsUI = getKoin().get<SeafoodMealsPresenter>()
         seafoodMealsUI.start()
     }
 
     private fun italianLargeGroup() {
-        val getItalianLargeGroupMealsUi = getKoin().get<GetItalianLargeGroupMealsPresenter>()
+        val getItalianLargeGroupMealsUi = getKoin().get<ItalianLargeGroupMealsPresenter>()
         getItalianLargeGroupMealsUi.startItalianLargeGroupMeal()
     }
 }
