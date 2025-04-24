@@ -8,6 +8,7 @@ import org.example.domain.repository.MealRepository
 import org.example.domain.usecase.GetQuickHealthyPicksUseCase
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import kotlin.jvm.Throws
 
 
 class GetQuickHealthyPicksUseCaseTest {
@@ -21,7 +22,7 @@ class GetQuickHealthyPicksUseCaseTest {
         useCase = GetQuickHealthyPicksUseCase(mealsRepository)
     }
 
-
+    @Throws(MealException.NoMealsFoundException::class)
     @Test
     fun `should return Failure Result of NoMealsFoundException when empty list found`() {
         //Given
@@ -34,6 +35,7 @@ class GetQuickHealthyPicksUseCaseTest {
         assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
     }
 
+    @Throws(MealException.NoMealsFoundException::class)
     @Test
     fun `should return Failure Result of NoMealsFoundException when meals have preparation time more than 15 minutes`() {
         // Given
@@ -46,6 +48,7 @@ class GetQuickHealthyPicksUseCaseTest {
         assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
     }
 
+    @Throws(MealException.NoMealsFoundException::class)
     @Test
     fun `should return Failure Result of NoMealsFoundException when meals have null names`() {
         // Given
@@ -58,7 +61,7 @@ class GetQuickHealthyPicksUseCaseTest {
         assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
     }
 
-
+    @Throws(MealException.NoMealsFoundException::class)
     @Test
     fun `should return Failure Result of NoMealsFoundException when meals have null TotalFat`() {
         // Given
@@ -71,7 +74,7 @@ class GetQuickHealthyPicksUseCaseTest {
         assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
     }
 
-
+    @Throws(MealException.NoMealsFoundException::class)
     @Test
     fun `should return Failure Result of NoMealsFoundException when meals have null SaturatedFat`() {
         // Given
@@ -84,7 +87,7 @@ class GetQuickHealthyPicksUseCaseTest {
         assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
     }
 
-
+    @Throws(MealException.NoMealsFoundException::class)
     @Test
     fun `should return Failure Result of NoMealsFoundException when meals have null Carbohydrates`() {
         // Given
