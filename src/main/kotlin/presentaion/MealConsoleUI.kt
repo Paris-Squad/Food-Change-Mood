@@ -1,25 +1,9 @@
 package org.example.presentaion
 
-import org.example.presentaion.presenter.EggFreeSweetsPresenter
-import org.example.presentaion.presenter.EasyMealSuggestionPresenter
-import org.example.presentaion.presenter.IngredientGuessPresenter
-import org.example.presentaion.presenter.IraqiMealsPresenter
-import org.example.presentaion.presenter.ItalianLargeGroupMealsPresenter
-import org.example.presentaion.presenter.MealWithHighCaloriesPresenter
-import org.example.presentaion.presenter.MealsByCountryPresenter
-import org.example.presentaion.presenter.QuickHealthyPicksPresenter
-import org.example.presentaion.presenter.SeafoodMealsPresenter
-import org.example.presentaion.presenter.GuessGameConsolePresenter
-import org.example.presentaion.presenter.GymHelperConsolePresenter
-import org.example.presentaion.presenter.KetoDietMealHelperPresenter
-import org.example.presentaion.presenter.RandomPotatoMealsPresenter
-import org.example.presentaion.presenter.SearchByMealNamePresenter
-import org.example.presentaion.presenter.SearchMealsByAddDatePresenter
 import org.example.utils.formatDetails
-import org.koin.java.KoinJavaComponent.getKoin
 import kotlin.system.exitProcess
 
-class MealConsoleUI {
+class MealConsoleUI(private val useCaseContainer: UseCaseContainer) {
     fun start() {
         println("Welcome to the meal app where u can search and find ur meals recipe.")
         while (true) {
@@ -78,27 +62,23 @@ class MealConsoleUI {
     }
 
     private fun listHealthyFastMeal() {
-        val getQuickHealthyPicksUI = getKoin().get<QuickHealthyPicksPresenter>()
-        getQuickHealthyPicksUI.presentQuickHealthyMeals()
+        useCaseContainer.quickHealthyPicksPresenter.presentQuickHealthyMeals()
     }
 
     private fun searchMealByName() {
-        val searchMealByNameUi = getKoin().get<SearchByMealNamePresenter>()
-        searchMealByNameUi.startSearchByName()
+        useCaseContainer.searchByMealNamePresenter.startSearchByName()
     }
 
     private fun identifyIraqiMeals() {
-        val iraqiMealsConsoleUi = getKoin().get<IraqiMealsPresenter>()
-        iraqiMealsConsoleUi.getIraqiMeals()
+        useCaseContainer.iraqiMealsPresenter.getIraqiMeals()
     }
 
     private fun easyMealSuggestions() {
-        val easyMealSuggestionUi = getKoin().get<EasyMealSuggestionPresenter>()
-        easyMealSuggestionUi.getEasyMeals()
+        useCaseContainer.easyMealSuggestionPresenter.getEasyMeals()
     }
 
     private fun guessGame() {
-        val guessGameUi = getKoin().get<GuessGameConsolePresenter>()
+        val guessGameUi = useCaseContainer.guessGameConsolePresenter
         guessGameUi.startGame()
 
         while (guessGameUi.isGameActive()) {
@@ -108,48 +88,38 @@ class MealConsoleUI {
     }
 
     private fun sweetsNoEggs() {
-        val eggFreeSweetsUi = getKoin().get<EggFreeSweetsPresenter>()
-        eggFreeSweetsUi.startSuggestions()
+        useCaseContainer.eggFreeSweetsPresenter.startSuggestions()
     }
 
-
     private fun ketoDietHelper() {
-        val ketoDietMealHelper = getKoin().get<KetoDietMealHelperPresenter>()
-        ketoDietMealHelper.startKetoHelper()
+        useCaseContainer.ketoDietMealHelperPresenter.startKetoHelper()
     }
 
     private fun searchByAddDate() {
-        val searchMealsByAddDateConsolePresenter = getKoin().get<SearchMealsByAddDatePresenter>()
-        searchMealsByAddDateConsolePresenter.searchMealsByCreationDate()
+        useCaseContainer.searchMealsByAddDatePresenter.searchMealsByCreationDate()
     }
 
     private fun gymHelper() {
-        val gymHelperUI = getKoin().get<GymHelperConsolePresenter>()
-
         print("Enter the calories amount u want:  ")
         val calories = readln().toFloatOrNull() ?: return
         print("Enter the protein amount u want:  ")
         val protein = readln().toFloatOrNull() ?: return
-        gymHelperUI.presentGymMeals(calories , protein)
+        useCaseContainer.gymHelperConsolePresenter.presentGymMeals(calories, protein)
     }
 
     private fun exploreCountryMeal() {
-        val getMealsByCountryConsoleUi = getKoin().get<MealsByCountryPresenter>()
-        getMealsByCountryConsoleUi.getMealsByCountry()
+        useCaseContainer.mealsByCountryPresenter.getMealsByCountry()
     }
 
     private fun ingredientGame() {
-        val ingredientGuessPresenter = getKoin().get<IngredientGuessPresenter>()
-        ingredientGuessPresenter.startIngredientGuess()
+        useCaseContainer.ingredientGuessPresenter.startIngredientGuess()
     }
 
     private fun potatoLover() {
-        val randomPotatoMealsUi = getKoin().get<RandomPotatoMealsPresenter>()
-        randomPotatoMealsUi.startRandomPotatoMeals()
+        useCaseContainer.randomPotatoMealsPresenter.startRandomPotatoMeals()
     }
 
     private fun highCalorieMeal() {
-
         while (true) {
             println("Are you like this meal?\npress yes if you liked it and No if you do not liked it")
             val userInput = readlnOrNull()
@@ -158,7 +128,7 @@ class MealConsoleUI {
     }
 
     private fun checkUserInputOnGetMealWithHighCalories(input: String) {
-        val mealsWithHighCaloriesConsoleUi = getKoin().get<MealWithHighCaloriesPresenter>()
+        val mealsWithHighCaloriesConsoleUi = useCaseContainer.mealWithHighCaloriesPresenter
         if (input.equals("yes", false)) {
             mealsWithHighCaloriesConsoleUi.randomMealWithHighCalories?.let { randomMeal ->
                 println(randomMeal.formatDetails())
@@ -172,12 +142,10 @@ class MealConsoleUI {
     }
 
     private fun seafoodByProtein() {
-        val seafoodMealsUI = getKoin().get<SeafoodMealsPresenter>()
-        seafoodMealsUI.presentSeafoodMeals()
+        useCaseContainer.seafoodMealsPresenter.presentSeafoodMeals()
     }
 
     private fun italianLargeGroup() {
-        val getItalianLargeGroupMealsUi = getKoin().get<ItalianLargeGroupMealsPresenter>()
-        getItalianLargeGroupMealsUi.startItalianLargeGroupMeal()
+        useCaseContainer.italianLargeGroupMealsPresenter.startItalianLargeGroupMeal()
     }
 }

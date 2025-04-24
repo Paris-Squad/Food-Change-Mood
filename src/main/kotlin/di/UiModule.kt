@@ -1,5 +1,6 @@
 package org.example.di
 
+import org.example.presentaion.MealConsoleUI
 import org.example.presentaion.presenter.EggFreeSweetsPresenter
 import org.example.presentaion.presenter.EasyMealSuggestionPresenter
 import org.example.presentaion.presenter.IngredientGuessPresenter
@@ -15,6 +16,7 @@ import org.example.presentaion.presenter.KetoDietMealHelperPresenter
 import org.example.presentaion.presenter.RandomPotatoMealsPresenter
 import org.example.presentaion.presenter.SearchByMealNamePresenter
 import org.example.presentaion.presenter.SearchMealsByAddDatePresenter
+import org.example.presentaion.UseCaseContainer
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
@@ -34,5 +36,6 @@ val uiModule = module {
     singleOf(::MealWithHighCaloriesPresenter)
     singleOf(::KetoDietMealHelperPresenter)
     singleOf(::SearchByMealNamePresenter)
+    singleOf(::UseCaseContainer)
+    singleOf(::MealConsoleUI)
 }
-
