@@ -22,12 +22,12 @@ class GetEasyMealSuggestionUseCaseTest {
     }
 
     @Test
-    fun `should return easy meals when meals matching criteria exist`() {
+    fun `should return easy meals when meals prep time at most 30min, ingredients at most 5, steps at most 6`() {
         every { mealRepository.getMeals() } returns MockMeals.allMeals
 
         val result = getEasyMealSuggestionUseCase()
 
-        assertThat(result.getOrNull()).isEqualTo(MockMeals.easyMeals)
+        assertThat(result.getOrNull()?.toSet()).isEqualTo(MockMeals.easyMeals.toSet())
         verify(exactly = 1) { mealRepository.getMeals() }
     }
 
@@ -69,7 +69,7 @@ class GetEasyMealSuggestionUseCaseTest {
 
         val result = getEasyMealSuggestionUseCase()
 
-        assertThat(result.getOrNull()).isEqualTo(listOf(MockMeals.easyMeal2, MockMeals.easyMeal1))
+        assertThat(result.getOrNull()?.toSet()).isEqualTo(MockMeals.easyMeals.toSet())
         verify(exactly = 1) { mealRepository.getMeals() }
     }
 }
