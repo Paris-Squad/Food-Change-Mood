@@ -1,5 +1,21 @@
 package org.example.presentaion
 
+import jdk.jshell.execution.Util
+import org.example.presentaion.presenter.EggFreeSweetsPresenter
+import org.example.presentaion.presenter.GetEasyMealSuggestionPresenter
+import org.example.presentaion.presenter.GetIngredientGuessPresenter
+import org.example.presentaion.presenter.GetIraqiMealsPresenter
+import org.example.presentaion.presenter.GetItalianLargeGroupMealsPresenter
+import org.example.presentaion.presenter.GetMealWithHighCaloriesPresenter
+import org.example.presentaion.presenter.GetMealsByCountryPresenter
+import org.example.presentaion.presenter.GetQuickHealthyPicksPresenter
+import org.example.presentaion.presenter.GetSeafoodMealsPresenter
+import org.example.presentaion.presenter.GuessGameConsolePresenter
+import org.example.presentaion.presenter.GymHelperConsolePresenter
+import org.example.presentaion.presenter.KetoDietMealHelperPresenter
+import org.example.presentaion.presenter.RandomPotatoMealsPresenter
+import org.example.presentaion.presenter.SearchByMealNamePresenter
+import org.example.presentaion.presenter.SearchMealsByAddDatePresenter
 import org.example.utils.formatDetails
 import kotlin.system.exitProcess
 
@@ -104,6 +120,7 @@ class MealConsoleUI(private val useCaseContainer: UseCaseContainer) {
         val calories = readln().toFloatOrNull() ?: return
         print("Enter the protein amount u want:  ")
         val protein = readln().toFloatOrNull() ?: return
+        gymHelperUI.start(calories, protein)
         useCaseContainer.gymHelperConsolePresenter.presentGymMeals(calories, protein)
     }
 
@@ -121,12 +138,17 @@ class MealConsoleUI(private val useCaseContainer: UseCaseContainer) {
 
     private fun highCalorieMeal() {
         while (true) {
+            val mealsWithHighCaloriesConsoleUi = getKoin().get<GetMealWithHighCaloriesPresenter>()
             println("Are you like this meal?\npress yes if you liked it and No if you do not liked it")
             val userInput = readlnOrNull()
-            userInput?.let { checkUserInputOnGetMealWithHighCalories(it) }
+            userInput?.let { checkUserInputOnGetMealWithHighCalories(it, mealsWithHighCaloriesConsoleUi) }
         }
     }
 
+    private fun checkUserInputOnGetMealWithHighCalories(
+        input: String,
+        mealsWithHighCaloriesConsoleUi: GetMealWithHighCaloriesPresenter
+    ) {
     private fun checkUserInputOnGetMealWithHighCalories(input: String) {
         val mealsWithHighCaloriesConsoleUi = useCaseContainer.mealWithHighCaloriesPresenter
         if (input.equals("yes", false)) {
@@ -138,6 +160,7 @@ class MealConsoleUI(private val useCaseContainer: UseCaseContainer) {
             mealsWithHighCaloriesConsoleUi.getMealsWithHighCalories()
         } else {
             println("Invalid input format")
+            mealsWithHighCaloriesConsoleUi.getMealsWithHighCalories()
         }
     }
 
