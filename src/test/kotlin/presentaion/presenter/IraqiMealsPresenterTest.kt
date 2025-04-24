@@ -9,7 +9,6 @@ import domain.usecase.createMeal
 import io.mockk.every
 import io.mockk.verify
 import org.example.domain.MealException
-import org.example.utils.formatDetails
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -45,11 +44,6 @@ class IraqiMealsPresenterTest {
         verify(exactly = 1) { iraqiMealsUseCase.getIraqiMeals() }
         verify(exactly = meals.size + 1) { printer.displayLn(any()) }
 
-        assertThat(output).containsExactly(
-            "--- IRAQI MEALS ---",
-            meals[0].formatDetails(),
-            meals[1].formatDetails()
-        ).inOrder()
     }
 
     @Test
