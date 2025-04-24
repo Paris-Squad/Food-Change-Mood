@@ -201,4 +201,37 @@ object MockMeals {
             numberOfIngredients = 3
         )
     }
+
+    val eggFreeSweet1 = createMeal(
+        mealName = "Vegan Chocolate Cake",
+        tags = listOf("sweet", "dessert", "vegan"),
+        ingredients = listOf("flour", "sugar", "plant milk", "chocolate")
+    )
+
+    val eggFreeSweet2 = createMeal(
+        mealName = "Fruit Salad",
+        tags = listOf("sweet", "dessert", "healthy"),
+        ingredients = listOf("apple", "banana", "orange", "berries")
+    )
+
+    val sweetMealWithEggs = createMeal(
+        mealName = "Chocolate Cake with Eggs",
+        tags = listOf("sweet", "dessert"),
+        ingredients = listOf("flour", "sugar", "eggs", "chocolate")
+    )
+
+    val nonDessertMeal = createMeal(
+        mealName = "Savory Dish",
+        tags = listOf("savory", "dinner"),
+        ingredients = listOf("potato", "onion", "cheese")
+    )
+
+    val eggFreeSweetsMixedTestMeals = listOf(eggFreeSweet1, eggFreeSweet2, sweetMealWithEggs, nonDessertMeal)
+
+    val eggFreeSweetsMeals = listOf(eggFreeSweet1, eggFreeSweet2)
+
+    val noEggFreeSweetsMeals = listOf(
+        sweetMealWithEggs,
+        nonDessertMeal
+    )
 }
