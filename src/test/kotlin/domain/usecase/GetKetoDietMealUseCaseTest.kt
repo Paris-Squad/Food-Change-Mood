@@ -1,4 +1,4 @@
-
+package domain.usecase
 import io.mockk.every
 import io.mockk.mockk
 import org.example.domain.repository.MealRepository
@@ -96,7 +96,9 @@ class GetKetoDietMealUseCaseTest{
         val result  = getKetoDietMealUseCase.getSuggestedKetoMeal(emptySet())
 
         // Then
-        assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
+        assertThat(result.exceptionOrNull()).isInstanceOf(
+            MealException.NoMealsFoundException::class.java
+        )
     }
 
     companion object{
