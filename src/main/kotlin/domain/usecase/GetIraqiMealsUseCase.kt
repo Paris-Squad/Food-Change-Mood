@@ -19,9 +19,15 @@ class GetIraqiMealsUseCase(private val mealRepository: MealRepository) {
     }
 
     private fun isIraqiMeal(meal: Meal): Boolean {
-        val taggedWithIraqi = meal.tags.any { it.equals(IRAQI, ignoreCase = true) }
-        val descriptionContainsIraq = meal.description?.contains(IRAQ, ignoreCase = true) == true
-        return taggedWithIraqi || descriptionContainsIraq
+        return hasIraqiTag(meal) || hasIraqInDescription(meal)
+    }
+
+    private fun hasIraqiTag(meal: Meal): Boolean {
+        return meal.tags.any { it.equals(IRAQI, ignoreCase = true) }
+    }
+
+    private fun hasIraqInDescription(meal: Meal): Boolean {
+        return meal.description?.contains(IRAQ, ignoreCase = true) == true
     }
 
     companion object {
