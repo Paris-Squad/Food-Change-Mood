@@ -270,4 +270,50 @@ object MockMeals {
             nutrition = createNutrition(protein = 10f)
         )
     )
+
+    val validQuickMeals = listOf(
+        createMeal(
+            mealName = "Healthy Chicken Salad",
+            minutesForPreparation = 15,
+            nutrition = createNutrition(totalFat = 4f, saturatedFat = 3f, carbohydrates = 10f)
+        ),
+        createMeal(
+            mealName = "Invalid createMeal",
+            minutesForPreparation = 12,
+            nutrition = createNutrition(totalFat = 4f, saturatedFat = 3f, carbohydrates = 20f)
+        ),
+        createMeal(
+            "Too Long To Prep",
+            minutesForPreparation = 30,
+            nutrition = createNutrition(3f, 2f, 12f)
+        )
+    )
+
+    val invalidEasyMealsByNullName = validQuickMeals.map {
+        it.copy(mealName = null)
+    }
+
+    val invalidEasyMealsByNullTotalFat = validQuickMeals.map {
+        it.copy(
+            nutrition = it.nutrition.copy(totalFat = null)
+        )
+    }
+
+    val invalidEasyMealsByNullSaturatedFat = validQuickMeals.map {
+        it.copy(
+            nutrition = it.nutrition.copy(saturatedFat = null)
+        )
+    }
+
+    val invalidEasyMealsByNullCarbohydrates = validQuickMeals.map {
+        it.copy(
+            nutrition = it.nutrition.copy(carbohydrates = null)
+        )
+    }
+
+    val invalidQuickMealsWithHighPrepTime = validQuickMeals.map {
+        it.copy(
+            minutesForPreparation = 50
+        )
+    }
 }
