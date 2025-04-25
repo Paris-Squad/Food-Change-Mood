@@ -26,7 +26,6 @@ class SearchByMealNameUseCaseTest {
     @Test
     fun `should return meals that exactly match search term`() {
         // Given
-        val validMeal = createMeal(mealName = validMealName)
         every { mealRepository.getMeals() } returns listOf(validMeal)
 
         // When
@@ -39,21 +38,19 @@ class SearchByMealNameUseCaseTest {
     @Test
     fun `should return meals with similar names using Levenshtein`() {
         // Given
-        val meal1 = createMeal(mealName = validMealName)
-        every { mealRepository.getMeals() } returns listOf(meal1)
+        every { mealRepository.getMeals() } returns listOf(validMeal)
 
         // When
         val result = mealByNameUseCase.invoke("Kebob")
 
         // Then
-        assertThat(result.getOrNull()).containsExactly(meal1)
+        assertThat(result.getOrNull()).containsExactly(validMeal)
     }
 
     @Test
     fun `should throw exception when no meals match`() {
         // Given
-        val meal1 = createMeal(mealName = validMealName)
-        every { mealRepository.getMeals() } returns listOf(meal1)
+        every { mealRepository.getMeals() } returns listOf(validMeal)
 
         // When
         val result = mealByNameUseCase.invoke("Pizza")
@@ -86,6 +83,7 @@ class SearchByMealNameUseCaseTest {
 
     companion object{
         val validMealName = "Kebab"
+        val validMeal = createMeal(mealName = validMealName)
     }
 
 }
