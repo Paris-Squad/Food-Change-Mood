@@ -270,4 +270,83 @@ object MockMeals {
             nutrition = createNutrition(protein = 10f)
         )
     )
+
+    val validQuickMeals = listOf(
+        createMeal(
+            mealName = "Healthy Chicken Salad",
+            minutesForPreparation = 15,
+            nutrition = createNutrition(totalFat = 4f, saturatedFat = 3f, carbohydrates = 10f)
+        ),
+        createMeal(
+            mealName = "Invalid createMeal",
+            minutesForPreparation = 12,
+            nutrition = createNutrition(totalFat = 4f, saturatedFat = 3f, carbohydrates = 20f)
+        ),
+        createMeal(
+            "Too Long To Prep",
+            minutesForPreparation = 30,
+            nutrition = createNutrition(3f, 2f, 12f)
+        )
+    )
+
+    val invalidEasyMealsByNullName = validQuickMeals.map {
+        it.copy(mealName = null)
+    }
+
+    val invalidEasyMealsByNullTotalFat = validQuickMeals.map {
+        it.copy(
+            nutrition = it.nutrition.copy(totalFat = null)
+        )
+    }
+
+    val invalidEasyMealsByNullSaturatedFat = validQuickMeals.map {
+        it.copy(
+            nutrition = it.nutrition.copy(saturatedFat = null)
+        )
+    }
+
+    val invalidEasyMealsByNullCarbohydrates = validQuickMeals.map {
+        it.copy(
+            nutrition = it.nutrition.copy(carbohydrates = null)
+        )
+    }
+
+    val invalidQuickMealsWithHighPrepTime = validQuickMeals.map {
+        it.copy(
+            minutesForPreparation = 50
+        )
+    }
+
+    val eggFreeSweet1 = createMeal(
+        mealName = "Vegan Chocolate Cake",
+        tags = listOf("sweet", "dessert", "vegan"),
+        ingredients = listOf("flour", "sugar", "plant milk", "chocolate")
+    )
+
+    val eggFreeSweet2 = createMeal(
+        mealName = "Fruit Salad",
+        tags = listOf("sweet", "dessert", "healthy"),
+        ingredients = listOf("apple", "banana", "orange", "berries")
+    )
+
+    val sweetMealWithEggs = createMeal(
+        mealName = "Chocolate Cake with Eggs",
+        tags = listOf("sweet", "dessert"),
+        ingredients = listOf("flour", "sugar", "eggs", "chocolate")
+    )
+
+    val nonDessertMeal = createMeal(
+        mealName = "Savory Dish",
+        tags = listOf("savory", "dinner"),
+        ingredients = listOf("potato", "onion", "cheese")
+    )
+
+    val eggFreeSweetsMixedTestMeals = listOf(eggFreeSweet1, eggFreeSweet2, sweetMealWithEggs, nonDessertMeal)
+
+    val eggFreeSweetsMeals = listOf(eggFreeSweet1, eggFreeSweet2)
+
+    val noEggFreeSweetsMeals = listOf(
+        sweetMealWithEggs,
+        nonDessertMeal
+    )
 }
