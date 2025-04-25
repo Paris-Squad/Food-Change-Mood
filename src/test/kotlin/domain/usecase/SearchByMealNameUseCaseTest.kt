@@ -67,9 +67,10 @@ class SearchByMealNameUseCaseTest {
         // Given
         val meals = listOf(
             createMeal(mealName = null),
+            createMeal(mealName = validMealName),
             createMeal(mealName = ""),
             createMeal(mealName = " "),
-            createMeal(mealName = validMealName)
+            createMeal(mealName = "Keba")
         )
         every { mealRepository.getMeals() } returns meals
 
@@ -77,12 +78,12 @@ class SearchByMealNameUseCaseTest {
         val result = mealByNameUseCase.invoke(validMealName)
 
         // Then
-        assertThat(result.getOrNull()?.map { it.mealName }).containsExactly(validMealName)
+        assertThat(result.getOrNull()?.map { it.mealName }).containsExactlyElementsIn(listOf("Kebab", "Keba"))
     }
 
 
     companion object{
-        val validMealName = "Kebab"
+        const val validMealName = "Kebab"
         val validMeal = createMeal(mealName = validMealName)
     }
 
