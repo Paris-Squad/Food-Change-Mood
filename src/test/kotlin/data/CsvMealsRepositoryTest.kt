@@ -2,7 +2,7 @@ package data
 
 import com.google.common.truth.Truth.assertThat
 import domain.model.Meal
-import domain.usecase.MockMeals
+import utils.MockMeals
 import io.mockk.every
 import io.mockk.mockk
 import org.example.data.CsvFileReader

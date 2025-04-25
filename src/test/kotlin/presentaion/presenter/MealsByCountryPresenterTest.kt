@@ -1,7 +1,7 @@
 package presentaion.presenter
 
 import com.google.common.truth.Truth.assertThat
-import domain.usecase.createMeal
+import utils.createMeal
 import io.mockk.mockk
 import org.example.domain.usecase.GetMealsByCountryUseCase
 import org.example.presentaion.presenter.MealsByCountryPresenter
