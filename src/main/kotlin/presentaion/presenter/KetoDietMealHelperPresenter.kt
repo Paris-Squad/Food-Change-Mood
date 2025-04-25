@@ -6,7 +6,9 @@ import org.example.presentaion.presenter.io.Printer
 
 class KetoDietMealHelperPresenter(private val ketoDietMeal: GetKetoDietMealUseCase, printer: Printer) :
     BasePresenter(printer) {
-    private val repeatedMeals = mutableSetOf<Meal>()
+    private val _repeatedMeals = mutableSetOf<Meal>()
+    val repeatedMeals : Set<Meal>
+        get() = _repeatedMeals
 
     fun startKetoHelper() {
         printer.displayLn("click 1 if you want a suggested keto diet meal.")
@@ -14,7 +16,7 @@ class KetoDietMealHelperPresenter(private val ketoDietMeal: GetKetoDietMealUseCa
         val pickedChoice = readln()
         when (pickedChoice.trim()) {
             SUGGEST_KETO_MEAL_OPTION -> {
-                ketoDietMeal.getSuggestedKetoMeal(repeatedMeals).fold(
+                ketoDietMeal.getSuggestedKetoMeal(_repeatedMeals).fold(
                     onSuccess = ::handleSuccess, onFailure = ::handleException
                 )
             }
@@ -25,7 +27,7 @@ class KetoDietMealHelperPresenter(private val ketoDietMeal: GetKetoDietMealUseCa
     }
 
     private fun handleSuccess(meal: Meal) {
-        repeatedMeals.add(meal)
+        _repeatedMeals.add(meal)
         printer.displayLn("\nSuggested Keto Meal:")
         printer.displayLn("Name: ${meal.mealName}")
         printer.displayLn("Description: ${meal.description ?: "No description available"}")
