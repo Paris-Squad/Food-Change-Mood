@@ -25,7 +25,7 @@ class SearchMealsByAddDateUseCaseTest{
     }
 
     @Test
-    fun `should return a list of meals when I pass a date to invoke`(){
+    fun `should return meals that match the inserted date`(){
         // Given
         every { mealRepository.getMeals() } returns listOf(
             createTestMealsForSearchingByAddDate(LocalDate(2023, 1, 1),"1"),
@@ -123,7 +123,7 @@ class SearchMealsByAddDateUseCaseTest{
     }
 
     @Test
-    fun `should return a NoMealsFoundException if the provided Id doesn't match any meal of the listed meals`(){
+    fun `should throw a NoMealsFoundException if the provided Id doesn't match any meal of the listed meals`(){
         // Given
         val meals = listOf(
             createTestMealsForSearchingByAddDate(LocalDate(2023, 1, 1),"1"),
