@@ -49,7 +49,7 @@ class MealsByCountryPresenterTest {
     }
 
     @Test
-    fun `should handle NoMealsFoundException and print message when use case returns failure`() {
+    fun `should handle NoMealsFoundException and print message when meals by country use case returns failure`() {
         // Given
         every { reader.readString() } returns "Atlantis"
         every { reader.readInt() } returns 5
