@@ -51,7 +51,7 @@ class GuessPreparationTimeGamePresenterTest {
     }
 
     @Test
-    fun `tartGame should display displayCorrectGuess and fetch random meal when fetching random meal succeeds`() {
+    fun `startGame should display displayCorrectGuess and fetch random meal when fetching random meal succeeds`() {
         every { randomMealUseCase.invoke() } returns Result.success(testMeal)
         presenter.startGame()
         val guessTime = 15
