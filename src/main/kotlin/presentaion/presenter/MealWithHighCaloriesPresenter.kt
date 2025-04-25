@@ -5,11 +5,16 @@ import org.example.domain.usecase.GetMealWithHighCaloriesUseCase
 import org.example.presentaion.presenter.io.Printer
 
 class MealWithHighCaloriesPresenter(
-    private val mealsWithHighCalories: GetMealWithHighCaloriesUseCase, printer: Printer
+    private val mealsWithHighCalories: GetMealWithHighCaloriesUseCase,
+    printer: Printer,
+    private val access: Boolean = true
 ) : BasePresenter(printer) {
 
+
     init {
-        getMealsWithHighCalories()
+        if (access) {
+            getMealsWithHighCalories()
+        }
     }
 
     var randomMealWithHighCalories: Meal? = null
