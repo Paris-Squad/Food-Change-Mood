@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import com.google.common.truth.Truth.assertThat
 import org.example.domain.MealException
+import kotlin.test.expect
 
 class GymHelperUseCaseTest{
 
@@ -82,7 +83,7 @@ class GymHelperUseCaseTest{
     }
 
     @Test
-    fun `should throw an exception when the filteredMeals list is empty`(){
+    fun `should throw a NoMealsFoundException when the filteredMeals list is empty`(){
         // Given
         every { mealRepository.getMeals() } returns listOf(
             createTestMealsForGymHelper(500f,15f),
