@@ -31,7 +31,6 @@ class MealsByCountryPresenter(
 
     private fun onGetMealsByCountrySuccess(meals: List<Meal>) {
         meals.forEachIndexed { index, meal ->
-            printer.displayLn("${index + 1}.")
             printer.displayLn(meal.formatDetails())
         }
     }
