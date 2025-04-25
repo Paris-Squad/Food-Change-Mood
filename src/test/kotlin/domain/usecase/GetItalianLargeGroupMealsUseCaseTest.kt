@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test
 class GetItalianLargeGroupMealsUseCaseTest {
 
     private lateinit var mealsRepository: MealRepository
-    private lateinit var useCase: GetItalianLargeGroupMealsUseCase
+    private lateinit var italianMealsUseCase: GetItalianLargeGroupMealsUseCase
 
     @BeforeEach
     fun setup() {
         mealsRepository = mockk(relaxed = true)
-        useCase = GetItalianLargeGroupMealsUseCase(mealsRepository)
+        italianMealsUseCase = GetItalianLargeGroupMealsUseCase(mealsRepository)
     }
 
     @Throws(MealException.NoMealsFoundException::class)
@@ -27,7 +27,7 @@ class GetItalianLargeGroupMealsUseCaseTest {
         every { mealsRepository.getMeals() } returns emptyList()
 
         //When
-        val result = useCase.invoke()
+        val result = italianMealsUseCase.invoke()
 
         //Then
         assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
@@ -40,7 +40,7 @@ class GetItalianLargeGroupMealsUseCaseTest {
         every { mealsRepository.getMeals() } returns MockMeals.invalidItalianMealsByUnTaggedItalianOrItaly
 
         //When
-        val result = useCase.invoke()
+        val result = italianMealsUseCase.invoke()
 
         //Then
         assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
@@ -53,7 +53,7 @@ class GetItalianLargeGroupMealsUseCaseTest {
         every { mealsRepository.getMeals() } returns MockMeals.invalidItalianMealsByUnTaggedForLargeGroup
 
         //When
-        val result = useCase.invoke()
+        val result = italianMealsUseCase.invoke()
 
         //Then
         assertThat(result.exceptionOrNull()).isInstanceOf(MealException.NoMealsFoundException::class.java)
@@ -62,13 +62,13 @@ class GetItalianLargeGroupMealsUseCaseTest {
 
 
     @Test
-    fun `should return Success with all italian meals tha tagged with for-large-groups and (italian or italy)`() {
+    fun `should return Success with all italian meals that tagged with for-large-groups and (italian or italy)`() {
         //Given
         val validItalianMeals = MockMeals.validItalianMealsTaggedByForLargeGroupAndItalianOrItaly
         every { mealsRepository.getMeals() } returns validItalianMeals
 
         //When
-        val result = useCase.invoke()
+        val result = italianMealsUseCase.invoke()
 
         println("result---> $result")
         //Then
