@@ -26,20 +26,20 @@ class SearchByMealNameUseCaseTest {
     @Test
     fun `should return meals that exactly match search term`() {
         // Given
-        val meal1 = createMeal(mealName = "Kebab")
-        every { mealRepository.getMeals() } returns listOf(meal1)
+        val validMeal = createMeal(mealName = validMealName)
+        every { mealRepository.getMeals() } returns listOf(validMeal)
 
         // When
-        val result = mealByNameUseCase.invoke("Kebab")
+        val result = mealByNameUseCase.invoke(validMealName)
 
         // Then
-        assertThat(result.getOrNull()).containsExactly(meal1)
+        assertThat(result.getOrNull()).containsExactly(validMeal)
     }
 
     @Test
     fun `should return meals with similar names using Levenshtein`() {
         // Given
-        val meal1 = createMeal(mealName = "Kebab")
+        val meal1 = createMeal(mealName = validMealName)
         every { mealRepository.getMeals() } returns listOf(meal1)
 
         // When
@@ -52,7 +52,7 @@ class SearchByMealNameUseCaseTest {
     @Test
     fun `should throw exception when no meals match`() {
         // Given
-        val meal1 = createMeal(mealName = "Kebab")
+        val meal1 = createMeal(mealName = validMealName)
         every { mealRepository.getMeals() } returns listOf(meal1)
 
         // When
@@ -66,20 +66,26 @@ class SearchByMealNameUseCaseTest {
     }
 
     @Test
-    fun `should ignore meals with null or empty names`() {
+    fun `should return meals with same name and ignore meals with null or empty names`() {
         // Given
         val meals = listOf(
             createMeal(mealName = null),
             createMeal(mealName = ""),
-            createMeal(mealName = "Kebab")
+            createMeal(mealName = " "),
+            createMeal(mealName = validMealName)
         )
         every { mealRepository.getMeals() } returns meals
 
         // When
-        val result = mealByNameUseCase.invoke("Kebab")
+        val result = mealByNameUseCase.invoke(validMealName)
 
         // Then
-        assertThat(result.getOrNull()).containsExactly(meals[2])
+        assertThat(result.getOrNull()?.map { it.mealName }).containsExactly(validMealName)
+    }
+
+
+    companion object{
+        val validMealName = "Kebab"
     }
 
 }
