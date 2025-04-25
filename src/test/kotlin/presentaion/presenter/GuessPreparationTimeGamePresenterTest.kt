@@ -1,8 +1,10 @@
-package presentaion.presenter.guessPreparationTime
+package presentaion.presenter
 
-import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth
 import domain.usecase.MockMeals
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import org.example.domain.usecase.GetRandomMealUseCase
 import org.example.domain.usecase.GuessFoodPreparationTimeUseCase
 import org.example.presentaion.model.GuessPreparationTimeState
@@ -15,7 +17,7 @@ class GuessPreparationTimeGamePresenterTest {
     private lateinit var presenter: GuessPreparationTimeGamePresenter
     private val randomMealUseCase: GetRandomMealUseCase = mockk()
     private val guessFoodPreparationTimeUseCase: GuessFoodPreparationTimeUseCase = mockk()
-    private val view: GuessPreparationTimeGameView= mockk(relaxed = true)
+    private val view: GuessPreparationTimeGameView = mockk(relaxed = true)
     private val testMeal = MockMeals.easyMeal1
 
     @BeforeEach
@@ -33,7 +35,7 @@ class GuessPreparationTimeGamePresenterTest {
         verify(exactly = 1) { view.displayGameTitle() }
         verify(exactly = 1) { view.displayError(errorMessage) }
         verify(exactly = 0) { view.displayMealToGuess(any()) }
-        assertThat(presenter.isGameActive()).isFalse()
+        Truth.assertThat(presenter.isGameActive()).isFalse()
     }
 
     @Test
@@ -45,7 +47,7 @@ class GuessPreparationTimeGamePresenterTest {
         presenter.processGuess()
 
         verify(exactly = 1) { view.displayError("Please enter a valid number.") }
-        assertThat(presenter.isGameActive()).isTrue()
+        Truth.assertThat(presenter.isGameActive()).isTrue()
     }
 
     @Test
@@ -68,7 +70,7 @@ class GuessPreparationTimeGamePresenterTest {
         verify(exactly = 0) { view.displayTooLowGuess(any()) }
         verify(exactly = 0) { view.displayTooHighGuess(any()) }
         verify(exactly = 0) { view.displayGameOver(any()) }
-        assertThat(presenter.isGameActive()).isFalse()
+        Truth.assertThat(presenter.isGameActive()).isFalse()
     }
 
     @Test
@@ -85,7 +87,7 @@ class GuessPreparationTimeGamePresenterTest {
 
         verify(exactly = 1) { view.displayTooLowGuess(2) }
         verify(exactly = 1) { view.promptForGuess(2) }
-        assertThat(presenter.isGameActive()).isTrue()
+        Truth.assertThat(presenter.isGameActive()).isTrue()
     }
 
     @Test
@@ -100,8 +102,8 @@ class GuessPreparationTimeGamePresenterTest {
 
         presenter.processGuess()
 
-        verify{ view.displayTooHighGuess(2) }
-        verify{ view.promptForGuess(2) }
-        assertThat(presenter.isGameActive()).isTrue()
+        verify { view.displayTooHighGuess(2) }
+        verify { view.promptForGuess(2) }
+        Truth.assertThat(presenter.isGameActive()).isTrue()
     }
 }
