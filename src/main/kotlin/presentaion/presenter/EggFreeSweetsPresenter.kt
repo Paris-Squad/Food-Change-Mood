@@ -16,7 +16,7 @@ class EggFreeSweetsPresenter(
         while (!userAccepted) {
             val mealResult = eggFreeSweets.getRandomEggFreeSweet()
             mealResult.fold(
-                onSuccess = { meal -> userAccepted = handleEggFreeSweetsSuccess(meal) },
+                onSuccess = { meal -> userAccepted = onGetEggFreeSweetsError(meal) },
                 onFailure = {
                     handleException(it)
                     userAccepted = true
@@ -26,7 +26,7 @@ class EggFreeSweetsPresenter(
 
     }
 
-    private fun handleEggFreeSweetsSuccess(meal: Meal): Boolean {
+    private fun onGetEggFreeSweetsError(meal: Meal): Boolean {
         printer.displayLn("We suggest: ${meal.mealName}")
         printer.displayLn("Description: ${meal.description}")
         when (askUserPreference()) {
