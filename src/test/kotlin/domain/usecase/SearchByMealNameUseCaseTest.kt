@@ -83,7 +83,7 @@ class SearchByMealNameUseCaseTest {
 
 
     companion object{
-        const val validMealName = "Kebab"
+        private const val validMealName = "Kebab"
         val validMeal = createMeal(mealName = validMealName)
     }
 
