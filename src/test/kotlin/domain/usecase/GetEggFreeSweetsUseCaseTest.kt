@@ -7,6 +7,7 @@ import org.example.domain.MealException
 import org.example.domain.repository.MealRepository
 import org.example.domain.usecase.GetEggFreeSweetsUseCase
 import org.junit.jupiter.api.BeforeEach
+import utils.MockMeals
 import kotlin.jvm.Throws
 import kotlin.test.Test
 

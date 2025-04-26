@@ -9,6 +9,7 @@ import org.example.domain.usecase.GetIraqiMealsUseCase
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import utils.createMeal
 import kotlin.test.assertEquals
 
 class GetIraqiMealsUseCaseTest {

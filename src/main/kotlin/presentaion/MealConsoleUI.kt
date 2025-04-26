@@ -1,9 +1,10 @@
 package org.example.presentaion
 
+import org.example.presentaion.presenter.UIContainer
 import org.example.utils.formatDetails
 import kotlin.system.exitProcess
 
-class MealConsoleUI(private val useCaseContainer: UseCaseContainer) {
+class MealConsoleUI(private val useCaseContainer: UseCaseContainer , private val uiContainer: UIContainer) {
     fun start() {
         println("Welcome to the meal app where u can search and find ur meals recipe.")
         while (true) {
@@ -78,13 +79,8 @@ class MealConsoleUI(private val useCaseContainer: UseCaseContainer) {
     }
 
     private fun guessGame() {
-        val guessGameUi = useCaseContainer.guessGameConsolePresenter
-        guessGameUi.startGame()
-
-        while (guessGameUi.isGameActive()) {
-            val input = readlnOrNull() ?: ""
-            guessGameUi.processGuess(input)
-        }
+        val guessGameUi = uiContainer.guessPreparationTimeGameUI
+        guessGameUi.launchGame()
     }
 
     private fun sweetsNoEggs() {

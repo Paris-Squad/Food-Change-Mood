@@ -1,7 +1,7 @@
 package presentaion.presenter
 
 import com.google.common.truth.Truth.assertThat
-import domain.usecase.MockMeals
+import utils.MockMeals
 import io.mockk.*
 import org.example.domain.MealException
 import org.example.domain.usecase.GetEggFreeSweetsUseCase

@@ -9,10 +9,10 @@ import org.example.presentaion.presenter.io.Printer
 import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 import com.google.common.truth.Truth.assertThat
-import domain.usecase.createMeal
-import domain.usecase.createNutrition
 import io.mockk.mockkStatic
 import org.example.domain.MealException
+import utils.createMeal
+import utils.createNutrition
 
 class KetoDietMealHelperPresenterTest{
 

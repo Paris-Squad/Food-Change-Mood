@@ -8,6 +8,7 @@ import org.example.domain.repository.MealRepository
 import org.example.domain.usecase.GetRandomPotatoMealsUseCase
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import utils.createMeal
 
 class GetRandomPotatoMealsUseCaseTest() {
     lateinit var getRandomPotatoMealsUseCase: GetRandomPotatoMealsUseCase

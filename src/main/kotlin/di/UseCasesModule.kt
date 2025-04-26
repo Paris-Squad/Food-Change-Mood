@@ -1,6 +1,8 @@
 package org.example.di
 
 import org.example.domain.usecase.*
+import org.example.presentaion.UseCaseContainer
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val useCasesModule = module {
@@ -19,4 +21,6 @@ val useCasesModule = module {
     single {GetMealWithHighCaloriesUseCase(get())}
     single { GetKetoDietMealUseCase(get()) }
     single {SearchByMealNameUseCase(get())}
+    single {GuessFoodPreparationTimeUseCase()}
+    singleOf(::UseCaseContainer)
 }
