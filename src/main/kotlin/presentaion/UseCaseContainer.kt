@@ -7,7 +7,6 @@ class UseCaseContainer(
     val searchByMealNamePresenter: SearchByMealNamePresenter,
     val iraqiMealsPresenter: IraqiMealsPresenter,
     val easyMealSuggestionPresenter: EasyMealSuggestionPresenter,
-    val guessGameConsolePresenter: GuessGameConsolePresenter,
     val eggFreeSweetsPresenter: EggFreeSweetsPresenter,
     val ketoDietMealHelperPresenter: KetoDietMealHelperPresenter,
     val searchMealsByAddDatePresenter: SearchMealsByAddDatePresenter,
@@ -17,5 +16,5 @@ class UseCaseContainer(
     val randomPotatoMealsPresenter: RandomPotatoMealsPresenter,
     val mealWithHighCaloriesPresenter: MealWithHighCaloriesPresenter,
     val seafoodMealsPresenter: SeafoodMealsPresenter,
-    val italianLargeGroupMealsPresenter: ItalianLargeGroupMealsPresenter
+    val italianLargeGroupMealsPresenter: ItalianLargeGroupMealsPresenter,
 )
