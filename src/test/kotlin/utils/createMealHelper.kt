@@ -1,4 +1,4 @@
-package domain.usecase
+package utils
 import domain.model.Meal
 import domain.model.Nutrition
 import kotlinx.datetime.LocalDate

@@ -5,11 +5,11 @@ import domain.model.Meal
 
 class CsvMealsRepository(
     private val fileReader: CsvFileReader,
-    private val foodCsvFileParser: MealCsvFileParser
+    private val mealCsvFileParser: MealCsvFileParser
 ) : MealRepository {
 
     private val _meals: List<Meal> by lazy {
-        foodCsvFileParser.parseMeals(
+        mealCsvFileParser.parseMeals(
             fileReader.readLinesFromFile()
         )
     }

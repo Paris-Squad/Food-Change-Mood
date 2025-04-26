@@ -6,7 +6,7 @@ import org.example.presentaion.presenter.SearchByMealNamePresenter
 import org.example.presentaion.presenter.io.InputReader
 import org.example.presentaion.presenter.io.Printer
 import org.junit.jupiter.api.BeforeEach
-import domain.usecase.createMeal
+import utils.createMeal
 import io.mockk.every
 import io.mockk.verify
 import org.junit.jupiter.api.Test

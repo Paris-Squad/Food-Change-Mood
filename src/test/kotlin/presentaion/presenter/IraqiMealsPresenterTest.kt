@@ -5,7 +5,7 @@ import org.example.domain.usecase.GetIraqiMealsUseCase
 import org.example.presentaion.presenter.IraqiMealsPresenter
 import org.example.presentaion.presenter.io.Printer
 import com.google.common.truth.Truth.assertThat
-import domain.usecase.createMeal
+import utils.createMeal
 import io.mockk.every
 import io.mockk.verify
 import org.example.domain.MealException

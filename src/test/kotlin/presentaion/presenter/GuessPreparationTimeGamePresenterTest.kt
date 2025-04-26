@@ -1,7 +1,6 @@
 package presentaion.presenter
 
 import com.google.common.truth.Truth
-import domain.usecase.MockMeals
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -12,6 +11,7 @@ import org.example.presentaion.presenter.guessPreparationTime.GuessPreparationTi
 import org.example.presentaion.presenter.guessPreparationTime.GuessPreparationTimeGameView
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import utils.MockMeals
 
 class GuessPreparationTimeGamePresenterTest {
     private lateinit var presenter: GuessPreparationTimeGamePresenter
