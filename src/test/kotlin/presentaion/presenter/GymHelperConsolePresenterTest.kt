@@ -15,6 +15,8 @@ import org.example.presentaion.presenter.GymHelperConsolePresenter
 import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 import org.junit.jupiter.api.BeforeEach
+import utils.createMeal
+import utils.createNutrition
 import kotlin.test.Test
 
 class GymHelperConsolePresenterTest{
@@ -33,9 +35,9 @@ class GymHelperConsolePresenterTest{
     fun `should return a list of meals when gymHelperUseCase returns success`(){
         // Given
         val gymMeals = listOf(
-            GymHelperUseCaseTest.createTestMealsForGymHelper(400f, 20f),
-            GymHelperUseCaseTest.createTestMealsForGymHelper(399f, 19f),
-            GymHelperUseCaseTest.createTestMealsForGymHelper(401f, 21f)
+            createMeal(nutrition = createNutrition(calories = 400f, totalFat = 20f)),
+            createMeal(nutrition =  createNutrition(calories = 399f, totalFat = 19f)),
+            createMeal(nutrition =  createNutrition(calories = 401f, totalFat = 21f))
         )
         every { gymHelperUseCase.invoke(any(),any()) } returns Result.success(gymMeals)
         every { printer.displayLn(any()) } returns Unit
@@ -69,30 +71,4 @@ class GymHelperConsolePresenterTest{
         verify(exactly = 1){ printer.displayLn(exception.message) }
 
     }
-
-
-    companion object{
-        fun createTestMealsForGymHelper(
-            calories : Float?,
-            protein : Float?
-        ) = Meal(
-            mealName = null,
-            mealId = "1",
-            minutesForPreparation = 30,
-            contributorId = "1",
-            nutrition = Nutrition(
-                calories,null,null,null,protein,null,null
-            ),
-            description = null,
-            numberOfIngredients = 3,
-            numberOfSteps = 3,
-            steps = listOf("do", "do", "do"),
-            ingredients = listOf("do", "do", "do"),
-            tags = listOf("do", "do", "do"),
-            submittedDate = LocalDate(2000,12,5)
-
-        )
-    }
-
-
 }
