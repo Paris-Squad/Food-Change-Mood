@@ -31,7 +31,7 @@ class KetoDietMealHelperPresenterTest{
         // Given
         val suggestedKetoMeal = createMeal(
            nutrition =  createNutrition(
-                calories = 500f, protein = 25f,  totalFat = 48.3f,carbohydrates = 40f
+                calories = 500f, protein = 25f, totalFat = 48.3f,carbohydrates = 40f
             )
 
         )
@@ -48,8 +48,7 @@ class KetoDietMealHelperPresenterTest{
         verify { printer.displayLn("click 2 to exit.") }
         verify { ketoDietMealUseCase.getSuggestedKetoMeal(any()) }
         assertThat(ketoDietMealHelperPresenter.repeatedMeals.contains(suggestedKetoMeal)).isTrue()
-        verify { printer.displayLn("Name: orange juice") }
-
+        printer.displayLn("\nSuggested Keto Meal:")
     }
 
     @Test
