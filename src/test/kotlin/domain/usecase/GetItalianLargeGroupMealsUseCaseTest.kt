@@ -8,6 +8,7 @@ import org.example.domain.repository.MealRepository
 import org.example.domain.usecase.GetItalianLargeGroupMealsUseCase
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import utils.MockMeals
 
 class GetItalianLargeGroupMealsUseCaseTest {
 
