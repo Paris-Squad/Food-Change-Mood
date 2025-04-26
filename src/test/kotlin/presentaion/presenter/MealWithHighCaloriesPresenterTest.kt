@@ -1,8 +1,6 @@
 package presentaion.presenter
 
 import com.google.common.truth.Truth.assertThat
-import domain.usecase.createMeal
-import domain.usecase.createNutrition
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -12,6 +10,8 @@ import org.example.presentaion.presenter.MealWithHighCaloriesPresenter
 import org.example.presentaion.presenter.io.Printer
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import utils.createMeal
+import utils.createNutrition
 import kotlin.test.assertEquals
 
 class MealWithHighCaloriesPresenterTest {

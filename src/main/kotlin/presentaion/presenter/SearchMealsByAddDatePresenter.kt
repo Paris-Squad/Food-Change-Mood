@@ -12,27 +12,25 @@ class SearchMealsByAddDatePresenter(
     private val searchMealsByAddDate: SearchMealsByAddDateUseCase, printer: Printer, private val reader: InputReader
 ) : BasePresenter(printer) {
     fun searchMealsByCreationDate() {
-        var shouldRepeat = true
         var date: LocalDate? = null
 
-        while (shouldRepeat) {
             var meals = emptyList<Meal>()
             if (date == null) {
                 printer.displayLn("Enter a date (yyyy-MM-dd):")
                 val input = readln()
                 val dateResult = parseDate(input)
                 if (dateResult.isFailure) {
-                    printer.displayLn(" ${dateResult.exceptionOrNull()?.message}")
-                    continue
+                    printer.displayLn("${dateResult.exceptionOrNull()?.message}")
+                    return
                 }
 
                 date = dateResult.getOrThrow()
                 val mealsResult = searchMealsByAddDate(date)
 
                 if (mealsResult.isFailure) {
-                    printer.displayLn(" ${mealsResult.exceptionOrNull()?.message}")
+                    printer.displayLn("${mealsResult.exceptionOrNull()?.message}")
                     date = null
-                    continue
+                    return
                 }
 
                 meals = mealsResult.getOrThrow()
@@ -48,8 +46,7 @@ class SearchMealsByAddDatePresenter(
             val detailResult = searchMealsByAddDate.findMealByIdInList(mealId, meals)
 
             if (detailResult.isFailure) {
-                printer.displayLn(" ${detailResult.exceptionOrNull()?.message}")
-                continue
+                printer.displayLn("${detailResult.exceptionOrNull()?.message}")
             }
 
             detailResult.onSuccess { meal ->
@@ -57,8 +54,7 @@ class SearchMealsByAddDatePresenter(
                 printer.displayLn(meal.formatDetails())
                 printer.displayLn("--------------------------------------------------\n")
             }
-            shouldRepeat = false
-        }
+
     }
 
     private fun parseDate(input: String): Result<LocalDate> {
