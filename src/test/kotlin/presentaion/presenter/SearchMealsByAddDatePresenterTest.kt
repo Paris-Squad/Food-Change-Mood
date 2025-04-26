@@ -17,6 +17,7 @@ import org.example.presentaion.presenter.io.Printer
 import org.example.utils.formatDetails
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import utils.createMeal
 import kotlin.test.Test
 
 class SearchMealsByAddDatePresenterTest{
@@ -40,30 +41,30 @@ class SearchMealsByAddDatePresenterTest{
         // Given
         val expectedDate = LocalDate(2023, 1, 1)
         val meals =listOf(
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
+            createMeal(
+               submittedDate =  LocalDate(
                     2023, 1, 1),
-                "1",
-                "orange juice"
+               mealId =  "1",
+                mealName = "orange juice"
             ),
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
+            createMeal(
+               submittedDate =  LocalDate(
                     2022, 1, 1),
-                "2",
-                "mango juice"
+                mealId = "2",
+                mealName = "mango juice"
             ),
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
+            createMeal(
+               submittedDate =  LocalDate(
                     2021, 1, 1),
-                "3",
-                "apple juice"
+                mealId = "3",
+                mealName = "apple juice"
             )
         )
-        val testMeal = createTestMealsForSearchingByAddDate(
-            LocalDate(
+        val testMeal = createMeal(
+            submittedDate =  LocalDate(
                 2023, 1, 1),
-            "1",
-            "orange juice"
+            mealId = "1",
+            mealName = "orange juice"
         )
 
         every { printer.displayLn(any()) } returns Unit
@@ -71,12 +72,7 @@ class SearchMealsByAddDatePresenterTest{
         mockkStatic("kotlin.io.ConsoleKt")
         every { readln() } returnsMany listOf("2023-01-01","1")
         every { searchMealsByAddDateUseCase.findMealByIdInList(any(),any()) } returns Result.success(
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
-                    2023, 1, 1),
-                "1",
-                "orange juice"
-            )
+            testMeal
         )
 
         // When
@@ -122,32 +118,6 @@ class SearchMealsByAddDatePresenterTest{
     fun `should handle NoMealsFoundException when searchMealByAddedDate function returns failure`(){
         // Given
         val expectedDate = LocalDate(2025, 1, 1)
-        val meals =listOf(
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
-                    2023, 1, 1),
-                "1",
-                "orange juice"
-            ),
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
-                    2024, 1, 1),
-                "2",
-                "mango juice"
-            ),
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
-                    2022, 1, 1),
-                "3",
-                "apple juice"
-            )
-        )
-        val testMeal = createTestMealsForSearchingByAddDate(
-            LocalDate(
-                2025, 1, 1),
-            "1",
-            "orange juice"
-        )
         mockkStatic("kotlin.io.ConsoleKt")
         every { readln() } returns "2025-01-01"
         every {
@@ -166,25 +136,24 @@ class SearchMealsByAddDatePresenterTest{
 
     @Test
     fun `should handle NoMealFoundException when findMealByIdInList returns failure`(){
-        val expectedDate = LocalDate(2023, 1, 1)
         val meals =listOf(
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
+            createMeal(
+                submittedDate =  LocalDate(
                     2023, 1, 1),
-                "1",
-                "orange juice"
+                mealId = "1",
+                mealName = "orange juice"
             ),
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
+            createMeal(
+                submittedDate =  LocalDate(
                     2024, 1, 1),
-                "2",
-                "mango juice"
+                mealId = "2",
+               mealName =  "mango juice"
             ),
-            createTestMealsForSearchingByAddDate(
-                LocalDate(
+            createMeal(
+                submittedDate =  LocalDate(
                     2022, 1, 1),
-                "3",
-                "apple juice"
+                mealId = "3",
+               mealName =  "apple juice"
             )
         )
         mockkStatic("kotlin.io.ConsoleKt")
@@ -218,27 +187,5 @@ class SearchMealsByAddDatePresenterTest{
 
 
 
-    companion object{
-        fun createTestMealsForSearchingByAddDate(
-            date : LocalDate,
-            mealId : String,
-            mealName : String
-        ) = Meal(
-            mealName = mealName,
-            mealId = mealId,
-            minutesForPreparation = 30,
-            contributorId = "1",
-            nutrition = Nutrition(
-                null,null,null,null,null,null,null
-            ),
-            description = null,
-            numberOfIngredients = 3,
-            numberOfSteps = 3,
-            steps = listOf("do", "do", "do"),
-            ingredients = listOf("do", "do", "do"),
-            tags = listOf("do", "do", "do"),
-            submittedDate = date
 
-        )
-    }
 }
