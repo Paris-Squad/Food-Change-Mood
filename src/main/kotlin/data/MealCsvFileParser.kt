@@ -15,7 +15,7 @@ class MealCsvFileParser(private val mealBuilder: MealBuilder) {
         lines.forEach { line ->
             inMultilineField = handleLine(line, lineBuilder, inMultilineField)
 
-            if (inMultilineField.not() && lineBuilder.isNotBlank()) {
+            if (lineBuilder.isNotBlank() && inMultilineField.not()) {
                 val mealLine = lineBuilder.toString().trim()
                 mealLines.add(mealLine)
                 lineBuilder.clear()
