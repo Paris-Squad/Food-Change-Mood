@@ -1,0 +1,5 @@
+package org.example.presentaion.presenter
+
+import org.example.presentaion.presenter.guessPreparationTime.GuessPreparationTimeGameGameUI
+
+data class UIContainer(val guessPreparationTimeGameUI : GuessPreparationTimeGameGameUI)
