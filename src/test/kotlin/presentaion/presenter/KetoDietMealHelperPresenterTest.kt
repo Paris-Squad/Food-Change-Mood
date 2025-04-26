@@ -1,17 +1,16 @@
 package presentaion.presenter
 
-import domain.model.Meal
-import domain.model.Nutrition
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.datetime.LocalDate
 import org.example.domain.usecase.GetKetoDietMealUseCase
 import org.example.presentaion.presenter.KetoDietMealHelperPresenter
 import org.example.presentaion.presenter.io.Printer
 import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 import com.google.common.truth.Truth.assertThat
+import domain.usecase.createMeal
+import domain.usecase.createNutrition
 import io.mockk.mockkStatic
 import org.example.domain.MealException
 
@@ -30,8 +29,11 @@ class KetoDietMealHelperPresenterTest{
     @Test
     fun `should return a suggested keto meal when GetKetoDietMealUseCase returns success`(){
         // Given
-        val suggestedKetoMeal = createTestMealsForKetoMealHelper(
-            500f, 25f, 48.3f, 40f
+        val suggestedKetoMeal = createMeal(
+           nutrition =  createNutrition(
+                calories = 500f, protein = 25f,  totalFat = 48.3f,carbohydrates = 40f
+            )
+
         )
         every { ketoDietMealUseCase.getSuggestedKetoMeal(any()) } returns Result.success(suggestedKetoMeal)
         every { printer.displayLn(any()) } returns Unit
@@ -101,32 +103,4 @@ class KetoDietMealHelperPresenterTest{
         verify { ketoDietMealUseCase.getSuggestedKetoMeal(any()) }
         verify { printer.displayLn(exception.message) }
     }
-
-
-
-    companion object{
-        fun createTestMealsForKetoMealHelper(
-            calories : Float?,
-            protein : Float?,
-            totalFat : Float?,
-            carbohydrates : Float?
-        ) = Meal(
-            mealName = "orange juice",
-            mealId = "1",
-            minutesForPreparation = 30,
-            contributorId = "1",
-            nutrition = Nutrition(
-                calories,totalFat,null,null,protein,null,carbohydrates
-            ),
-            description = null,
-            numberOfIngredients = 3,
-            numberOfSteps = 3,
-            steps = listOf("do", "do", "do"),
-            ingredients = listOf("do", "do", "do"),
-            tags = listOf("do", "do", "do"),
-            submittedDate = LocalDate(2000,12,5)
-
-        )
-    }
-
 }
