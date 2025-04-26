@@ -343,10 +343,62 @@ object MockMeals {
 
     val eggFreeSweetsMixedTestMeals = listOf(eggFreeSweet1, eggFreeSweet2, sweetMealWithEggs, nonDessertMeal)
 
-    val eggFreeSweetsMeals = listOf(eggFreeSweet1, eggFreeSweet2)
 
     val noEggFreeSweetsMeals = listOf(
         sweetMealWithEggs,
         nonDessertMeal
+    )
+
+    val invalidItalianMealsByUnTaggedItalianOrItaly = listOf(
+        createMeal(
+            mealName = "Healthy Chicken Salad",
+            tags = listOf("for-large-groups")
+        ),
+        createMeal(
+            mealName = "Invalid createMeal",
+            tags = listOf("for-large-groups")
+        ),
+        createMeal(
+            mealName = "Too Long To Prep",
+            tags = listOf("for-large-groups")
+        )
+    )
+
+    val invalidItalianMealsByUnTaggedForLargeGroup = listOf(
+        createMeal(
+            mealName = "Healthy Chicken Salad",
+            tags = listOf("italian")
+        ),
+        createMeal(
+            mealName = "Invalid createMeal",
+            tags = listOf("italy")
+        ),
+        createMeal(
+            mealName = "Too Long To Prep",
+            tags = listOf("italy, italian")
+        )
+    )
+
+    val validItalianMealsTaggedByForLargeGroupAndItalianOrItaly = listOf(
+        createMeal(
+            mealName = "Healthy Chicken Salad",
+            tags = listOf("italian","for-large-groups")
+        ),
+        createMeal(
+            mealName = "Invalid createMeal",
+            tags = listOf("italy","for-large-groups")
+        ),
+        createMeal(
+            mealName = "Invalid createMeal",
+            tags = listOf("ITALY","for-large-groups")
+        ),
+        createMeal(
+            mealName = "Invalid createMeal",
+            tags = listOf("ITALIAN","FOR-LARGE-GROUPS")
+        ),
+        createMeal(
+            mealName = "Too Long To Prep",
+            tags = listOf("italy", "italian")
+        )
     )
 }
