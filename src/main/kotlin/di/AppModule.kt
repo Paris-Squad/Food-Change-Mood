@@ -2,6 +2,7 @@ package org.example.di
 
 import org.example.data.CsvFileReader
 import org.example.data.CsvMealsRepository
+import org.example.data.MealBuilder
 import org.example.data.MealCsvFileParser
 import org.example.domain.repository.MealRepository
 import org.example.presentaion.presenter.io.ConsolePrinter
@@ -15,7 +16,8 @@ val appModule = module {
 
     single { File(CsvMealsRepository.FILE_NAME) }
     single { CsvFileReader(get()) }
-    single { MealCsvFileParser() }
+    single { MealBuilder() }
+    single { MealCsvFileParser(get()) }
     single<MealRepository> { CsvMealsRepository(get(), get()) }
     single<Printer> { ConsolePrinter() }
     single<InputReader> { ConsoleReader() }

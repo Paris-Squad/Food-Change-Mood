@@ -351,55 +351,56 @@ object MockMeals {
     )
 
 
-    val realMeals = listOf(
-        createMeal(
-            mealName = "arriba baked winter squash mexican style",
-            mealId = "137739",
-            minutesForPreparation = 55,
-            contributorId = "47892",
-            submittedDate = LocalDate.parse("2005-09-16"),
-            tags = listOf(
-                "60-minutes-or-less", "time-to-make", "course", "main-ingredient",
-                "cuisine", "preparation", "occasion", "north-american", "side-dishes",
-                "vegetables", "mexican", "easy", "fall", "holiday-event", "vegetarian",
-                "winter", "dietary", "christmas", "seasonal", "squash"
-            ),
-            nutrition = Nutrition(
-                calories = 51.5f,
-                totalFat = 0.0f,
-                sugar = 13.0f,
-                sodium = 0.0f,
-                protein = 2.0f,
-                saturatedFat = 0.0f,
-                carbohydrates = 4.0f
-            ),
-            numberOfSteps = 11,
-            steps = listOf(
-                "make a choice and proceed with recipe",
-                "depending on size of squash, cut into half or fourths",
-                "remove seeds",
-                "for spicy squash, drizzle olive oil or melted butter over each cut squash piece",
-                "season with mexican seasoning mix ii",
-                "for sweet squash, drizzle melted honey, butter, grated piloncillo over each cut squash piece",
-                "season with sweet mexican spice mix",
-                "bake at 350 degrees, again depending on size, for 40 minutes up to an hour, until a fork can easily pierce the skin",
-                "be careful not to burn the squash especially if you opt to use sugar or butter",
-                "if you feel more comfortable, cover the squash with aluminum foil the first half hour of baking",
-                "if desired, season with salt"
-            ),
-            description = "autumn is my favorite time of year to cook! this recipe can be prepared either spicy or sweet, your choice! two of my posted mexican-inspired seasoning mix recipes are offered as suggestions.",
-            ingredients = listOf(
-                "winter squash",
-                "mexican seasoning",
-                "mixed spice",
-                "honey",
-                "butter",
-                "olive oil",
-                "salt"
-            ),
-            numberOfIngredients = 7
+    val validMeal = createMeal(
+        mealName = "arriba baked winter squash mexican style",
+        mealId = "137739",
+        minutesForPreparation = 55,
+        contributorId = "47892",
+        submittedDate = LocalDate.parse("2005-09-16"),
+        tags = listOf(
+            "60-minutes-or-less", "time-to-make", "course", "main-ingredient",
+            "cuisine", "preparation", "occasion", "north-american", "side-dishes",
+            "vegetables", "mexican", "easy", "fall", "holiday-event", "vegetarian",
+            "winter", "dietary", "christmas", "seasonal", "squash"
         ),
+        nutrition = Nutrition(
+            calories = 51.5f,
+            totalFat = 0.0f,
+            sugar = 13.0f,
+            sodium = 0.0f,
+            protein = 2.0f,
+            saturatedFat = 0.0f,
+            carbohydrates = 4.0f
+        ),
+        numberOfSteps = 11,
+        steps = listOf(
+            "make a choice and proceed with recipe",
+            "depending on size of squash , cut into half or fourths",
+            "remove seeds",
+            "for spicy squash , drizzle olive oil or melted butter over each cut squash piece",
+            "season with mexican seasoning mix ii",
+            "for sweet squash , drizzle melted honey , butter , grated piloncillo over each cut squash piece",
+            "season with sweet mexican spice mix",
+            "bake at 350 degrees , again depending on size , for 40 minutes up to an hour , until a fork can easily pierce the skin",
+            "be careful not to burn the squash especially if you opt to use sugar or butter",
+            "if you feel more comfortable , cover the squash with aluminum foil the first half hour , give or take , of baking",
+            "if desired , season with salt"
+        ),
+        description = "autumn is my favorite time of year to cook! this recipe can be prepared either spicy or sweet, your choice! two of my posted mexican-inspired seasoning mix recipes are offered as suggestions.",
+        ingredients = listOf(
+            "winter squash",
+            "mexican seasoning",
+            "mixed spice",
+            "honey",
+            "butter",
+            "olive oil",
+            "salt"
+        ),
+        numberOfIngredients = 7
+    )
 
+    val realMeals = listOf(
+        validMeal,
         createMeal(
             mealName = "a bit different breakfast pizza",
             mealId = "31490",
